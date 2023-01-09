@@ -1,20 +1,25 @@
 import React from 'react';
 import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 
+import { PAGE_INFO } from './constants';
 import { getSelectOptions } from './utils';
 
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { Input, Select, Textarea } from '@/components/Form';
+
 import { category, status } from '@/constants/feedbacks';
 
 import './style.scss';
-import Button from '@/components/Button';
+
+const categoryOptions = getSelectOptions(category);
+const statusOptions = getSelectOptions(status.filter((item) => item !== 'new'));
 
 export const FeedbackForm: React.FC<Props> = ({
   children,
   defaultValues = {},
-  disabled = false,
+  disabled: isFormDisabled = false,
   onSubmit,
+  type,
 }) => {
   const methods = useForm({
     mode: 'onChange',
@@ -22,7 +27,12 @@ export const FeedbackForm: React.FC<Props> = ({
   });
 
   const { user } = useAuthContext() as AuthContextType;
-  const isAdminUser = user?.role === 'admin';
+
+  const isAdminUser = (user?.role === 'admin');
+
+  const isEditting = (type === 'edit');
+  const isPublishedFeedback = (defaultValues.status === 'live');
+  const disabled = isPublishedFeedback || isFormDisabled;
 
   return (
     <FormProvider {...methods}>
@@ -30,26 +40,35 @@ export const FeedbackForm: React.FC<Props> = ({
         className="form-page__form border-rounded--large"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
+        <h1 className="form-page__title">
+          {type === 'add'
+            ? PAGE_INFO[type].title
+            : `${isPublishedFeedback
+              ? ''
+              : 'Edit'}
+              "${defaultValues.title}"`}
+        </h1>
         <Input
           description="Add a short, descriptive headline"
-          disabled={disabled}
+          disabled={disabled || (isAdminUser && isEditting)}
           maxLength={{
             value: 50,
             message: 'title is too long',
           }}
           name="title"
+          placeholder="Please input feedback title"
           required={{
             value: true,
             message: 'Feedback title is required',
           }}
           title="Feedback Title"
         />
-        {isAdminUser && (
+        {(isAdminUser && (type === 'edit')) && (
           <Select
             description="update feedback status"
-            disabled={disabled}
+            disabled={(defaultValues.status === 'live')}
             name="status"
-            options={getSelectOptions(status)}
+            options={statusOptions}
             placeholder="Please select status"
             required={{
               value: true,
@@ -60,9 +79,9 @@ export const FeedbackForm: React.FC<Props> = ({
         )}
         <Select
           description="Choose a category for your feedback"
-          disabled={disabled}
+          disabled={disabled || (isAdminUser && isEditting)}
           name="category"
-          options={getSelectOptions(category)}
+          options={categoryOptions}
           placeholder="Please select category"
           required={{
             value: true,
@@ -73,23 +92,23 @@ export const FeedbackForm: React.FC<Props> = ({
         <Textarea
           description="Include any specific comments on what should be improved, added,
               etc."
-          disabled={disabled}
+          disabled={disabled || (isAdminUser && isEditting)}
           name="detail"
+          placeholder="Please type feedback detail"
           required={{
             value: true,
             message: 'Feedback detail is required',
           }}
           title="Feedback Details"
         />
-        {children}
-        <Button>add</Button>
+        {!isPublishedFeedback && <div className="form-page__buttons">{children}</div>}
       </form>
     </FormProvider>
   );
 };
 
 export interface Props {
-  children?: React.ReactElement;
+  children: React.ReactElement;
   defaultValues?: FieldValues;
   disabled?: boolean;
   onSubmit: (data: FieldValues) => void;

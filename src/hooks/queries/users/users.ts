@@ -68,7 +68,7 @@ export const useSignOutUser = () => {
       helpers.auth.clearToken();
       setUser(null);
 
-      toast.info('You have login out');
+      toast.info('You have logined out');
     }
   });
 };

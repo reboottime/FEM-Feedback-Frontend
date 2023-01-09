@@ -48,8 +48,9 @@
 
   &__error {
     @include typography-heading(heading-4);
-    font-weight: map.get($font-weight, "regular");
     color: map.get($colors, "red1");
+    font-weight: map.get($font-weight, "regular");
+    margin-top: 4px;
   }
 
   @include md {
