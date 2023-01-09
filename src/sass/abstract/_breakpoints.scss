@@ -1,3 +1,5 @@
+@use "sass:map";
+
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -6,3 +8,33 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1400px,
 );
+
+@mixin xs {
+  @media screen and (min-width: map.get($grid-breakpoints, "xs")) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media screen and (min-width: map.get($grid-breakpoints, "sm")) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (min-width: map.get($grid-breakpoints, "md")) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (min-width: map.get($grid-breakpoints, "lg")) {
+    @content;
+  }
+}
+
+@mixin xlg {
+  @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+    @content;
+  }
+}
