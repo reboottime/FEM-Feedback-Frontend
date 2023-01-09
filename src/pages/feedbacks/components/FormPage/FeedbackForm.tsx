@@ -49,7 +49,7 @@ export const FeedbackForm: React.FC<Props> = ({
         </h1>
         <Input
           description="Add a short, descriptive headline"
-          disabled={disabled}
+          disabled={disabled || isAdminUser}
           maxLength={{
             value: 50,
             message: 'title is too long',
@@ -78,7 +78,7 @@ export const FeedbackForm: React.FC<Props> = ({
         )}
         <Select
           description="Choose a category for your feedback"
-          disabled={disabled}
+          disabled={disabled || isAdminUser}
           name="category"
           options={categoryOptions}
           placeholder="Please select category"
@@ -91,7 +91,7 @@ export const FeedbackForm: React.FC<Props> = ({
         <Textarea
           description="Include any specific comments on what should be improved, added,
               etc."
-          disabled={disabled}
+          disabled={disabled || isAdminUser}
           name="detail"
           placeholder="Please type feedback detail"
           required={{
