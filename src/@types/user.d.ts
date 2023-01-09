@@ -1,5 +1,4 @@
-declare interface IUser {
-  id: string;
+declare interface TUserPass {
   password: string;
   username: string;
 }
