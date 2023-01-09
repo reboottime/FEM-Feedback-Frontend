@@ -1,45 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Navigate, useRoutes } from 'react-router-dom';
 
-import { ReactComponent as ReactLogo } from '@/assets/react.svg';
-import Button from '@/components/Button';
+import authRoutes from '@/pages/auth';
+import feedbackRoutes from '@/pages/feedbacks';
+import Roadmap from '@/pages/roadmap';
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [user] = useState<IUser | null>(null);
-
-  return (
-    <div className="App">
-      <Button>Click Me</Button>
-      <ReactLogo />
-      {user
-        ? JSON.stringify(user)
-        : 'No user yet'}
-      <div>
-        <a href="https://vitejs.dev"
-          rel="noreferrer"
-          target="_blank">
-          <img alt="Vite logo"
-            className="logo"
-            src="/vite.svg" />
-        </a>
-        <a href="https://reactjs.org"
-          rel="noreferrer"
-          target="_blank"></a>
-      </div >
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div >
-  );
-}
+const App: React.FC = () => useRoutes([
+  {
+    path: '/',
+    element: <Navigate to="/feedbacks" />,
+  },
+  {
+    path: '/feedbacks',
+    children: feedbackRoutes,
+  },
+  {
+    path: '/auth',
+    children: authRoutes,
+  },
+  {
+    path: '/roadmap',
+    element: <Roadmap />,
+  },
+  {
+    path: '*',
+    element: <h1>Not found</h1>,
+  },
+]);
 
 export default App;
