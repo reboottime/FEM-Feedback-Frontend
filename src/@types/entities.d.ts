@@ -33,11 +33,12 @@ declare namespace Entities {
   declare type TRoadmapStatus = Exclude<TStatus, 'new'>;
 
   declare interface TFeedback  extends TRecord {
-    categoru: TCategory;
+    category: TCategory;
     comment_count: number;
     comments: TComment['id'][];
     detail: string;
     status: TStatus;
+    title: string;
     vote_count: number;
     votes: TUser['id'][];
   }
