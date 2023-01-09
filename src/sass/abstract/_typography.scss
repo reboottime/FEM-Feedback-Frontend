@@ -1,6 +1,8 @@
 @use "sass:map";
-
 @use "./colors" as *;
+
+$typography-body: (body-1, body-2, body-3);
+$typography-heading: (heading-1, heading-2, heading-3, heading-4);
 
 $font-weight: (
   regular: 400,
@@ -9,44 +11,39 @@ $font-weight: (
 );
 
 $font-size: (
-  body1: 16px,
-  body2: 15px,
-  body3: 13px,
-  title1: 24px,
-  titl2: 20px,
-  title3: 18px,
-  title4: 14px,
+  body-1: 16px,
+  body-2: 15px,
+  body-3: 13px,
+  heading-1: 24px,
+  heading-2: 20px,
+  heading-3: 18px,
+  heading-4: 14px,
 );
 
 $line-height: (
-  body1: 23px,
-  body2: 22px,
-  body3: 19px,
-  title1: 35px,
-  title2: 29px,
-  title3: 26px,
-  title4: 20px,
+  body-1: 23px,
+  body-2: 22px,
+  body-3: 19px,
+  heading-1: 35px,
+  heading-2: 29px,
+  heading-3: 26px,
+  heading-4: 20px,
 );
 
 $letter-spacing: (
-  title1: -0.33px,
-  title2: -0.25px,
-  title3: -0.25px,
-  title4: -0.2px,
+  heading-1: -0.33px,
+  heading-2: -0.25px,
+  heading-3: -0.25px,
+  heading-4: -0.2px,
 );
 
-@mixin body($size) {
+@mixin typography-body($size) {
   color: map.get($colors, "dark2");
   font-size: map.get($map: $font-size, $key: $size);
-  font-weight: 400;
   line-height: map.get($map: $line-height, $key: $size);
-
-  @if $size == body3 {
-    font-weight: map.get($map: $font-weight, $key: semi-bold);
-  }
 }
 
-@mixin title($size) {
+@mixin typography-heading($size) {
   font-size: map.get($map: $font-size, $key: $size);
   font-weight: map.get($map: $font-weight, $key: bold);
   letter-spacing: map.get($map: $letter-spacing, $key: $size);
