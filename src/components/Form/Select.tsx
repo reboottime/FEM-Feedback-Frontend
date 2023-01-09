@@ -107,9 +107,9 @@ export const Select: React.FC<SelectProps> = ({
         defaultValue={selectedItem?.value}
         disabled={disabled}
         id={controlId}
+        name={name}
         onFocus={handleInputFocus}
         type="text"
-        {...filedProps}
       />
       <FieldLabel description={description}
         htmlFor={controlId}
@@ -161,9 +161,9 @@ export const Select: React.FC<SelectProps> = ({
 
 export interface SelectProps
   extends Omit<
-      React.HtmlHTMLAttributes<HTMLSelectElement>,
-      'maxLength' | 'required' | 'minLength'
-    >,
-    FormFieldProps {
+    React.HtmlHTMLAttributes<HTMLSelectElement>,
+    'maxLength' | 'required' | 'minLength'
+  >,
+  FormFieldProps {
   options: IOption[];
 }
