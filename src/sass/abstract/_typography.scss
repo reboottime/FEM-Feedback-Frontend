@@ -1,0 +1,54 @@
+@use "sass:map";
+
+@use "./colors" as *;
+
+$font-weight: (
+  regular: 400,
+  semi-bold: 600,
+  bold: 700,
+);
+
+$font-size: (
+  body1: 16px,
+  body2: 15px,
+  body3: 13px,
+  title1: 24px,
+  titl2: 20px,
+  title3: 18px,
+  title4: 14px,
+);
+
+$line-height: (
+  body1: 23px,
+  body2: 22px,
+  body3: 19px,
+  title1: 35px,
+  title2: 29px,
+  title3: 26px,
+  title4: 20px,
+);
+
+$letter-spacing: (
+  title1: -0.33px,
+  title2: -0.25px,
+  title3: -0.25px,
+  title4: -0.2px,
+);
+
+@mixin body($size) {
+  color: map.get($colors, "dark2");
+  font-size: map.get($map: $font-size, $key: $size);
+  font-weight: 400;
+  line-height: map.get($map: $line-height, $key: $size);
+
+  @if $size == body3 {
+    font-weight: map.get($map: $font-weight, $key: semi-bold);
+  }
+}
+
+@mixin title($size) {
+  font-size: map.get($map: $font-size, $key: $size);
+  font-weight: map.get($map: $font-weight, $key: bold);
+  letter-spacing: map.get($map: $letter-spacing, $key: $size);
+  line-height: map.get($map: $line-height, $key: $size);
+}

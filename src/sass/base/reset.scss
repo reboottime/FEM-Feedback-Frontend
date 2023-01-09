@@ -1,0 +1,11 @@
+@use './normalize.scss';
+
+button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+
+  &[disabled] {
+    cursor:default;
+  }
+}
