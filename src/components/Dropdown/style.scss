@@ -1,0 +1,56 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.highlight {
+  color: map.get($colors, "purple1");
+}
+
+.dropdown {
+  @include typography-body(body-1);
+  background-color: map.get($colors, "white1");
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+  color: map.get($colors, "dark4");
+  min-width: 100%;
+  outline: none;
+  z-index: map.get($z-index, "dropdown");
+
+  &__option {
+    outline: none;
+    &:not(:last-child)::after {
+      background: map.get($colors, "dark2");
+      content: "";
+      display: block;
+      height: 1px;
+      mix-blend-mode: normal;
+      opacity: 0.15;
+      width: 100%;
+    }
+
+    &[aria-disabled]:focus {
+      outline: none;
+    }
+
+    &--selected,
+    &:hover:not([aria-disabled]) {
+      cursor: pointer;
+      @extend .highlight;
+    }
+
+    &:focus:not([aria-disabled]) {
+      @extend .highlight;
+    }
+  }
+
+  &__option-check-mark {
+    margin-left: 16px;
+  }
+
+  &__option-content {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 24px;
+    white-space: nowrap;
+  }
+}
