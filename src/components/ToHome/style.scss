@@ -1,0 +1,9 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.to-home-icon {
+  display: flex;
+  svg {
+    fill: map.get($colors, "blue1") !important;
+  }
+}
