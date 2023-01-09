@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.user-icon {
+  position: relative;
+
+  &__picture {
+    display: flex;
+
+    svg {
+      fill: map.get($colors, "purple1");
+    }
+    span {
+      color: map.get($colors, "white1");
+      margin-left: 8px;
+    }
+
+    &--semi {
+      svg {
+        fill: map.get($colors, "dark4");
+      }
+    }
+  }
+
+  &__actions {
+    position: absolute;
+    right: 0;
+    top: 32px;
+  }
+}
