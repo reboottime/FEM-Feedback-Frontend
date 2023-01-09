@@ -7,8 +7,7 @@ import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { Input, Select, Textarea } from '@/components/Form';
 import { category, status } from '@/constants/feedbacks';
 
-import './style.scss';
-import Button from '@/components/Button';
+import './feedbackForm.style.scss';
 
 export const FeedbackForm: React.FC<Props> = ({
   children,
@@ -82,14 +81,13 @@ export const FeedbackForm: React.FC<Props> = ({
           title="Feedback Details"
         />
         {children}
-        <Button>add</Button>
       </form>
     </FormProvider>
   );
 };
 
 export interface Props {
-  children?: React.ReactElement;
+  children: React.ReactElement;
   defaultValues?: FieldValues;
   disabled?: boolean;
   onSubmit: (data: FieldValues) => void;
