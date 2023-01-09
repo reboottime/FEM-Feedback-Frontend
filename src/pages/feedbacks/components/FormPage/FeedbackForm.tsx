@@ -1,19 +1,22 @@
 import React from 'react';
 import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 
+import { PAGE_INFO } from './constants';
 import { getSelectOptions } from './utils';
 
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { Input, Select, Textarea } from '@/components/Form';
+
 import { category, status } from '@/constants/feedbacks';
 
-import './feedbackForm.style.scss';
+import './style.scss';
 
 export const FeedbackForm: React.FC<Props> = ({
   children,
   defaultValues = {},
   disabled = false,
   onSubmit,
+  type,
 }) => {
   const methods = useForm({
     mode: 'onChange',
@@ -21,6 +24,7 @@ export const FeedbackForm: React.FC<Props> = ({
   });
 
   const { user } = useAuthContext() as AuthContextType;
+
   const isAdminUser = user?.role === 'admin';
 
   return (
@@ -29,6 +33,11 @@ export const FeedbackForm: React.FC<Props> = ({
         className="form-page__form border-rounded--large"
         onSubmit={methods.handleSubmit(onSubmit)}
       >
+        <h1 className="form-page__title">
+          {type === 'add'
+            ? PAGE_INFO[type].title
+            : `Edit "${defaultValues.title}"`}
+        </h1>
         <Input
           description="Add a short, descriptive headline"
           disabled={disabled}
@@ -37,18 +46,19 @@ export const FeedbackForm: React.FC<Props> = ({
             message: 'title is too long',
           }}
           name="title"
+          placeholder="Please input feedback title"
           required={{
             value: true,
             message: 'Feedback title is required',
           }}
           title="Feedback Title"
         />
-        {isAdminUser && (
+        {isAdminUser && type === 'edit' && (
           <Select
             description="update feedback status"
             disabled={disabled}
             name="status"
-            options={getSelectOptions(status)}
+            options={getSelectOptions(status.filter((item) => (item !== 'new')))}
             placeholder="Please select status"
             required={{
               value: true,
@@ -74,13 +84,14 @@ export const FeedbackForm: React.FC<Props> = ({
               etc."
           disabled={disabled}
           name="detail"
+          placeholder="Please type feedback detail"
           required={{
             value: true,
             message: 'Feedback detail is required',
           }}
           title="Feedback Details"
         />
-        {children}
+        <div className="form-page__buttons">{children}</div>
       </form>
     </FormProvider>
   );

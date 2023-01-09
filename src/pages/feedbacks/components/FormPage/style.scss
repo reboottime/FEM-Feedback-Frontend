@@ -1,0 +1,69 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.form-page {
+  margin: 0 map.get($content-margin, "mobile");
+
+  &__header {
+    align-items: center;
+    display: flex;
+    padding: map.get($content-margin, "mobile") 0;
+    justify-content: space-between;
+  }
+
+  &__header-nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__icon {
+    margin-left: map.get($content-margin, "mobile");
+    margin-bottom: -34px;
+
+    &--edit {
+      margin-bottom: -28px;
+    }
+  }
+
+  &__title {
+    @include typography-heading(heading-3);
+    margin: map.get($content-margin, "mobile") 0;
+  }
+
+  &__form {
+    background-color: map.get($colors, "white1");
+    padding: map.get($content-margin, "mobile");
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  @include md {
+    max-width: 540px;
+    margin: 0 auto;
+
+    &__title {
+      @include typography-heading(heading-1);
+      margin: map.get($content-margin, "mobile") auto
+        map.get($content-margin, "tablet");
+    }
+
+    &__form {
+      padding: map.get($content-margin, "tablet");
+    }
+
+    &__icon {
+      margin-left: map.get($content-margin, "tablet");
+    }
+
+    &__buttons {
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+  }
+}

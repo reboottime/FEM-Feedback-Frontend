@@ -1,16 +1,30 @@
 import React from 'react';
+import { FieldValues } from 'react-hook-form';
 
-import FormPage from '@/pages/feedbacks/components/FormPage';
+import Button from '@/components/Button';
+import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
 import { useAddFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
 export const AddPage = () => {
   const mutation = useAddFeedback();
 
+  const handleSubmit = (data: FieldValues) => {
+    mutation.mutate(data as never);
+  };
+
   return (
-    <FormPage
-      onSubmit={mutation.mutate}
-      type="add"
-    />);
+    <FormPage type="add">
+      <FeedbackForm
+        onSubmit={handleSubmit}
+        type="add"
+      >
+        <React.Fragment>
+          <Cancell />
+          <Button>Save Changes</Button>
+        </React.Fragment>
+      </FeedbackForm>
+    </FormPage>
+  );
 };
 
 export default AddPage;
