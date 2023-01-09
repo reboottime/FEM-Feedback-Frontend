@@ -1,0 +1,60 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.form-field {
+  &--full-width {
+    width: 100%;
+    input:not([hidden]),
+    .selct,
+    textarea {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $form-field-margin;
+  }
+
+  &__label {
+    @include typography-body(body-3);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  &__label-text {
+    color: map.get($colors, "dark2");
+    text-transform: capitalize;
+  }
+
+  &__label-desc {
+    color: map.get($colors, "dark4");
+    &:first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__control {
+    @include input();
+
+    &::placeholder {
+      text-transform: capitalize;
+    }
+    &:-webkit-input-placeholder {
+      /* Edge */
+      text-transform: capitalize;
+    }
+  }
+
+  &__error {
+    @include typography-heading(heading-4);
+    font-weight: map.get($font-weight, "regular");
+    color: map.get($colors, "red1");
+  }
+
+  @include md {
+    &__label {
+      @include typography-heading(heading-4);
+    }
+  }
+}
