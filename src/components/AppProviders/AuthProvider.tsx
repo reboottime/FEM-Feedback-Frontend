@@ -9,7 +9,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
-        setUser
+        setUser,
       }}
     >
       {children}
@@ -26,7 +26,7 @@ type TUser = Entities.TAuthedUser | null;
 export type AuthContextType = {
   setUser: (user: TUser) => void;
   user: TUser;
-}
+};
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);

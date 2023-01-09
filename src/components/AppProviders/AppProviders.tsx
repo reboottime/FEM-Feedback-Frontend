@@ -28,4 +28,3 @@ interface Props {
 }
 
 export default AppProviders;
-

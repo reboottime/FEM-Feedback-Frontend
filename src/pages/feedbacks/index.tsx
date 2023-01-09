@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LazyWrap from '@/components/LazyWrap';
+import { ProtectedRoute } from '@/components/AppProviders';
 
 const AddPage = React.lazy(() => import('./AddPage'));
 const EditPage = React.lazy(() => import('./EditPage'));
@@ -29,7 +30,9 @@ const routes = [
     path: ':feedbackId/edit',
     element: (
       <LazyWrap>
-        <EditPage />
+        <ProtectedRoute toPath="/auth">
+          <EditPage />
+        </ProtectedRoute>
       </LazyWrap>
     ),
   },
@@ -37,7 +40,9 @@ const routes = [
     path: 'add',
     element: (
       <LazyWrap>
-        <AddPage />
+        <ProtectedRoute toPath="/auth">
+          <AddPage />
+        </ProtectedRoute>
       </LazyWrap>
     ),
   },
