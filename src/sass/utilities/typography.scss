@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+@each $name, $weight in $font-weight {
+  .fw-#{$name} {
+    font-weight: $weight;
+  }
+}
+
+@each $name in $typography-body {
+  .typography-#{$name} {
+    font-size: map.get($font-size, $name);
+    line-height: map.get($line-height, $name);
+  }
+}
+
+@each $name in $typography-heading {
+  .typography-#{$name} {
+    font-size: map.get($font-size, $name);
+    font-weight: map.get($font-weight, "bold");
+    letter-spacing: map.get($letter-spacing, $name);
+    line-height: map.get($line-height, $name);
+  }
+}
