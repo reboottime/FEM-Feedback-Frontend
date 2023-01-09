@@ -1,4 +1,4 @@
-@use './normalize.scss';
+@use "./normalize.scss";
 
 button {
   background-color: transparent;
@@ -6,6 +6,6 @@ button {
   cursor: pointer;
 
   &[disabled] {
-    cursor:default;
+    cursor: default;
   }
 }

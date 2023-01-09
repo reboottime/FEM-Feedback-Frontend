@@ -1,4 +1,3 @@
 # README
 
-
-sass variables,  mixins.
+sass variables, mixins.
