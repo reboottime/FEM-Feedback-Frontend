@@ -2,10 +2,10 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-
-import { queryClient } from './queryClient';
+import 'react-toastify/dist/ReactToastify.css';
 
 import AuthProvider from './AuthProvider';
+import { queryClient } from './queryClient';
 
 const AppProviders: React.FC<Props> = ({ children }) => (
   <AuthProvider>

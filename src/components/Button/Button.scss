@@ -1,6 +1,0 @@
-@use "sass:map";
-@use "@/sass/abstract/colors" as *;
-
-.button {
-  background-color: map.get($colors, "purple1");
-}

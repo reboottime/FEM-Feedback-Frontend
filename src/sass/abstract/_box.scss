@@ -1,1 +1,15 @@
-$round-width: 10px;
+@use "sass:map";
+
+$border-radius: (
+  large: 10px,
+  small: 5px,
+);
+
+$content-margin: (
+  desktop: auto,
+  mobile: 24px,
+);
+
+@mixin round-border($size) {
+  border-radius: map.get($border-radius, $size);
+}

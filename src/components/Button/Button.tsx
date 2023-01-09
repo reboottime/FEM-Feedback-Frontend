@@ -1,11 +1,34 @@
+import classNames from 'classnames';
 import React from 'react';
 
-import './Button.scss';
+import './style.scss';
 
-export const Button: React.FC<Props> = ({ children }) => {
-  return <button className="rounded button">{children}</button>;
-};
+export const Button: React.FC<Props> = ({
+  children,
+  disabled,
+  fullWidth = false,
+  mobileFullWidth = false,
+  small = false,
+  variant = 'purple',
+  ...rest
+}) => (
+  <button
+    className={classNames('button', `button--${variant}`, {
+      'button--full-width': fullWidth,
+      'button--mobile-full-width': mobileFullWidth,
+      'button--small': small,
+    })}
+    disabled={disabled}
+    {...rest}
+  >
+    {children}
+  </button>
+);
 
-export interface Props {
-  children: React.ReactNode;
+export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: string | React.ReactElement;
+  fullWidth?: boolean;
+  mobileFullWidth?: boolean;
+  small?: boolean;
+  variant?: 'blue' | 'danger' | 'indigo' | 'plain' | 'purple';
 }

@@ -1,0 +1,35 @@
+@use "sass:map";
+@use "@/sass/abstract/box" as *;
+@use "@/sass/abstract/colors" as *;
+@use "@/sass/abstract/typography" as *;
+
+$form-field-margin: 16px;
+
+@mixin input {
+  @include typography-body(body-2);
+  background-color: map.get($colors, "white2");
+  border: 1px solid transparent;
+  border-radius: map.get($border-radius, "small");
+  box-sizing: border-box;
+  outline: none;
+  padding: 12px 24px;
+  transition: border-color 0.25 ease-in;
+  border: 1px solid map.get($colors, "dark4");
+
+  &[disabled] {
+    border-color: transparent !important;
+  }
+
+  &:focus {
+    border-color: map.get($colors, "blue1");
+  }
+
+  &--error {
+    border-color: map.get($colors, "red1");
+  }
+
+  &--full-width {
+    display: inline-block;
+    width: 100%;
+  }
+}
