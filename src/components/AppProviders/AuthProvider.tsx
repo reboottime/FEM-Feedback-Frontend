@@ -1,14 +1,9 @@
 import React, { useContext, useState } from 'react';
 
-export type AuthContextType = {
-  setUser: (user: Entities.TAuthedUser | null) => void;
-  user: Entities.TAuthedUser | null;
-}
-
 const AuthContext = React.createContext<AuthContextType | null>(null);
 
-export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [user, setUser] = useState<Entities.TAuthedUser | null>(null);
+const AuthProvider: React.FC<Props> = ({ children }) => {
+  const [user, setUser] = useState<TUser>(null);
 
   return (
     <AuthContext.Provider
@@ -22,6 +17,25 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
   );
 };
 
+interface Props {
+  children: React.ReactElement;
+}
+
+type TUser = Entities.TAuthedUser | null;
+
+export type AuthContextType = {
+  setUser: (user: TUser) => void;
+  user: TUser;
+}
+
 export const useAuthContext = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+
+  if (context) {
+    return context;
+  }
+
+  throw new Error('useAuthContex should be used inside AuthProvider');
 };
+
+export default AuthProvider;
