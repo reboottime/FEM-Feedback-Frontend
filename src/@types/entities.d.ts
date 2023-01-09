@@ -12,7 +12,7 @@ declare namespace Entities {
     username: string;
   }
 
-  export interface TAuthedUser extends TUserData {
+  export interface TAuthedUser extends TUser {
     accessToken: string;
   }
 
