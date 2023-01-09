@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "@/sass/abstract/colors" as *;
+
+.go-back {
+  align-items: center;
+  color: map.get($colors, "dark4");
+  display: inline-flex;
+  gap: 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &__icon {
+    path {
+      stroke: map.get($colors, "dark4");
+    }
+  }
+}
+
+.go-back--white {
+  color: map.get($colors, "white1") !important;
+
+  .go-back__icon path {
+    stroke: map.get($colors, "white1") !important;
+  }
+}
