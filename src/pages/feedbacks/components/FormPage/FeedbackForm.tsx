@@ -11,6 +11,9 @@ import { category, status } from '@/constants/feedbacks';
 
 import './style.scss';
 
+const categoryOptions = getSelectOptions(category);
+const statusOptions = getSelectOptions(status.filter((item) => item !== 'new'));
+
 export const FeedbackForm: React.FC<Props> = ({
   children,
   defaultValues = {},
@@ -59,12 +62,12 @@ export const FeedbackForm: React.FC<Props> = ({
           }}
           title="Feedback Title"
         />
-        {(isAdminUser && type === 'edit') && (
+        {(isAdminUser && (type === 'edit')) && (
           <Select
             description="update feedback status"
             disabled={(defaultValues.status === 'live')}
             name="status"
-            options={getSelectOptions(status.filter((item) => (item !== 'new')))}
+            options={statusOptions}
             placeholder="Please select status"
             required={{
               value: true,
@@ -77,7 +80,7 @@ export const FeedbackForm: React.FC<Props> = ({
           description="Choose a category for your feedback"
           disabled={disabled}
           name="category"
-          options={getSelectOptions(category)}
+          options={categoryOptions}
           placeholder="Please select category"
           required={{
             value: true,
