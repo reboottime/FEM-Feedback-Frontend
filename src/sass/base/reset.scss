@@ -1,4 +1,20 @@
+@use 'sass:map';
+@use '@/sass/abstract' as *;
 @use "./normalize.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+body {
+  @include typography-body(body-1);
+  background-color: map.get($colors, 'white2');
+  font-family: 'Jost', sans-serif;
+  padding: 0 !important;
+  min-height: 100vh;
+}
 
 button {
   background-color: transparent;
