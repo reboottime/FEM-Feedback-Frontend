@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 import TextareaAutosize from 'react-textarea-autosize';
 
 import FieldLabel from './FieldLabel';
-import getHtmlFor from './utils';
+import useControllId from './useControllId';
 import { FormFieldProps } from './typings';
 import ErrorDesc from './ErrorDesc';
 
@@ -19,8 +19,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   rows = 3,
   ...rest
 }) => {
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-  const controlId = getHtmlFor(name);
+  const controlId = useControllId(name);
 
   const {
     register,
@@ -28,14 +27,16 @@ export const Textarea: React.FC<TextareaProps> = ({
   } = useFormContext();
 
   const fieldProps = register(name, { ...rest });
+
   const hasFieldError = !!errors[name];
 
   React.useEffect(() => {
-    // To remove annoying grammarly height setup
-    if (textareaRef.current) {
-      textareaRef.current.removeAttribute('style');
+    const textarea = document.querySelector(`#${controlId}`);
+
+    if (textarea) {
+      textarea.removeAttribute('style');
     }
-  }, []);
+  }, [controlId]);
 
   return (
     <div
@@ -57,9 +58,8 @@ export const Textarea: React.FC<TextareaProps> = ({
         disabled={disabled}
         id={controlId}
         placeholder={placeholder}
-        {...fieldProps}
-        ref={textareaRef}
         rows={rows}
+        {...fieldProps}
       />
       <ErrorMessage
         errors={errors}

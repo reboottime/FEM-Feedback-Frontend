@@ -9,7 +9,7 @@ import { Portal } from 'react-portal';
 
 import ErrorDesc from './ErrorDesc';
 import FieldLabel from './FieldLabel';
-import getHtmlFor from './utils';
+import useControllId from './useControllId';
 import { FormFieldProps } from './typings';
 
 import { ReactComponent as ArrowDownIcon } from '@/assets/shared/icon-arrow-down.svg';
@@ -39,7 +39,7 @@ export const Select: React.FC<SelectProps> = ({
     formState: { errors },
   } = useFormContext();
 
-  const controlId = getHtmlFor(name);
+  const controlId = useControllId(name);
   const filedProps = register(name, { ...rest });
 
   const optionsContainerRef = React.useRef<HTMLDivElement>(null);

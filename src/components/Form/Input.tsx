@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 
 import ErrorDesc from './ErrorDesc';
 import FieldLabel from './FieldLabel';
-import getHtmlFor from './utils';
+import useControllId from './useControllId';
 import { FormFieldProps } from './typings';
 
 export const Input: React.FC<InputProps> = ({
@@ -25,7 +25,7 @@ export const Input: React.FC<InputProps> = ({
 
   const hasFieldError = errors[name];
 
-  const controlId = getHtmlFor(name);
+  const controlId = useControllId(name);
 
   return (
     <div
