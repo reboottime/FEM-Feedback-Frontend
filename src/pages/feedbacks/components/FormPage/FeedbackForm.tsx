@@ -14,7 +14,7 @@ import './style.scss';
 export const FeedbackForm: React.FC<Props> = ({
   children,
   defaultValues = {},
-  disabled = false,
+  disabled: isFormDisabled = false,
   onSubmit,
   type,
 }) => {
@@ -25,7 +25,10 @@ export const FeedbackForm: React.FC<Props> = ({
 
   const { user } = useAuthContext() as AuthContextType;
 
-  const isAdminUser = user?.role === 'admin';
+  const isAdminUser = (user?.role === 'admin');
+
+  const isPublishedFeedback = (defaultValues.status === 'live');
+  const disabled = isPublishedFeedback || isFormDisabled;
 
   return (
     <FormProvider {...methods}>
@@ -36,7 +39,10 @@ export const FeedbackForm: React.FC<Props> = ({
         <h1 className="form-page__title">
           {type === 'add'
             ? PAGE_INFO[type].title
-            : `Edit "${defaultValues.title}"`}
+            : `${isPublishedFeedback
+              ? ''
+              : 'Edit'}
+              "${defaultValues.title}"`}
         </h1>
         <Input
           description="Add a short, descriptive headline"
@@ -53,10 +59,10 @@ export const FeedbackForm: React.FC<Props> = ({
           }}
           title="Feedback Title"
         />
-        {isAdminUser && type === 'edit' && (
+        {(isAdminUser && type === 'edit') && (
           <Select
             description="update feedback status"
-            disabled={disabled}
+            disabled={(defaultValues.status === 'live')}
             name="status"
             options={getSelectOptions(status.filter((item) => (item !== 'new')))}
             placeholder="Please select status"
@@ -91,7 +97,7 @@ export const FeedbackForm: React.FC<Props> = ({
           }}
           title="Feedback Details"
         />
-        <div className="form-page__buttons">{children}</div>
+        {!isPublishedFeedback && <div className="form-page__buttons">{children}</div>}
       </form>
     </FormProvider>
   );

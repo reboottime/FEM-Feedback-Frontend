@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
 
 import Button from '@/components/Button';
+import { useAuthContext } from '@/components/AppProviders';
 import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
 import { useGetFeedback, useUpdateFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
@@ -16,6 +17,11 @@ export const EditPage = () => {
     isLoading,
     isSuccess
   } = useGetFeedback(feedbackId);
+  const feedbackData = (data as unknown as Entities.Feedback.TFeedback);
+
+  const { user } = useAuthContext();
+
+  const isNotAuthor = (user?.id !== feedbackData?.author.id);
 
   const mutation = useUpdateFeedback();
 
@@ -31,7 +37,8 @@ export const EditPage = () => {
       {isLoading && <p>loading...</p>}
       {isSuccess && (
         <FeedbackForm
-          defaultValues={data}
+          defaultValues={feedbackData}
+          disabled={isNotAuthor}
           onSubmit={handleSubmit}
           type="edit"
         >

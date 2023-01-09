@@ -34,6 +34,7 @@ declare namespace Entities {
     declare type TRoadmapStatus = Exclude<TStatus, 'new'>;
 
     declare interface TFeedback extends TRecord {
+      author: TUser;
       category: TCategory;
       comment_count: number;
       comments: TComment['id'][];
