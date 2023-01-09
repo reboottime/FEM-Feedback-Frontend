@@ -2,10 +2,13 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import {  getFeedbackQueryKey } from './queryKey';
+import {
+  getFeedbackQueryKey,
+} from './queryKey';
 
 import {
   addFeedback,
+  addFeedbackComment,
   getFeedback,
   updateFeedback,
 } from '@/services/feedbacks';
@@ -57,6 +60,23 @@ export const useUpdateFeedback = () => {
     },
     onError: () => {
       toast.error('Update is failed');
+    },
+  });
+};
+
+export const useAddFeedbackComment = () => {
+  const queryFn = (args: {
+    detail: string;
+    feedbackId: Entities.Feedback.TFeedback['id'];
+    replyTo?: Entities.TComment['id'];
+  }) => addFeedbackComment(args);
+
+  return useMutation(queryFn as never, {
+    onSuccess: () => {
+      toast.success('Comment added');
+    },
+    onError: () => {
+      toast.error("We can't handle your request this time, please try later");
     },
   });
 };

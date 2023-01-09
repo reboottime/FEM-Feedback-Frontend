@@ -8,6 +8,16 @@ export const addFeedback = (args: {
   return axios.post('/feedbacks', args);
 };
 
+export const addFeedbackComment = (args: {
+  detail: string;
+  feedbackId: Entities.Feedback.TFeedback['id'];
+  replyTo?: Entities.TComment['id'];
+}) => {
+  const { feedbackId, ...comment } = args;
+
+  return axios.post(`/feedbacks/${feedbackId}/comments`, comment);
+};
+
 export const getFeedback = (id: string) => {
   return axios.get(`/feedbacks/${id}`);
 };

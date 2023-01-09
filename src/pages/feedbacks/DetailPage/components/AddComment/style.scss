@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.add-comment {
+  &__form {
+    margin-bottom: 16px textarea {
+      min-height: 80px;
+    }
+  }
+
+  &__action {
+    @include typography-body(body-3);
+    align-items: center;
+    color: map.get($colors, "dark4");
+    display: flex;
+    margin-top: 16px;
+    justify-content: space-between;
+  }
+
+  &__reminder {
+    &--error {
+      color: map.get($colors, 'red1');
+    }
+  }
+}

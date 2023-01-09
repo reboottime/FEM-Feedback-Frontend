@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.component-card {
+  background-color: map.get($colors, "white1");
+  padding: map.get($content-margin, "mobile");
+
+  &__title {
+    color: map.get($colors, "dark2");
+    margin-bottom: map.get($content-margin, "mobile");
+  }
+
+  @include md {
+    padding: 32px 24px;
+  }
+}
