@@ -21,6 +21,7 @@ declare namespace Entities {
   export interface TComment extends TRecord {
     author: Omit<TUser, 'role'>;
     detail: string;
+    feedbackId: Feedback.TFeedback['id'];
     replyTo?: TComment['id'];
   }
 
