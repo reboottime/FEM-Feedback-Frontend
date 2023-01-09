@@ -2,9 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import {
-  getFeedbackQueryKey,
-} from './queryKey';
+import {  getFeedbackQueryKey } from './queryKey';
 
 import {
   addFeedback,
@@ -15,7 +13,6 @@ import { queryClient } from '@/components/AppProviders';
 
 export const useAddFeedback = () => {
   const navigate = useNavigate();
-
 
   return useMutation(addFeedback as never, {
     onSuccess: (data: Entities.Feedback.TFeedback) => {
@@ -42,7 +39,6 @@ export const useGetFeedback = (id: string) => {
   });
 };
 
-
 export const useUpdateFeedback = () => {
   const navigate = useNavigate();
 
@@ -52,7 +48,7 @@ export const useUpdateFeedback = () => {
   }) => updateFeedback(args);
 
   return useMutation(queryFn as never, {
-    onSuccess: (data: Record<string, string>) => {
+    onSuccess: (data: Entities.Feedback.TFeedback) => {
       toast.success('Feedback updated');
 
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
