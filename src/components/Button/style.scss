@@ -1,0 +1,76 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$variants: (
+  blue: (
+    default: map.get($colors, "blue1"),
+    hover: map.get($colors, "blue2"),
+  ),
+  indigo: (
+    default: map.get($colors, "dark2"),
+    hover: map.get($colors, "dark3"),
+  ),
+  danger: (
+    default: map.get($colors, "red1"),
+    hover: map.get($colors, "red2"),
+  ),
+  purple: (
+    default: map.get($colors, "purple1"),
+    hover: map.get($colors, "purple2"),
+  ),
+  plain: (
+    default: transparent,
+    hover: transparent,
+  ),
+);
+
+.button {
+  border-radius: 10px;
+  color: map.get($colors, "white1");
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: map.get($font-weight, "bold");
+  line-height: 20px;
+  min-width: 44px;
+  padding: 12px 16px;
+  text-transform: capitalize;
+  &--small {
+    padding: 6px 8px;
+  }
+
+  &--mobile-full-width {
+    width: 100%;
+  }
+
+  @each $name, $value in $variants {
+    &--#{"" + $name} {
+      background-color: map.get($value, "default");
+
+      &:hover {
+        background-color: map.get($value, "hover");
+      }
+
+      &[disabled] {
+        background-color: rgba(map.get($value, "default"), 0.5);
+      }
+
+      @if $name == "plain" {
+        color: map.get($colors, "blue1");
+      }
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+
+  @include md {
+    &--mobile-full-width {
+      width: auto;
+    }
+  }
+}
