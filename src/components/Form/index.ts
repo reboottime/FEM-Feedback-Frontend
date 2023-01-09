@@ -1,2 +1,7 @@
-export { Input } from './Form';
-export { default as getHtmlFor } from './utils';
+import './form-field.style.scss';
+
+export * from './Input';
+export * from './Select';
+export * from './Textarea';
+
+export * from './typings';

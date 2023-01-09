@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 /*
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
  */
 
-export default {
+module.exports = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
 
@@ -77,13 +78,13 @@ export default {
 
   // An array of file extensions your modules use
   moduleFileExtensions: [
-    "js",
+    'js',
     // "mjs",
     // "cjs",
     // "jsx",
-    "ts",
-    "tsx",
-    "json",
+    'ts',
+    'tsx',
+    'json',
     // "node"
   ],
 
@@ -144,7 +145,7 @@ export default {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "jsdom",
+  testEnvironment: 'jsdom',
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
@@ -153,10 +154,10 @@ export default {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: [
+    // "**/__tests__/**/*.[jt]s?(x)",
+    '**/?(*.)+(spec|test).[tj]s?(x)'
+  ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -193,23 +194,24 @@ export default {
   // Whether to use watchman for file crawling
   // watchman: true,
   // A list of paths to directories that Jest should use to search for files in.
-  roots: ["<rootDir>/src"],
+  roots: ['<rootDir>/src'],
   transform: {
-    "\\.jsx?$": "babel-jest",
-    "\\.tsx?$": "ts-jest",
+    '\\.jsx?$': 'babel-jest',
+    '\\.tsx?$': 'ts-jest',
   },
   // map modules, including alias
   moduleNameMapper: {
-    "\\.(css|scss)$": "identity-obj-proxy",
-    "\\.svg": "<rootDir>/src/__mocks__/svgrMock.js",
-    "@/components/(.*)": "<rootDir>/src/components/$1",
-    "@/assets/(.*)": "<rootDir>/src/assets/$1",
-    "@/hooks/(.*)": "<rootDir>/src/hooks/$1",
-    "@/pages/(.*)": "<rootDir>/src/pages/$1",
-    "@/sass/(.*)": "<rootDir>/src/sass/$1",
-    "@/utils/(.*)": "<rootDir>/src/utils/$1",
-    "@/services/(.*)": "<rootDir>/src/services/$1",
+    '\\.(css|scss)$': 'identity-obj-proxy',
+    '\\.svg': '<rootDir>/src/__mocks__/svgrMock.js',
+    '@/components/(.*)': '<rootDir>/src/components/$1',
+    '@/constants/(.*)': '<rootDir>/src/constants/$1',
+    '@/assets/(.*)': '<rootDir>/src/assets/$1',
+    '@/hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '@/pages/(.*)': '<rootDir>/src/pages/$1',
+    '@/sass/(.*)': '<rootDir>/src/sass/$1',
+    '@/utils/(.*)': '<rootDir>/src/utils/$1',
+    '@/services/(.*)': '<rootDir>/src/services/$1',
   },
-  moduleDirectories: ["node_modules", "src"],
+  moduleDirectories: ['node_modules', 'src'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 };

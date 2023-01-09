@@ -1,9 +1,16 @@
 import React from 'react';
 
-import './style.scss';
+import FormPage from '@/pages/feedbacks/components/FormPage';
+import { useAddFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
 export const AddPage = () => {
-  return <div>Add Feedback</div>;
+  const mutation = useAddFeedback();
+
+  return (
+    <FormPage
+      onSubmit={mutation.mutate}
+      type="add"
+    />);
 };
 
 export default AddPage;
