@@ -24,22 +24,24 @@ declare namespace Entities {
     replyTo?: TComment['id'];
   }
 
-  // Feedback related types
+  declare namespace Feedback {
+    // Feedback related types
 
-  declare type TCategory = 'UI' | 'UX' | 'Feature' | 'Bug' | 'Enhancement';
+    declare type TCategory = 'UI' | 'UX' | 'Feature' | 'Bug' | 'Enhancement';
 
-  declare type TStatus = 'new' | 'planned' | 'in progress' | 'live';
+    declare type TStatus = 'new' | 'planned' | 'in progress' | 'live';
 
-  declare type TRoadmapStatus = Exclude<TStatus, 'new'>;
+    declare type TRoadmapStatus = Exclude<TStatus, 'new'>;
 
-  declare interface TFeedback  extends TRecord {
-    category: TCategory;
-    comment_count: number;
-    comments: TComment['id'][];
-    detail: string;
-    status: TStatus;
-    title: string;
-    vote_count: number;
-    votes: TUser['id'][];
+    declare interface TFeedback extends TRecord {
+      category: TCategory;
+      comment_count: number;
+      comments: TComment['id'][];
+      detail: string;
+      status: TStatus;
+      title: string;
+      vote_count: number;
+      votes: TUser['id'][];
+    }
   }
 }
