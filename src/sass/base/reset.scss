@@ -1,5 +1,5 @@
-@use 'sass:map';
-@use '@/sass/abstract' as *;
+@use "sass:map";
+@use "@/sass/abstract" as *;
 @use "./normalize.scss";
 
 * {
@@ -10,8 +10,8 @@
 
 body {
   @include typography-body(body-1);
-  background-color: map.get($colors, 'white2');
-  font-family: 'Jost', sans-serif;
+  background-color: map.get($colors, "white2");
+  font-family: "Jost", sans-serif;
   padding: 0 !important;
   min-height: 100vh;
 }
@@ -26,6 +26,6 @@ button {
   }
 }
 
-li[role=option] {
+li[role="option"] {
   list-style: none;
 }
