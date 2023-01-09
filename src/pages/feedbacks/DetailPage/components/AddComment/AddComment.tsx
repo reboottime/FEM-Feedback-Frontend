@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 
 import Button from '@/components/Button';
@@ -12,15 +11,13 @@ import './style.scss';
 
 const MAX_LENGTH = 250;
 
-export const AddComment = () => {
-  const { feedbackId = '' } = useParams();
-
+export const AddComment: React.FC<Props> = ({ toFeedback }) => {
   const mutation = useAddFeedbackComment();
 
   const onSubmit = ({ detail }: FieldValues) => {
     mutation.mutate({
       detail,
-      feedbackId,
+      feedbackId: toFeedback,
     } as never);
   };
 
@@ -71,3 +68,7 @@ export const AddComment = () => {
     </FormProvider >
   );
 };
+
+interface Props {
+  toFeedback: Entities.Feedback.TFeedback['id'];
+}
