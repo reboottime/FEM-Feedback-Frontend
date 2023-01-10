@@ -4,4 +4,12 @@
 .list-page {
   max-width: 1200px;
   margin: 0 auto;
+
+  @include md {
+    margin: 0 map.get($content-margin, 'tablet');
+  }
+
+  @include lg {
+    margin:  0 auto;
+  }
 }
