@@ -36,7 +36,8 @@ $header-height: 72px;
     height: $header-height;
     justify-content: space-between;
     padding: 0 map.get($content-margin, "mobile");
-
+    position: fixed;
+    width: 100vw;
     small {
       opacity: 0.75;
     }
