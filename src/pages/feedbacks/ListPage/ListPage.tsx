@@ -7,6 +7,8 @@ import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
 
+import Navigation from './components/Navigation';
+import Brand from './components/Brand';
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
@@ -37,31 +39,48 @@ export const ListPage = () => {
   };
 
   return (
-    <div className='list-page'>
-      {isMobile && (
-        <Sidebar>
-          {/* The sidebar toggle is in sidebar */}
-          <Roadmap />
-          <Categories
-            onCategorySelect={handleCategorySelect}
-            selectedCategory={category}
-          />
-        </Sidebar>
-      )}
-      <main className={classsNames('list-page__main', {
-        'list-page__main--mobile': isMobile
-      })}>
+    <div className="list-page">
+      {isMobile
+        ? (
+          <Sidebar>
+            <Roadmap />
+            <Categories
+              onCategorySelect={handleCategorySelect}
+              selectedCategory={category}
+            />
+          </Sidebar>
+        )
+        : (
+          <Navigation>
+            <Brand />
+            <Roadmap />
+            <Categories
+              onCategorySelect={handleCategorySelect}
+              selectedCategory={category}
+            />
+          </Navigation>
+        )}
+      <main
+        className={classsNames('list-page__main', {
+          'list-page__main--mobile': isMobile,
+        })}
+      >
         <SortAndAdd
           onSort={handleSort}
           sort={sort}
           stats={{
             isLoading: isFeedbacksLoading,
-            count: (feedbacks as unknown as Entities.Feedback.TFeedback[])?.length
+            count: (feedbacks as unknown as Entities.Feedback.TFeedback[])
+              ?.length,
           }}
         />
         {isFeedbacksLoading && <p>Loading...</p>}
         {isFeedbacksError && <p>Failed to load</p>}
-        {isFeedbacksLoaded && <Feedbacks feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />}
+        {isFeedbacksLoaded && (
+          <Feedbacks
+            feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]}
+          />
+        )}
       </main>
     </div>
   );
