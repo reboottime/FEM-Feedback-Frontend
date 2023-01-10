@@ -1,0 +1,43 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$vote-background-color: (
+  default: map.get($colors, "blue5"),
+  disabled: map.get($colors, "blue1"),
+  hover: map.get($colors, "blue4"),
+);
+
+.vote {
+  align-items: center;
+  background-color: map.get($vote-background-color, "default");
+  color: map.get($colors, "dark2");
+  display: inline-flex;
+  line-height: 1;
+  gap: 4px;
+  justify-content: center;
+  padding: 8px;
+
+  &__arrow {
+    &--white path {
+      stroke: map.get($colors, "white1") !important;
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--horizontal {
+    flex-direction: row;
+  }
+
+  &:hover:not(.vote--voted) {
+    background-color: map.get($vote-background-color, "hover");
+    cursor: pointer;
+  }
+
+  &--voted {
+    background-color: map.get($vote-background-color, "disabled");
+    color: map.get($colors, "white1");
+  }
+}

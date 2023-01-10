@@ -1,0 +1,75 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.feedback {
+  @include typography-body(body-3);
+  display: flex;
+  flex-wrap: wrap;
+
+  &__content {
+    color: map.get($colors, "dark4");
+    flex-grow: 1;
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  &__title {
+    color: map.get($colors, "dark2");
+  }
+
+  &__detail {
+    margin: 10px 0 15px 0;
+  }
+
+  &__vote {
+    width: 50%;
+  }
+
+  &__comment-stats {
+    align-items: center;
+    color: map.get($colors, "dark2");
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+  }
+
+  &__comment-count {
+    margin-left: 8px;
+
+    &--gray {
+      color: map.get($colors, "dark3");
+    }
+  }
+
+  @include md {
+    align-items: baseline;
+    flex-flow: row nowrap;
+    gap: 40px;
+
+    &__content {
+      margin-bottom: 0;
+      order: 2;
+      width: auto;
+    }
+
+    &__title {
+      @include typography-heading(heading-3);
+    }
+
+    &__detail {
+      @include typography-heading(body-1);
+      margin: 4px 0 12px 0;
+    }
+
+    &__comment-stats {
+      align-self: center;
+      order: 3;
+      width: auto;
+    }
+
+    &__vote {
+      order: 1;
+      width: auto;
+    }
+  }
+}
