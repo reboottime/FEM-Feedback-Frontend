@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$border-color: map.get($colors, "dark4");
+
+.modal {
+  left: 0;
+  max-height: 60vh;
+  margin: 0 auto;
+  position: fixed;
+  right: 0;
+  top: 20vh;
+  z-index: map.get($z-index, "modal");
+
+  &__content {
+    background-color: map.get($colors, "white1");
+    border: 1px solid rgba($color: $border-color, $alpha: 0.4);
+    margin: 0 24px;
+    padding: map.get($content-margin, "mobile");
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__body {
+    overflow: auto;
+    padding: map.get($content-margin, "mobile") 0;
+  }
+
+  &__close-button {
+    align-items: center;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    display: inline-flex;
+    padding: 4px;
+    justify-content: center;
+
+    svg path {
+      fill: map.get($colors, "dark4");
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: map.get($content-margin, "mobile");
+  }
+
+  @include md {
+    &__content {
+      margin: 0 auto;
+      max-width: calc(map.get($grid-breakpoints, "sm") + 24px);
+      padding: map.get($content-margin, "tablet");
+    }
+
+    &__body {
+      padding: map.get($content-margin, "mobile") 0;
+    }
+
+    &__footer {
+      margin-top: map.get($content-margin, "tablet");
+    }
+  }
+
+  @include lg {
+    max-width: map.get($grid-breakpoints, "md");
+  }
+}
