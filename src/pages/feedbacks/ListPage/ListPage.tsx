@@ -56,13 +56,13 @@ export const ListPage = () => {
                 <Brand />
               </li>
               <li className="list-page__nav-item">
-                <Roadmap />
-              </li>
-              <li className="list-page__nav-item">
                 <Categories
                   onCategorySelect={handleCategorySelect}
                   selectedCategory={category}
                 />
+              </li>
+              <li className="list-page__nav-item">
+                <Roadmap />
               </li>
             </ul>
           </nav>

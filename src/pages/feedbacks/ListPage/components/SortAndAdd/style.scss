@@ -7,6 +7,8 @@
 }
 
 .sort-and-add {
+  position: sticky;
+  top: 72px;
   align-items: center;
   background-color: map.get($colors, "dark1");
   color: map.get($colors, "white1");
@@ -41,9 +43,16 @@
   }
 
   @include md {
+    position: static;
     height: 72px;
+    top: 0;
     &__select {
       @include typography-heading(heading-4);
     }
+  }
+
+  @include lg {
+    position: sticky;
+    top: 0;
   }
 }

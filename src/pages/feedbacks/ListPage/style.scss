@@ -2,6 +2,9 @@
 @use "@/sass/abstract" as *;
 
 .list-page {
+  &__main--mobile {
+    padding-top: 72px;
+  }
   @include md {
     margin: 0 map.get($content-margin, "tablet");
     /************ navigation layout for tablet *************/
