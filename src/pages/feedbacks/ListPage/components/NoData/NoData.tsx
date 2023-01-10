@@ -4,13 +4,18 @@ import { toast } from 'react-toastify';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 
+import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 
 import './style.scss';
 
 export const NoData: React.FC = () => {
+  const { user } = useAuthContext() as AuthContextType;
+
   const handleButtonClick = () => {
-    toast.info('You need to sign first before adding feedback');
+    if (!user) {
+      toast.info('You need to sign first before adding feedback');
+    }
   };
 
   return (
