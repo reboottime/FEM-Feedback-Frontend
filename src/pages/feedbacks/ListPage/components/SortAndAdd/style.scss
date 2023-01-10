@@ -41,6 +41,7 @@
   }
 
   @include md {
+    height: 72px;
     &__select {
       @include typography-heading(heading-4);
     }

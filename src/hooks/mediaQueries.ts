@@ -7,3 +7,7 @@ export const useIsMobile = () => useMediaQuery({
 export const useIsSmallMobile = () => useMediaQuery({
   maxWidth: '576px',
 });
+
+export const useIsTablet = () => useMediaQuery({
+  minWidth: '768px'
+});

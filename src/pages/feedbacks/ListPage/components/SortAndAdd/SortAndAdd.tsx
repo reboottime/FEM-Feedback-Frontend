@@ -9,7 +9,7 @@ import { ReactComponent as BulbIcon } from '@/assets/shared/icon-bulb.svg';
 import UserIcon from '@/components/UserIcon';
 import AddButton from '@/pages/feedbacks/ListPage/components/AddButton';
 
-import { useIsSmallMobile } from '@/hooks/mediaQueries';
+import { useIsSmallMobile, useIsTablet } from '@/hooks/mediaQueries';
 
 import './style.scss';
 
@@ -20,7 +20,7 @@ export const SortAndAdd: React.FC<Props> = ({
   stats,
 }) => {
   const isMobile = useIsSmallMobile();
-  const isNotMobile = !isMobile;
+  const isNotMobile = useIsTablet();
 
   const addButtonText = isMobile
     ? '+ feedback'
