@@ -20,7 +20,6 @@ export const Tag: React.FC<Props> = ({
       onClick: onClick,
       onKeyDown: handleEnterSpaceKeydown(onClick as React.KeyboardEventHandler),
       role: 'button',
-      type: 'button',
       tabIndex: 0,
     })}
   >

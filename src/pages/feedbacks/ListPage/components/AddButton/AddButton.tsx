@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 
-export const AddButton: React.FC = () => {
+export const AddButton: React.FC<Props> = ({ children, small }) => {
   const { user } = useAuthContext() as AuthContextType;
 
   const handleButtonClick = () => {
@@ -16,7 +16,15 @@ export const AddButton: React.FC = () => {
 
   return (
     <Link to="/feedbacks/add">
-      <Button onClick={handleButtonClick}>+ Add Feedback</Button>
+      <Button
+        onClick={handleButtonClick}
+        small={small}
+      >{children}</Button>
     </Link>
   );
 };
+
+interface Props {
+  children: string;
+  small?: boolean;
+}

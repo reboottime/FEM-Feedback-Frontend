@@ -1,3 +1,13 @@
+export const getFeedbcksQueryKey = (query?: Record<string, string>) => {
+  if (query) {
+    return ['feedbacks', JSON.stringify(query)];
+  }
+
+  return ['feedbacks'];
+};
+
 export const getFeedbackQueryKey = (id: string) => {
-  return ['feedbacks', id];
+  const prefix = getFeedbcksQueryKey();
+
+  return [prefix, id];
 };

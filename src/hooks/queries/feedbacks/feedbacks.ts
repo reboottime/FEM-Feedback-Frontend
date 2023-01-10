@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { getFeedbackQueryKey } from './queryKey';
+import { getFeedbackQueryKey, getFeedbcksQueryKey } from './queryKey';
 
 import { queryClient } from '@/components/AppProviders';
 
@@ -10,6 +10,7 @@ import {
   addFeedback,
   addFeedbackComment,
   getFeedback,
+  getFeedbacks,
   getFeedbacksStats,
   updateFeedback,
   voteFeedback,
@@ -43,6 +44,13 @@ export const useGetFeedback = (id: string) => {
   });
 };
 
+export const useGetFeedbacks = () => {
+  return useQuery({
+    queryFn: getFeedbacks,
+    queryKey: getFeedbcksQueryKey(),
+  });
+};
+
 export const useGetFeedbacksStats = () => {
   return useQuery({
     queryFn: getFeedbacksStats,
@@ -53,6 +61,7 @@ export const useVoteFeedback = () => {
   return useMutation(voteFeedback as never, {
     onSuccess: (data: Entities.Feedback.TFeedback) => {
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
+      queryClient.invalidateQueries(getFeedbcksQueryKey());
     },
     onError: () => {
       toast.error('vote is failed');

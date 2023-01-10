@@ -1,0 +1,16 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+.brand {
+  align-items: flex-start;
+  background: transparent
+    url("@/assets/suggestions/tablet/background-header.png") no-repeat right top /
+    cover;
+  box-sizing: border-box;
+  color: map.get($colors, "white1");
+  display: flex;
+  flex-direction: column;
+  height: 178px;
+  justify-content: flex-end;
+  padding: map.get($content-margin, "mobile");
+}
