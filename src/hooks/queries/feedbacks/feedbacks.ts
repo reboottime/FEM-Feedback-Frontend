@@ -44,10 +44,10 @@ export const useGetFeedback = (id: string) => {
   });
 };
 
-export const useGetFeedbacks = () => {
+export const useGetFeedbacks = (query?: TQueryParams) => {
   return useQuery({
-    queryFn: getFeedbacks,
-    queryKey: getFeedbcksQueryKey(),
+    queryFn: () => getFeedbacks(query),
+    queryKey: getFeedbcksQueryKey(query),
   });
 };
 

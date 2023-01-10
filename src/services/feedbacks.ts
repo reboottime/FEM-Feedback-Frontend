@@ -22,8 +22,12 @@ export const getFeedback = (id: string) => {
   return axios.get(`/feedbacks/${id}`);
 };
 
-export const getFeedbacks = () => {
-  return axios.get('/feedbacks');
+export const getFeedbacks = (params?: TQueryParams) => {
+  const data = params
+    ? { params }
+    : {};
+
+  return axios.get('/feedbacks', data);
 };
 
 export const updateFeedback = (args: {

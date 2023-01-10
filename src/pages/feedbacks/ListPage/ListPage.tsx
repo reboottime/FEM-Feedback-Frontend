@@ -16,18 +16,24 @@ import './style.scss';
 export const ListPage = () => {
   const isMobile = useIsMobile();
 
-  const {
-    data: feedbacks,
-    isError: isFeedbacksError,
-    isLoading: isFeedbacksLoading,
-    isSuccess: isFeedbacksLoaded,
-  } = useGetFeedbacks();
-
   const [category, setCategory] = useState<TCategory>('All');
   const [sort, setSort] = useState<TSort>({
     field: 'vote_count',
     order: 'desc',
   });
+
+  const {
+    data: feedbacks,
+    isError: isFeedbacksError,
+    isLoading: isFeedbacksLoading,
+    isSuccess: isFeedbacksLoaded,
+  } = useGetFeedbacks({
+    sort: { [sort.field]: sort.order },
+    ...(category === 'All')
+      ? {}
+      : { category }
+  } as TQueryParams);
+
 
   const handleCategorySelect = (category: TCategory) => {
     setCategory(category);
