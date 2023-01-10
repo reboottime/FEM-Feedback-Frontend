@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$dot-sizes: (
+  small: 8px,
+  large: 10px,
+);
+
+$dot-variants: (
+  blue: map.get($colors, "blue3"),
+  orange: map.get($colors, "orange1"),
+  purple: map.get($colors, "purple1"),
+);
+
+.dot {
+  border-radius: 50%;
+  display: inline-block;
+
+  @each $size-name, $size-value in $dot-sizes {
+    &--#{$size-name} {
+      height: $size-value;
+      width: $size-value;
+    }
+  }
+
+  @each $name, $background-color in $dot-variants {
+    &--#{'' + $name} {
+      background-color: $background-color;
+    }
+  }
+}
