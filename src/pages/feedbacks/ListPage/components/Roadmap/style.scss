@@ -13,13 +13,9 @@ $state-color: (
   justify-content: space-between;
 }
 
-@mixin navigation-block {
+.roadmap {
   background-color: map.get($colors, "white1");
   padding: 20px 24px;
-}
-
-.roadmap {
-  @include navigation-block();
 
   &__title {
     @include flex-center();

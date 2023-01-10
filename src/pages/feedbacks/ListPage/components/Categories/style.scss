@@ -1,15 +1,11 @@
 @use "sass:map";
 @use "@/sass/abstract/" as *;
 
-@mixin navigation-block {
-  background-color: map.get($colors, "white1");
-  padding: 20px 24px;
-}
-
 .category {
-  @include navigation-block();
+  align-items: flex-start;
+  background-color: map.get($colors, "white1");
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
   gap: 8px;
+  padding: 24px 24px;
 }
