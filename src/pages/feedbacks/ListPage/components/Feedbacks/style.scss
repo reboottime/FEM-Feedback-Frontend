@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+.feedbacks {
+  margin: 32px map.get($content-margin, 'mobile');
+
+  &--no-data {
+    padding: 76px 0;
+    background-color: map.get($colors, 'white1');
+  }
+
+  &__list-item {
+    margin-bottom: 16px;
+  }
+
+  &__item-link {
+    display: block;
+    border: 1px solid transparent;
+    transition: border-color 0.25s ease-in;
+    padding: map.get($content-margin, "mobile");
+    background-color: map.get($colors, "white1");
+    overflow: hidden;
+    text-decoration: none;
+
+    &:hover {
+      border-color: map.get($colors, "blue1");
+    }
+  }
+
+  @include md {
+    margin: map.get($content-margin, 'mobile') 0 54px 0;
+
+    &__item-link {
+      padding: 28px 32px;
+    }
+  }
+}
