@@ -1,0 +1,13 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.require-auth {
+  &__reminder-text {
+    margin-top: $form-field-margin;
+  }
+
+  &__switch-button {
+    color: map.get($colors, "blue1");
+    text-decoration: underline;
+  }
+}

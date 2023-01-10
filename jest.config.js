@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /*
  * For a detailed explanation regarding each configuration property, visit:
  * https://jestjs.io/docs/configuration
@@ -52,9 +51,9 @@ module.exports = {
   // errorOnDeprecated: false,
 
   // The default configuration for fake timers
-  fakeTimers: {
-    enableGlobally: true,
-  },
+  // fakeTimers: {
+  //   enableGlobally: true,
+  // },
 
   // Force coverage collection from ignored files using an array of glob patterns
   // forceCoverageMatch: [],
@@ -154,10 +153,10 @@ module.exports = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  testMatch: [
-    // "**/__tests__/**/*.[jt]s?(x)",
-    '**/?(*.)+(spec|test).[tj]s?(x)'
-  ],
+  // testMatch: [
+  //   "**/__tests__/**/*.[jt]s?(x)",
+  //   "**/?(*.)+(spec|test).[tj]s?(x)"
+  // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [
@@ -207,6 +206,7 @@ module.exports = {
     '@/constants/(.*)': '<rootDir>/src/constants/$1',
     '@/assets/(.*)': '<rootDir>/src/assets/$1',
     '@/hooks/(.*)': '<rootDir>/src/hooks/$1',
+    '@/mockData/(.*)': '<rootDir>/src/mockData/$1',
     '@/pages/(.*)': '<rootDir>/src/pages/$1',
     '@/sass/(.*)': '<rootDir>/src/sass/$1',
     '@/utils/(.*)': '<rootDir>/src/utils/$1',

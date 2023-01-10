@@ -5,6 +5,8 @@ import Author from './Author';
 import CommentList from './CommentList';
 import ReplyForm from './ReplyForm';
 
+import RequireAuth from '@/components/RequireAuth';
+
 import './comment.style.scss';
 
 const Comment: React.FC<Props> = ({ comments, ...comment }) => {
@@ -22,13 +24,14 @@ const Comment: React.FC<Props> = ({ comments, ...comment }) => {
     >
       <div className="comment__header">
         <Author {...comment.author} />
-        {/* @todo: hide reply button if the current user is comment's author */}
-        <button
-          className="comment__reply-button typography-body-2 fw-semi-bold"
-          onClick={handleReplyButtonClick}
-        >
-          Reply
-        </button>
+        <RequireAuth actionName='onClick'>
+          <button
+            className="comment__reply-button typography-body-2 fw-semi-bold"
+            onClick={handleReplyButtonClick}
+          >
+            Reply
+          </button>
+        </RequireAuth>
       </div>
       <p className="comment__content">{comment.detail}</p>
       {showReplyInput && (

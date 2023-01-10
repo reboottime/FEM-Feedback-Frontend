@@ -4,6 +4,7 @@ import React from 'react';
 import { ReactComponent as CommentsIcon } from '@/assets/shared/icon-comments.svg';
 
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import RequireAuth from '@/components/RequireAuth';
 import Tag from '@/components/Tag';
 import Vote from '@/components/Vote';
 
@@ -30,12 +31,14 @@ export const Feedback: React.FC<Props> = ({ ...feedback }) => {
         <Tag>{feedback.category}</Tag>
       </div>
       <div className="feedback__vote">
-        <Vote
-          hasVoted={hasVoted}
-          mode="horizontal"
-          onVote={handleVote}
-          votes={feedback.vote_count}
-        />
+        <RequireAuth actionName='onVote'>
+          <Vote
+            hasVoted={hasVoted}
+            mode="horizontal"
+            onVote={handleVote}
+            votes={feedback.vote_count}
+          />
+        </RequireAuth>
       </div>
       <div className="feedback__comment-stats">
         <CommentsIcon />
