@@ -10,7 +10,11 @@ import { useGetFeedbacksStats } from '@/hooks/queries/feedbacks';
 
 import './style.scss';
 
-const STATS_TEMPLATE = { planned: 0, 'in progress': 0, live: 0 };
+const STATS_TEMPLATE = {
+  planned: 0,
+  'in progress': 0,
+  live: 0,
+};
 
 export const Roadmap: React.FC<Props> = ({ className }) => {
   const { data = {} } = useGetFeedbacksStats();
