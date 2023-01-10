@@ -1,13 +1,13 @@
 import classsNames from 'classnames';
 import React, { useState } from 'react';
 
+import Brand from './components/Brand';
 import Categories from './components/Categories';
 import Feedbacks from './components/Feedbacks';
 import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
 
-import Brand from './components/Brand';
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
