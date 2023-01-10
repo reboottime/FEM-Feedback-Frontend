@@ -7,7 +7,6 @@ import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
 
-import Navigation from './components/Navigation';
 import Brand from './components/Brand';
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
@@ -51,14 +50,22 @@ export const ListPage = () => {
           </Sidebar>
         )
         : (
-          <Navigation>
-            <Brand />
-            <Roadmap />
-            <Categories
-              onCategorySelect={handleCategorySelect}
-              selectedCategory={category}
-            />
-          </Navigation>
+          <nav className="list-page__nav">
+            <ul className='list-page__nav-items'>
+              <li className='list-page__nav-item'>
+                <Brand />
+              </li>
+              <li className='list-page__nav-item'>
+                <Roadmap />
+              </li>
+              <li className='list-page__nav-item'>
+                <Categories
+                  onCategorySelect={handleCategorySelect}
+                  selectedCategory={category}
+                />
+              </li>
+            </ul>
+          </nav>
         )}
       <main
         className={classsNames('list-page__main', {

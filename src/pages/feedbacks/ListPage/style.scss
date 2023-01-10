@@ -2,14 +2,29 @@
 @use "@/sass/abstract" as *;
 
 .list-page {
-  max-width: 1200px;
-  margin: 0 auto;
-
   @include md {
-    margin: 0 map.get($content-margin, 'tablet');
-  }
+    margin: 0 map.get($content-margin, "tablet");
 
-  @include lg {
-    margin:  0 auto;
+    /************ navigation layout for tablet *************/
+    &__nav {
+      margin-bottom: 40px;
+    }
+    &__nav-items {
+      display: flex;
+      gap: 10px;
+    }
+    &__nav-item {
+      width: 33.3333%;
+    }
+  }
+  @include xl {
+    max-width: map.get($grid-breakpoints, "lg");
+    margin: 0 auto;
+    &__nav {
+      width: 255px;
+    }
+  }
+  @include xlg {
+    max-width: map.get($grid-breakpoints, "xl");
   }
 }
