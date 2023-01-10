@@ -21,6 +21,7 @@ export const ListPage = () => {
     <div className='list-page'>
       {isMobile && (
         <Sidebar>
+          {/* The sidebar toggle is in sidebar */}
           <Roadmap />
           <Categories
             onCategorySelect={handleCategorySelect}
