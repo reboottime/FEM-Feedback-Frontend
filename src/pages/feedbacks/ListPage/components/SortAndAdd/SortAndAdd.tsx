@@ -59,7 +59,7 @@ export const SortAndAdd: React.FC<Props> = ({
         </div>
       </div>
       <div className="sort-and-add__operations">
-        <AddButton />
+        <AddButton small={isMobile}>+ feedback</AddButton>
         <UserIcon />
       </div>
     </div >
