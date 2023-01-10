@@ -19,6 +19,6 @@ export const NoData: React.FC = () => (
         We love hearing about new ideas to improve our app.
       </p>
     </div>
-    <AddButton />
+    <AddButton>+ Add Feedback</AddButton>
   </article>
 );
