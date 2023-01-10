@@ -1,0 +1,17 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.overlay {
+  background-color: rgba($color: #000000, $alpha: 0.45);
+  display: none;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: map.get($z-index, "modal-backdrop");
+
+  &--visible {
+    display: block;
+  }
+}
