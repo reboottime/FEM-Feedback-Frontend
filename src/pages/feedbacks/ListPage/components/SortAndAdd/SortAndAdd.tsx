@@ -9,7 +9,7 @@ import { ReactComponent as BulbIcon } from '@/assets/shared/icon-bulb.svg';
 import UserIcon from '@/components/UserIcon';
 import AddButton from '@/pages/feedbacks/ListPage/components/AddButton';
 
-import { useIsMobile, useIsSmallMobile } from '@/hooks/mediaQueries';
+import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
 import './style.scss';
 

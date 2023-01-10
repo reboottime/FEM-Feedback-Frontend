@@ -87,7 +87,7 @@ const Select: React.FC<Props> = ({
           {isOptionsExpanded && (
             <FocusLock>
               <Dropdown
-                className="select__options"
+                className="select__options fw-regular"
                 onSelect={handleOptionClick}
                 options={options}
                 selected={selectedItem?.value}
