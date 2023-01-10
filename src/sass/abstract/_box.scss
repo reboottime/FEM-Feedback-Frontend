@@ -8,6 +8,7 @@ $border-radius: (
 $content-margin: (
   desktop: auto,
   mobile: 24px,
+  tablet: 40px,
 );
 
 @mixin round-border($size) {
