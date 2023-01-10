@@ -3,7 +3,7 @@
 
 @each $name, $weight in $font-weight {
   .fw-#{$name} {
-    font-weight: $weight;
+    font-weight: $weight !important;
   }
 }
 
