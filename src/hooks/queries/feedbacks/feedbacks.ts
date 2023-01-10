@@ -2,18 +2,18 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import {
-  getFeedbackQueryKey,
-} from './queryKey';
+import { getFeedbackQueryKey } from './queryKey';
+
+import { queryClient } from '@/components/AppProviders';
 
 import {
   addFeedback,
   addFeedbackComment,
   getFeedback,
+  getFeedbacksStats,
   updateFeedback,
   voteFeedback,
 } from '@/services/feedbacks';
-import { queryClient } from '@/components/AppProviders';
 
 export const useAddFeedback = () => {
   const navigate = useNavigate();
@@ -43,6 +43,12 @@ export const useGetFeedback = (id: string) => {
   });
 };
 
+export const useGetFeedbacksStats = () => {
+  return useQuery({
+    queryFn: getFeedbacksStats,
+  });
+};
+
 export const useVoteFeedback = () => {
   return useMutation(voteFeedback as never, {
     onSuccess: (data: Entities.Feedback.TFeedback) => {
@@ -50,17 +56,15 @@ export const useVoteFeedback = () => {
     },
     onError: () => {
       toast.error('vote is failed');
-    }
+    },
   });
 };
 
 export const useUpdateFeedback = () => {
   const navigate = useNavigate();
 
-  const queryFn = (args: {
-    id: string;
-    update: TFeedbackUpdate;
-  }) => updateFeedback(args);
+  const queryFn = (args: { id: string; update: TFeedbackUpdate }) =>
+    updateFeedback(args);
 
   return useMutation(queryFn as never, {
     onSuccess: (data: Entities.Feedback.TFeedback) => {

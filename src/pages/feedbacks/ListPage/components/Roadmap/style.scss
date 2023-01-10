@@ -1,0 +1,49 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+$state-color: (
+  in-progress: map.get($colors, "purple1"),
+  live: map.get($colors, "blue3"),
+  planned: map.get($colors, "orange1"),
+);
+
+@mixin flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.roadmap {
+  background-color: map.get($colors, "white1");
+  padding: 20px 24px;
+
+  &__title {
+    @include flex-center();
+    color: map.get($colors, "dark2");
+    margin-bottom: 24px;
+  }
+
+  &__link {
+    @include typography-body(body-3);
+    color: map.get($colors, "blue1");
+    &:hover {
+      color: map.get($colors, "blue2");
+    }
+  }
+
+  &__item {
+    @include flex-center();
+    @include typography-body(body-1);
+    margin-bottom: 8px;
+    text-transform: capitalize;
+  }
+
+  &__item-name {
+    margin-left: 10px;
+  }
+
+  &__item-count {
+    color: map.get($state-color, "dark4");
+    text-align: right;
+  }
+}

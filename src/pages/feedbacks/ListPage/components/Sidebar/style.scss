@@ -1,0 +1,44 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+$header-height: 72px;
+
+.sidebar {
+  height: 100vh;
+  max-width: 70vw;
+  min-width: 268px;
+  position: absolute;
+  right: 0;
+  top: $header-height;
+  background-color: map.get($colors, "white2");
+  z-index: map.get($z-index, "popover");
+
+  &__content {
+    padding: map.get($content-margin, "mobile");
+  }
+
+  &__item:not(:last-child) {
+    margin-bottom: 24px;
+  }
+
+  &__overlay {
+    height: calc(100vh - $header-height);
+    margin-top: $header-height;
+  }
+
+  &__brand {
+    align-items: center;
+    background: transparent
+      url("@/assets/suggestions/mobile/background-header.png") no-repeat right
+      top / cover;
+    color: map.get($colors, "white1");
+    display: flex;
+    height: $header-height;
+    justify-content: space-between;
+    padding: 0 map.get($content-margin, "mobile");
+
+    small {
+      opacity: 0.75;
+    }
+  }
+}
