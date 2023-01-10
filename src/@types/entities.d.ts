@@ -8,6 +8,8 @@ declare namespace Entities {
   // User related types
   interface TUser extends TRecord {
     avatar: string;
+    firstName?: string;
+    lastName?: string;
     role: 'admin' | 'user';
     username: string;
   }

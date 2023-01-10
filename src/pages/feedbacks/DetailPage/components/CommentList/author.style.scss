@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.author {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+
+  &__avatar {
+    border: none;
+    border-radius: 50%;
+    display: block;
+    width: 40px;
+  }
+
+  &__metadata {
+    @include typography-body(body-3);
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    color: map.get($colors, "dark2");
+    font-weight: map.get($font-weight, "bold");
+    letter-spacing: -0.2px;
+  }
+
+  &__handle {
+    color: map.get($colors, "dark4");
+    font-weight: map.get($font-weight, "regular");
+  }
+}
