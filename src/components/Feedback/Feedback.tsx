@@ -7,13 +7,18 @@ import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Tag from '@/components/Tag';
 import Vote from '@/components/Vote';
 
-import './style.scss';
+import { useVoteFeedback } from '@/hooks/queries/feedbacks';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
-const emptyFunc = () => { };
+import './style.scss';
 
 export const Feedback: React.FC<Props> = ({ ...feedback }) => {
   const { user } = useAuthContext() as AuthContextType;
+
+  const mutation = useVoteFeedback();
+
+  const handleVote = () => {
+    mutation.mutate(feedback.id as never);
+  };
 
   const hasVoted = !!user && !!feedback.votes.find((voter) => voter === user.id);
 
@@ -28,7 +33,7 @@ export const Feedback: React.FC<Props> = ({ ...feedback }) => {
         <Vote
           hasVoted={hasVoted}
           mode="horizontal"
-          onVote={emptyFunc}
+          onVote={handleVote}
           votes={feedback.vote_count}
         />
       </div>

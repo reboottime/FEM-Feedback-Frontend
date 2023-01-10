@@ -11,6 +11,7 @@ import {
   addFeedbackComment,
   getFeedback,
   updateFeedback,
+  voteFeedback,
 } from '@/services/feedbacks';
 import { queryClient } from '@/components/AppProviders';
 
@@ -39,6 +40,17 @@ export const useGetFeedback = (id: string) => {
     onError: () => {
       toast.error(`Failed to fetch feedback: ${id}`);
     },
+  });
+};
+
+export const useVoteFeedback = () => {
+  return useMutation(voteFeedback as never, {
+    onSuccess: (data: Entities.Feedback.TFeedback) => {
+      queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
+    },
+    onError: () => {
+      toast.error('vote is failed');
+    }
   });
 };
 

@@ -23,10 +23,14 @@ export const getFeedback = (id: string) => {
 };
 
 export const updateFeedback = (args: {
-  id: string;
+  id: Entities.Feedback.TFeedback['id'];
   update: TFeedbackUpdate;
 }) => {
   const { id, update } = args;
 
   return axios.patch(`/feedbacks/${id}`, update);
+};
+
+export const voteFeedback = (id: Entities.Feedback.TFeedback['id']) => {
+  return axios.post(`/feedbacks/${id}/vote`);
 };
