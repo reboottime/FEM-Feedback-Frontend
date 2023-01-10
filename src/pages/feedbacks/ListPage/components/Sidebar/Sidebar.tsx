@@ -10,7 +10,7 @@ import Overlay from '@/components/Overlay';
 import './style.scss';
 
 export const Sidebar: React.FC<Props> = ({ children, className }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
