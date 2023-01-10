@@ -1,2 +1,31 @@
 @use "sass:map";
 @use "@/sass/abstract" as *;
+
+.detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 map.get($content-margin, "mobile");
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: map.get($content-margin, "mobile") 0 0 0;
+  }
+
+  &__header-nav {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+  }
+
+  @include md {
+    max-width: 689px;
+    margin: 0 auto;
+  }
+
+  @include lg {
+    max-width: 730px;
+  }
+}
