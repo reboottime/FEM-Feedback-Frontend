@@ -5,7 +5,10 @@ import { toast } from 'react-toastify';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 
+import { useIsMobile } from '@/hooks/mediaQueries';
+
 export const AddButton: React.FC = () => {
+  const isMobile = useIsMobile();
   const { user } = useAuthContext() as AuthContextType;
 
   const handleButtonClick = () => {
@@ -16,7 +19,10 @@ export const AddButton: React.FC = () => {
 
   return (
     <Link to="/feedbacks/add">
-      <Button onClick={handleButtonClick}>+ Add Feedback</Button>
+      <Button
+        onClick={handleButtonClick}
+        small={isMobile}
+      >+ Add Feedback</Button>
     </Link>
   );
 };
