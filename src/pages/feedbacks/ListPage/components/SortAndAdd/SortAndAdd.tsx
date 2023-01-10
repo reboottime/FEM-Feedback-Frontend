@@ -9,7 +9,7 @@ import { ReactComponent as BulbIcon } from '@/assets/shared/icon-bulb.svg';
 import UserIcon from '@/components/UserIcon';
 import AddButton from '@/pages/feedbacks/ListPage/components/AddButton';
 
-import { useIsMobile } from '@/hooks/mediaQueries';
+import { useIsMobile, useIsSmallMobile } from '@/hooks/mediaQueries';
 
 import './style.scss';
 
@@ -19,8 +19,12 @@ export const SortAndAdd: React.FC<Props> = ({
   sort,
   stats,
 }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useIsSmallMobile();
   const isNotMobile = !isMobile;
+
+  const addButtonText = isMobile
+    ? '+ feedback'
+    : '+ add feedback';
 
   const handleSelect = (value: string) => {
     const [field, order] = value.split(':');
@@ -59,7 +63,9 @@ export const SortAndAdd: React.FC<Props> = ({
         </div>
       </div>
       <div className="sort-and-add__operations">
-        <AddButton small={isMobile}>+ feedback</AddButton>
+        <AddButton small={isMobile}>
+          {addButtonText}
+        </AddButton>
         <UserIcon />
       </div>
     </div >
