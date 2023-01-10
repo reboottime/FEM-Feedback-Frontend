@@ -29,7 +29,7 @@ export const Feedback: React.FC<Props> = ({ ...feedback }) => {
           hasVoted={hasVoted}
           mode="horizontal"
           onVote={emptyFunc}
-          votes={feedback.votes.length}
+          votes={feedback.vote_count}
         />
       </div>
       <div className="feedback__comment-stats">
