@@ -34,3 +34,7 @@ export const updateFeedback = (args: {
 export const voteFeedback = (id: Entities.Feedback.TFeedback['id']) => {
   return axios.post(`/feedbacks/${id}/vote`);
 };
+
+export const getFeedbacksStats = () => {
+  return axios.get('/feedbacks/stats');
+};
