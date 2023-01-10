@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use '@/sass/abstract' as *;
+
+.no-data {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: map.get($colors, 'white1');
+
+  &__img {
+    width: calc(102px + 10vw);
+    max-width: 130px;
+  }
+
+  &__content {
+    margin: 39px 0 24px 0;
+  }
+
+  &__title {
+    @include typography-heading(heading-3);
+    color: map.get($colors, 'dark2');
+    margin-bottom: 14px;
+  }
+
+  &__reminder-text {
+    @include typography-body(body-3);
+    color: map.get($colors, 'dark4');
+  }
+
+  @include md {
+    &__content {
+      margin: 53px 0 38px 0;
+    }
+
+    &__title {
+      @include typography-heading(heading-1);
+    }
+
+    &__reminder-text {
+      @include typography-body(body-1);
+    }
+  }
+}
