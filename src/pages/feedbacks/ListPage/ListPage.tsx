@@ -23,9 +23,17 @@ export const ListPage = () => {
   } = useGetFeedbacks();
 
   const [category, setCategory] = useState<TCategory>('All');
+  const [sort, setSort] = useState<TSort>({
+    field: 'vote_count',
+    order: 'desc',
+  });
 
   const handleCategorySelect = (category: TCategory) => {
     setCategory(category);
+  };
+
+  const handleSort = (newSort: TSort) => {
+    setSort(newSort);
   };
 
   return (
@@ -43,7 +51,14 @@ export const ListPage = () => {
       <main className={classsNames('list-page__main', {
         'list-page__main--mobile': isMobile
       })}>
-        <SortAndAdd />
+        <SortAndAdd
+          onSort={handleSort}
+          sort={sort}
+          stats={{
+            isLoading: isFeedbacksLoading,
+            count: (feedbacks as unknown as Entities.Feedback.TFeedback[])?.length
+          }}
+        />
         {isFeedbacksLoading && <p>Loading...</p>}
         {isFeedbacksError && <p>Failed to load</p>}
         {isFeedbacksLoaded && <Feedbacks feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />}

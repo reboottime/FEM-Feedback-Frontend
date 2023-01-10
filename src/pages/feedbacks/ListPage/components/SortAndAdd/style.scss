@@ -1,7 +1,48 @@
 @use "sass:map";
-@use "@/sass/abstract/" as *;
+@use "@/sass/abstract" as *;
+
+.flex-vertical-center {
+  align-items: center;
+  display: flex;
+}
 
 .sort-and-add {
-  background-color: #373F68;;
-  height: 72px;
+  align-items: center;
+  background-color: map.get($colors, "dark1");
+  color: map.get($colors, "white1");
+  display: flex;
+  justify-content: space-between;
+  padding: 0 map.get($content-margin, "mobile");
+  height: 56px;
+
+  &__sort {
+    @extend .flex-vertical-center;
+    gap: 38px;
+    justify-content: space-between;
+  }
+
+  &__select {
+    @include typography-body(body-3);
+    align-items: center;
+    color: map.get($colors, 'white1');
+    display: flex;
+    gap: 16px;
+  }
+
+  &__stats {
+    @extend .flex-vertical-center;
+    gap: 16px;
+  }
+
+  &__operations {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @include md {
+    &__select {
+      @include typography-heading(heading-4);
+    }
+  }
 }

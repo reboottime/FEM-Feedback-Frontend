@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.select {
+  &__trigger {
+    align-items: center;
+    color: map.get($colors, "white1");
+    display: flex;
+    justify-content: space-between;
+    text-transform: capitalize;
+    width: 100%;
+  }
+  &__trigger-icon {
+    margin-left: 16px;
+    path {
+      stroke: map.get($colors, 'white1') !important;
+    }
+  }
+  &__options-container {
+    position: relative;
+  }
+  &__options {
+    margin-top: 24px;
+    position: absolute;
+    text-transform: capitalize;
+  }
+}
