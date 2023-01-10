@@ -22,6 +22,10 @@ export const getFeedback = (id: string) => {
   return axios.get(`/feedbacks/${id}`);
 };
 
+export const getFeedbacks = () => {
+  return axios.get('/feedbacks');
+};
+
 export const updateFeedback = (args: {
   id: Entities.Feedback.TFeedback['id'];
   update: TFeedbackUpdate;

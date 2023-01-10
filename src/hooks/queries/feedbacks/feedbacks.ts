@@ -2,7 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { getFeedbackQueryKey } from './queryKey';
+import { getFeedbackQueryKey, getFeedbcksQueryKey } from './queryKey';
 
 import { queryClient } from '@/components/AppProviders';
 
@@ -10,6 +10,7 @@ import {
   addFeedback,
   addFeedbackComment,
   getFeedback,
+  getFeedbacks,
   getFeedbacksStats,
   updateFeedback,
   voteFeedback,
@@ -42,6 +43,14 @@ export const useGetFeedback = (id: string) => {
     },
   });
 };
+
+export const useGetFeedbacks = () => {
+  return useQuery({
+    queryFn: getFeedbacks,
+    queryKey: getFeedbcksQueryKey(),
+  });
+};
+
 
 export const useGetFeedbacksStats = () => {
   return useQuery({
