@@ -12,11 +12,15 @@
       margin-bottom: 40px;
     }
     &__nav-items {
+      align-items: stretch;
       display: flex;
       gap: 10px;
     }
     &__nav-item {
       width: 33.3333%;
+      & > * {
+        height: 100%;
+      }
     }
   }
 
@@ -48,6 +52,6 @@
   }
 
   @include xlg {
-    max-width: map.get($grid-breakpoints, 'lg');
+    max-width: map.get($grid-breakpoints, "lg");
   }
 }
