@@ -11,4 +11,3 @@ export const getFeedbackQueryKey = (id: string) => {
 
   return [prefix, id];
 };
-
