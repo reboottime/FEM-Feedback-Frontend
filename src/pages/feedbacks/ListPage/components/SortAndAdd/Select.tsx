@@ -28,28 +28,28 @@ const Select: React.FC<Props> = ({
   const [selectedItem, setSelectedItem] = React.useState<IOption>(() =>
     options.find((option) => option.value === value) as IOption
   );
-  const [isOptionsExpanded, setIsOptionsExpanded] = React.useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   const handleOptionClick = (item: IOption) => {
     setSelectedItem(item);
-    setIsOptionsExpanded(false);
+    setIsExpanded(false);
     onSelect(item.value);
   };
 
   const handleOutsideClick: OutsideClickHandlerProps['onOutsideClick'] = () => {
-    setIsOptionsExpanded(false);
+    setIsExpanded(false);
   };
 
   const handleTriggerClick: React.MouseEventHandler = (e) => {
     e.preventDefault();
 
-    setIsOptionsExpanded(!isOptionsExpanded);
+    setIsExpanded(!isExpanded);
   };
 
   useEffect(() => {
-    if (isOptionsExpanded) {
+    if (isExpanded) {
       const handleEscKeydown = handleEscapeKeydown(() => {
-        setIsOptionsExpanded(false);
+        setIsExpanded(false);
         triggerRef.current?.blur();
       });
 
@@ -59,13 +59,13 @@ const Select: React.FC<Props> = ({
     return () => {
       window.removeEventListener('keydown', handleEnterSpaceKeydown as never);
     };
-  }, [isOptionsExpanded]);
+  }, [isExpanded]);
 
   return (
     <div className="select">
       <OutsideClickHandler onOutsideClick={handleOutsideClick}>
         <button
-          aria-expanded={isOptionsExpanded}
+          aria-expanded={isExpanded}
           className="select__trigger fw-semi-bold"
           onClick={handleTriggerClick}
           ref={triggerRef}
@@ -74,7 +74,7 @@ const Select: React.FC<Props> = ({
           <span className="select__trigger-text">
             {selectedItem.label}
           </span>
-          {isOptionsExpanded
+          {isExpanded
             ? <ArrowUpIcon className="select__trigger-icon" />
             : <ArrowDownIcon className="select__trigger-icon" />
           }
@@ -84,7 +84,7 @@ const Select: React.FC<Props> = ({
           ref={optionsContainerRef}
         />
         <Portal node={optionsContainerRef.current}>
-          {isOptionsExpanded && (
+          {isExpanded && (
             <FocusLock>
               <Dropdown
                 className="select__options fw-regular"
