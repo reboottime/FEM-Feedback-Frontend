@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$tag-background-colors: (
+  active: map.get($colors, "blue1"),
+  default: map.get($colors, "blue5"),
+  hover: map.get($colors, "blue4"),
+);
+
+.tag {
+  @include typography-body(body-3);
+  background-color: map.get($tag-background-colors, "default");
+  color: map.get($colors, "blue1");
+  padding: 6px 16px;
+  text-transform: capitalize;
+
+  &--clickable {
+    cursor: pointer;
+
+    &:hover {
+      background-color: map.get($tag-background-colors, "hover");
+    }
+  }
+
+  &--active {
+    background-color: map.get($tag-background-colors, "active");
+    color: map.get($colors, "white1");
+
+    &:hover {
+      background-color: map.get($tag-background-colors, "active");
+    }
+  }
+}
