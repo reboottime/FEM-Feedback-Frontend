@@ -14,8 +14,9 @@ import UserIcon from '@/components/UserIcon';
 import { useGetFeedback } from '@/hooks/queries/feedbacks';
 import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
-import './style.scss';
 import { isAdminUser } from '@/utils/user';
+
+import './style.scss';
 
 export const DetailPage = () => {
   const { feedbackId = '' } = useParams();
@@ -58,3 +59,5 @@ export const DetailPage = () => {
 };
 
 export default DetailPage;
+
+type TFeedbackOverview = Omit<Entities.Feedback.TFeedback, 'comments'>;
