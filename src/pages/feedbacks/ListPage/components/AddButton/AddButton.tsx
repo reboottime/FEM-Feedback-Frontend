@@ -1,26 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
+import RequireAuth from '@/components/RequireAuth';
 
 export const AddButton: React.FC<Props> = ({ children, small }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    if (!user) {
-      toast.info('You need to sign first before adding feedback');
-    }
+    navigate('/feedbacks/add');
   };
 
   return (
-    <Link to="/feedbacks/add">
-      <Button
-        onClick={handleButtonClick}
-        small={small}
-      >{children}</Button>
-    </Link>
+    <RequireAuth actionName="onClick">
+      <Button onClick={handleButtonClick}
+        small={small}>
+        {children}
+      </Button>
+    </RequireAuth>
   );
 };
 
