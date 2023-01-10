@@ -4,7 +4,6 @@
 .list-page {
   @include md {
     margin: 0 map.get($content-margin, "tablet");
-
     /************ navigation layout for tablet *************/
     &__nav {
       margin-bottom: 40px;
@@ -17,14 +16,35 @@
       width: 33.3333%;
     }
   }
-  @include xl {
-    max-width: map.get($grid-breakpoints, "lg");
+
+  @include lg {
+    max-width: 82vw;
     margin: 0 auto;
+    position: relative;
+    display: flex;
+
     &__nav {
+      position: sticky;
+      left: 0;
+      top: 0;
       width: 255px;
+      height: 100vh;
+    }
+    &__nav-items {
+      flex-direction: column;
+      gap: 24px;
+    }
+    &__nav-item {
+      width: 100%;
+    }
+
+    &__main {
+      width: calc(100% - 285px); // add 30px gap
+      margin-left: 30px;
     }
   }
+
   @include xlg {
-    max-width: map.get($grid-breakpoints, "xl");
+    max-width: map.get($grid-breakpoints, 'lg');
   }
 }

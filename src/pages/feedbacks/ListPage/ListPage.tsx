@@ -51,14 +51,14 @@ export const ListPage = () => {
         )
         : (
           <nav className="list-page__nav">
-            <ul className='list-page__nav-items'>
-              <li className='list-page__nav-item'>
+            <ul className="list-page__nav-items">
+              <li className="list-page__nav-item">
                 <Brand />
               </li>
-              <li className='list-page__nav-item'>
+              <li className="list-page__nav-item">
                 <Roadmap />
               </li>
-              <li className='list-page__nav-item'>
+              <li className="list-page__nav-item">
                 <Categories
                   onCategorySelect={handleCategorySelect}
                   selectedCategory={category}
