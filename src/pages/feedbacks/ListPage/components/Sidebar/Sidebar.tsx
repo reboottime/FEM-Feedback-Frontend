@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import classNames from 'classnames';
+import React, { useState } from 'react';
 import { Portal } from 'react-portal';
 
 import { ReactComponent as CloseIcon } from '@/assets/shared/mobile/icon-close.svg';
@@ -17,7 +17,7 @@ export const Sidebar: React.FC<Props> = ({ children, className }) => {
   };
 
   return (
-    <>
+    <React.Fragment>
       <header className={classNames('sidebar__brand', className)}>
         <div className="sidebar__brand-name">
           <h1 className="typography-body-2 fw-bold">Frontend mentor</h1>
@@ -47,7 +47,7 @@ export const Sidebar: React.FC<Props> = ({ children, className }) => {
           />
         </Portal>
       )}
-    </>
+    </React.Fragment>
   );
 };
 
