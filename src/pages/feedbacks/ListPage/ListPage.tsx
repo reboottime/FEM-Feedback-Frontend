@@ -1,13 +1,33 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+
+import Categories from './components/Categories';
+import Roadmap from './components/Roadmap';
+import Sidebar from './components/Sidebar';
+
+import { useIsMobile } from '@/hooks/mediaQueries';
 
 import './style.scss';
 
 export const ListPage = () => {
+  const isMobile = useIsMobile();
+
+  const [category, setCategory] = useState<TCategory>('All');
+
+  const handleCategorySelect = (category: TCategory) => {
+    setCategory(category);
+  };
+
   return (
-    <div>
-      <Link to="/feedbacks/add">add</Link>
-      <Link to={'/feedbacks/63bb72fd95ed1ecaa6cc29e1/edit'}>edit</Link>
+    <div className='list-page'>
+      {isMobile && (
+        <Sidebar>
+          <Roadmap />
+          <Categories
+            onCategorySelect={handleCategorySelect}
+            selectedCategory={category}
+          />
+        </Sidebar>
+      )}
     </div>
   );
 };
