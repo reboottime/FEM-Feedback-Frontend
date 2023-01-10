@@ -1,0 +1,55 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+@mixin comment-block {
+  border-left: 1px solid rgba($color: map.get($colors, "dark4"), $alpha: 0.1);
+  margin-left: 20px;
+  padding-left: 36px;
+}
+
+.comment {
+  @include typography-body(body-3);
+
+  &__header {
+    display: flex;
+    margin-bottom: 16px;
+    justify-content: space-between;
+  }
+
+  &__reply-button {
+    color: map.get($colors, "blue1");
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__content {
+    @include typography-body(body-3);
+
+    color: map.get($colors, "dark4");
+    font-weight: map.get($font-weight, "regular") !important;
+  }
+
+  @include md {
+    &__reply-button {
+      display: inline-block;
+    }
+
+    &__content {
+      @include typography-body(body-2);
+    }
+  }
+}
+
+.comment--has-sub {
+  @include md {
+    & > .comment__content {
+      @include comment-block();
+    }
+
+    & > .comment__reply-form {
+      @include comment-block();
+    }
+  }
+}

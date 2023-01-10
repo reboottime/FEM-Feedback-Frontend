@@ -1,0 +1,37 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+$sub-comments-margin: (
+  mobile: 24px,
+  tablet: 32px,
+);
+
+.comment-list {
+  &--is-sub {
+    border-left: 1px solid rgba($color: map.get($colors, "dark4"), $alpha: 0.1);
+    margin: map.get($sub-comments-margin, "mobile") 0 0 0;
+    padding-left: map.get($sub-comments-margin, "mobile");
+  }
+
+  &__item {
+    &:not(:last-child) {
+      &:after {
+        background-color: #8c92b3;
+        color: transparent;
+        content: ".";
+        display: block;
+        height: 1px;
+        margin: 24px 0;
+        opacity: 0.25;
+      }
+    }
+  }
+
+  @include md {
+    &--is-sub {
+      margin: 0 0 0 20px;
+      padding-top: map.get($sub-comments-margin, "tablet");
+      padding-left: map.get($sub-comments-margin, "tablet");
+    }
+  }
+}

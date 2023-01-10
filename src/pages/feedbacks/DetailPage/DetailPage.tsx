@@ -5,6 +5,8 @@ import AddComment from './components/AddComment';
 import Card from './components/Card';
 import Metadata from './components/Metadata';
 
+import CommentList from './components/CommentList/CommentList';
+import comments from './comments';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Goback from '@/components/Goback';
@@ -50,6 +52,12 @@ export const DetailPage = () => {
       </header>
       <Card>
         <Metadata feedbackId={feedbackId} />
+      </Card>
+      <Card title={'Comments'}>
+        <CommentList
+          comments={comments}
+          feedbackId={feedbackId}
+        />
       </Card>
       <Card title="Add Comment">
         <AddComment toFeedback={feedbackId} />
