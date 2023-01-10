@@ -10,11 +10,11 @@ $header-height: 72px;
   position: absolute;
   right: 0;
   top: $header-height;
-  background-color: map.get($colors, 'white2');
-  z-index: map.get($z-index, 'popover');
+  background-color: map.get($colors, "white2");
+  z-index: map.get($z-index, "popover");
 
   &__content {
-    padding: map.get($content-margin, 'mobile');
+    padding: map.get($content-margin, "mobile");
   }
 
   &__item:not(:last-child) {
@@ -22,23 +22,23 @@ $header-height: 72px;
   }
 
   &__overlay {
-    margin-top: 72px;
+    height: calc(100vh - $header-height);
+    margin-top: $header-height;
   }
 
   &__brand {
-    display: flex;
-    background: url("@/assets/suggestions/mobile/background-header.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    background: transparent
+      url("@/assets/suggestions/mobile/background-header.png") no-repeat right
+      top / cover;
     color: map.get($colors, "white1");
-    padding: 0 map.get($content-margin, "mobile");
+    display: flex;
     height: $header-height;
+    justify-content: space-between;
+    padding: 0 map.get($content-margin, "mobile");
 
     small {
-      opacity: .75;
+      opacity: 0.75;
     }
   }
 }
