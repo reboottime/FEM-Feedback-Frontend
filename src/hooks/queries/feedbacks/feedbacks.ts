@@ -51,7 +51,6 @@ export const useGetFeedbacks = () => {
   });
 };
 
-
 export const useGetFeedbacksStats = () => {
   return useQuery({
     queryFn: getFeedbacksStats,
@@ -62,6 +61,7 @@ export const useVoteFeedback = () => {
   return useMutation(voteFeedback as never, {
     onSuccess: (data: Entities.Feedback.TFeedback) => {
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
+      queryClient.invalidateQueries(getFeedbcksQueryKey());
     },
     onError: () => {
       toast.error('vote is failed');
