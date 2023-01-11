@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-
 import AddComment from './components/AddComment';
 import Card from './components/Card';
 import Metadata from './components/Metadata';
@@ -74,11 +73,11 @@ export const DetailPage = () => {
               ? (
                 <CommentList
                   comments={comments as Entities.TComment[]}
-                  feedbackId={feedbackId}
+                  replyToComment={undefined}
                 />
               )
               : (
-                <div className='detail-page__no-comments'>
+                <div className="detail-page__no-comments">
                   <EmptyImg />
                   <p className="typography-body-1">No comments so far</p>
                 </div>

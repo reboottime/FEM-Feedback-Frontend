@@ -9,7 +9,7 @@ import { useIsMobile } from '@/hooks/mediaQueries';
 
 import './replyForm.style.scss';
 
-const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
+const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment, toUser }) => {
   const isMobile = useIsMobile();
 
   const mutation = useAddFeedbackComment();
@@ -25,7 +25,8 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
     const reuslt = await mutation.mutateAsync({
       detail,
       feedbackId: toFeedback,
-      replyTo: toComment,
+      replyToComment: toComment,
+      replyToUser: toUser,
     } as never);
 
 
@@ -63,6 +64,7 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
 interface Props {
   toComment: Entities.TComment['id'];
   toFeedback: Entities.Feedback.TFeedback['id'];
+  toUser: Entities.TComment['author']['id'];
 }
 
 export default CommentReplyForm;

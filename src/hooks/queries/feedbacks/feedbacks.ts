@@ -109,7 +109,8 @@ export const useAddFeedbackComment = () => {
   const queryFn = (args: {
     detail: string;
     feedbackId: Entities.Feedback.TFeedback['id'];
-    replyTo?: Entities.TComment['id'];
+    replyToComment?: Entities.TComment['id'];
+    replyToUser?: Entities.TComment['author']['username'];
   }) => addFeedbackComment(args);
 
   return useMutation(queryFn as never, {
