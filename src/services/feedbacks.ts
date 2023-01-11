@@ -11,7 +11,8 @@ export const addFeedback = (args: {
 export const addFeedbackComment = (args: {
   detail: string;
   feedbackId: Entities.Feedback.TFeedback['id'];
-  replyTo?: Entities.TComment['id'];
+  replyToComment?: Entities.TComment['id'];
+  replyToUser?: Entities.TComment['author']['username'];
 }) => {
   const { feedbackId, ...comment } = args;
 
@@ -20,6 +21,10 @@ export const addFeedbackComment = (args: {
 
 export const getFeedback = (id: string) => {
   return axios.get(`/feedbacks/${id}`);
+};
+
+export const getFeedbackComments = (id: Entities.Feedback.TFeedback['id']) => {
+  return axios.get(`/feedbacks/${id}/comments`);
 };
 
 export const getFeedbacks = (params?: TQueryParams) => {

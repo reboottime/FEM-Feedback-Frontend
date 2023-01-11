@@ -24,7 +24,8 @@ declare namespace Entities {
     author: Omit<TUser, 'role'>;
     detail: string;
     feedbackId: Feedback.TFeedback['id'];
-    replyTo?: TComment['id'];
+    replyToComment?: TComment['id'];
+    replyToUser: TComment['author']['id'];
   }
 
   declare namespace Feedback {

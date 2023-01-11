@@ -6,14 +6,18 @@ import Card from './components/Card';
 import Metadata from './components/Metadata';
 
 import CommentList from './components/CommentList/CommentList';
-import comments from './comments';
+import mockComments from './comments';
+import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
 
-import { useGetFeedback } from '@/hooks/queries/feedbacks';
+import {
+  useGetFeedback,
+  useGetFeedbackComments,
+} from '@/hooks/queries/feedbacks';
 import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
 import { isAdminUser } from '@/utils/user';
@@ -27,10 +31,17 @@ export const DetailPage = () => {
   const { user } = useAuthContext() as AuthContextType;
 
   const { data = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
+  const { data: comments = mockComments, isSuccess: commentsAreLoaded } =
+    useGetFeedbackComments(feedbackId);
 
-  const isNewFeedback = (data.status === 'new');
-  const isFeedbackAuthor = (user?.id === (data as TFeedbackOverview).author?.id) || isAdminUser(user);
-  const isEditable = isNewFeedback && isFeedbackAuthor;
+  const commentCardTitle = (comments as Entities.TComment[]).length
+    ? `${(comments as Entities.TComment[]).length} Comments`
+    : 'Comments';
+
+  const isNewFeedback = data.status === 'new';
+  const canEdit =
+    user?.id === (data as TFeedbackOverview).author?.id || isAdminUser(user);
+  const isEditable = isNewFeedback && canEdit;
 
   return (
     <div className="detail-page">
@@ -39,10 +50,9 @@ export const DetailPage = () => {
         <div className="detail-page__header-nav">
           {isEditable && (
             <Link to={`/feedbacks/${feedbackId}/edit`}>
-              <Button
-                small={isSmallMobile}
-                variant='blue'
-              >Edit
+              <Button small={isSmallMobile}
+                variant="blue">
+                Edit
               </Button>
             </Link>
           )}
@@ -53,11 +63,27 @@ export const DetailPage = () => {
       <Card>
         <Metadata feedbackId={feedbackId} />
       </Card>
-      <Card title={'Comments'}>
-        <CommentList
-          comments={comments}
-          feedbackId={feedbackId}
-        />
+      <Card title={commentCardTitle}>
+        {/* isLoading */}
+        {/* isSuccess */}
+        {/* no data */}
+        {commentsAreLoaded && (
+          <React.Fragment>
+            {(comments as Entities.TComment[]).length
+              ? (
+                <CommentList
+                  comments={comments as Entities.TComment[]}
+                  replyToComment={undefined}
+                />
+              )
+              : (
+                <div className="detail-page__no-comments">
+                  <EmptyImg />
+                  <p className="typography-body-1">No comments so far</p>
+                </div>
+              )}
+          </React.Fragment>
+        )}
       </Card>
       <Card title="Add Comment">
         <AddComment toFeedback={feedbackId} />

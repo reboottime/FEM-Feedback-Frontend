@@ -9,7 +9,7 @@ import RequireAuth from '@/components/RequireAuth';
 
 import './comment.style.scss';
 
-const Comment: React.FC<Props> = ({ comments, ...comment }) => {
+const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
   const [showReplyInput, setShowReplyInput] = useState<boolean>(false);
 
   const handleReplyButtonClick = () => {
@@ -19,12 +19,12 @@ const Comment: React.FC<Props> = ({ comments, ...comment }) => {
   return (
     <div
       className={classNames('comment', {
-        'comment--has-sub': !!comments?.length,
+        'comment--has-sub': replyToComment
       })}
     >
       <div className="comment__header">
         <Author {...comment.author} />
-        <RequireAuth actionName='onClick'>
+        <RequireAuth actionName="onClick">
           <button
             className="comment__reply-button typography-body-2 fw-semi-bold"
             onClick={handleReplyButtonClick}
@@ -36,16 +36,18 @@ const Comment: React.FC<Props> = ({ comments, ...comment }) => {
       <p className="comment__content">{comment.detail}</p>
       {showReplyInput && (
         <ReplyForm
-          toComment={comment.id}
+          onAdded={handleReplyButtonClick}
+          toComment={replyToComment || comment.id}
           toFeedback={comment.feedbackId}
-        />)}
+          toUser={comment.author.id}
+        />
+      )}
       {comments?.length && (
         <CommentList
           comments={comments}
-          feedbackId={comments[0].feedbackId}
-          isSubComments
-        />)
-      }
+          replyToComment={replyToComment}
+        />
+      )}
     </div>
   );
 };
@@ -53,5 +55,6 @@ const Comment: React.FC<Props> = ({ comments, ...comment }) => {
 export default Comment;
 
 export interface Props extends Entities.TComment {
-  comments: Entities.TComment[]
+  comments?: Entities.TComment[];
+  replyToComment?: Entities.TComment['id'];
 }

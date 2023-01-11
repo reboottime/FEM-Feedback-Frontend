@@ -1,41 +1,33 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import classNames from 'classnames';
 import React from 'react';
-import groupyBy from 'lodash/groupBy';
+import { groupBy } from 'lodash';
 
 import Comment from './Comment';
 
 import './commentList.style.scss';
 
-export const CommentList: React.FC<Props> = ({ comments, isSubComments }) => {
-  const { undefined: rootComments = [], ...rest } = groupyBy(
-    comments,
-    'replyTo'
-  );
-  const groupedComments = rootComments.map((item) => {
-    const { id, ...metadata } = item;
-    const subComments = rest[id];
+export const CommentList: React.FC<Props> = ({ comments, replyToComment }) => {
+  const { undefined: rootComments, ...restcomments } = groupBy(comments, 'replyToComment');
 
-    return {
-      id,
-      ...metadata,
-      ...(subComments && { comments: subComments }),
-    };
-  });
+  const commentList = !replyToComment
+    ? rootComments
+    : restcomments[replyToComment];
 
   return (
     <ul
       className={classNames('comment-list', {
-        'comment-list--is-sub': isSubComments,
+        'comment-list--is-sub': replyToComment,
       })}
     >
-      {(
-        isSubComments
-          ? comments
-          : groupedComments).map((item) => (
+      {(commentList).map((item) => (
         <li className="comment-list__item"
           key={item.id}>
-          <Comment  {...item as any} />
+          <Comment
+            {...item as any}
+            comments={restcomments[item.id]}
+            replyToComment={replyToComment || item.id}
+          />
         </li>
       ))}
     </ul>
@@ -44,8 +36,7 @@ export const CommentList: React.FC<Props> = ({ comments, isSubComments }) => {
 
 export interface Props {
   comments: Entities.TComment[];
-  feedbackId: Entities.Feedback.TFeedback['id'];
-  isSubComments?: boolean;
+  replyToComment?: Entities.TComment['id'];
 }
 
 export default CommentList;

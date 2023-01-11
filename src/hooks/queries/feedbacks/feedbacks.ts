@@ -2,7 +2,12 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { getFeedbackQueryKey, getFeedbackStatsQueryKey, getFeedbcksQueryKey } from './queryKey';
+import {
+  getFeedbackCommentsQueryKey,
+  getFeedbackQueryKey,
+  getFeedbackStatsQueryKey,
+  getFeedbcksQueryKey,
+} from './queryKey';
 
 import { queryClient } from '@/components/AppProviders';
 
@@ -10,6 +15,7 @@ import {
   addFeedback,
   addFeedbackComment,
   getFeedback,
+  getFeedbackComments,
   getFeedbacks,
   getFeedbacksStats,
   updateFeedback,
@@ -41,6 +47,15 @@ export const useGetFeedback = (id: string) => {
     onError: () => {
       toast.error(`Failed to fetch feedback: ${id}`);
     },
+  });
+};
+
+export const useGetFeedbackComments = (
+  id: Entities.Feedback.TFeedback['id']
+) => {
+  return useQuery({
+    queryFn: () => getFeedbackComments(id),
+    queryKey: getFeedbackCommentsQueryKey(id),
   });
 };
 
@@ -94,11 +109,18 @@ export const useAddFeedbackComment = () => {
   const queryFn = (args: {
     detail: string;
     feedbackId: Entities.Feedback.TFeedback['id'];
-    replyTo?: Entities.TComment['id'];
+    replyToComment?: Entities.TComment['id'];
+    replyToUser?: Entities.TComment['author']['username'];
   }) => addFeedbackComment(args);
 
   return useMutation(queryFn as never, {
-    onSuccess: () => {
+    onSuccess: (data: Entities.TComment) => {
+      const commentQueryKey = getFeedbackCommentsQueryKey(data.feedbackId);
+      const feedbackQueryKey = getFeedbackQueryKey(data.feedbackId);
+
+      queryClient.invalidateQueries(commentQueryKey);
+      queryClient.invalidateQueries(feedbackQueryKey);
+
       toast.success('Comment added');
     },
     onError: () => {

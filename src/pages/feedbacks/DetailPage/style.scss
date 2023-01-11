@@ -20,6 +20,14 @@
     gap: 16px;
   }
 
+  &__no-comments {
+    text-align: center;
+
+    p {
+      margin-top: 16px;
+    }
+  }
+
   @include md {
     max-width: 689px;
     margin: 0 auto;
