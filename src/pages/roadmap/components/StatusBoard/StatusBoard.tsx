@@ -36,40 +36,43 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
           ? (
             <React.Fragment>
               {feedbacks.map((feedback) => (
-                <li className="status-board__item"
+                <li className="status-board__item border-rounded--large"
                   key={feedback.id}>
-                  <Link
-                    className="status-board__item-link border-rounded--large"
-                    to={`/feedbacks/${feedback.id}`}
-                  >
-                    <div
-                      className={classNames(
-                        'status-board__item-line',
-                        `status-board__item-line--${themeVariant}`
-                      )}
-                    ></div>
-                    <div className="status-board__item-content">
-                      <div className="status-board__item-status typography-body-3">
-                        <div>
-                          <Dot size="small"
-                            variant={themeVariant} />
-                          <span>{status}</span>
-                        </div>
+                  <div
+                    className={classNames(
+                      'status-board__item-line',
+                      `status-board__item-line--${themeVariant}`
+                    )}
+                  ></div>
+                  <div className="status-board__item-content">
+                    <div className="status-board__item-status typography-body-3">
+                      <div>
+                        <Dot size="small"
+                          variant={themeVariant} />
+                        <span>{status}</span>
+                      </div>
+                      <div className="status-board__btn-group">
                         {(isAdminUser(user) && (feedback.status !== 'live')) && (
                           <Link
-                            className="status-board__item-edit typography-body-3 fw-regular"
+                            className="status-board__item-btn typography-body-3 fw-regular"
                             to={`/feedbacks/${feedback.id}/edit`}
                           >
                             Edit
                           </Link>
                         )}
+                        <Link
+                          className="status-board__item-btn typography-body-3 fw-regular"
+                          to={`/feedbacks/${feedback.id}`}
+                        >
+                          View
+                        </Link>
                       </div>
-                      <Feedback
-                        {...feedback}
-                        smallSize
-                      />
                     </div>
-                  </Link>
+                    <Feedback
+                      {...feedback}
+                      smallSize
+                    />
+                  </div>
                 </li>
               ))}
             </React.Fragment>

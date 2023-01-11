@@ -23,18 +23,12 @@ $line-variants: (
   /************************** Board item**********************/
   &__item {
     margin-bottom: 16px;
-  }
-  &__item-link {
     background-color: map.get($colors, "white1");
     color: inherit;
     display: block;
     text-decoration: none;
     border: 1px solid transparent;
     overflow: hidden;
-
-    &:hover {
-      border-color: map.get($colors, "blue1");
-    }
   }
   &__item-line {
     height: 6px;
@@ -56,10 +50,17 @@ $line-variants: (
     text-transform: capitalize;
     justify-content: space-between;
   }
-  &__item-edit {
+
+  &__item-btn {
     color: map.get($colors, "blue1");
+    margin-left: 8px;
+    text-decoration: none;
 
     &:hover {
+      text-decoration: underline;
+    }
+
+    @include touchscreen {
       text-decoration: underline;
     }
   }
