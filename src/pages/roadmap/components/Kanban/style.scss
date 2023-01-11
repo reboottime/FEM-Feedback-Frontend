@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.kanban {
+  /**************Mobile version layout****************************/
+  &__tablist {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid
+      rgba($color: map.get($colors, "dark2"), $alpha: 0.25);
+  }
+
+  &__tab {
+    border-bottom: 4px solid transparent;
+    color: map.get($colors, "dark2");
+    height: 60px;
+    opacity: 0.4;
+    text-transform: capitalize;
+    width: 33.33%;
+
+    &[data-selected] {
+      opacity: 1;
+    }
+
+    &--orange[data-selected] {
+      border-bottom-color: map.get($colors, "orange1");
+    }
+    &--purple[data-selected] {
+      border-bottom-color: map.get($colors, "purple1");
+    }
+    &--blue[data-selected] {
+      border-bottom-color: map.get($colors, "blue3");
+    }
+  }
+
+  &__tabpanel {
+    margin: 0 24px;
+  }
+}

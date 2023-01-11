@@ -1,17 +1,25 @@
 import React from 'react';
 
-import Goback from '@/components/Goback';
+import Kanban from './components/Kanban';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import AddButton from '@/components/AddButton';
+import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import Goback from '@/components/Goback';
 import UserIcon from '@/components/UserIcon';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
+import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
 import './style.scss';
 
 export const RoadmapPage = () => {
   const { user } = useAuthContext() as AuthContextType;
+
+  const {
+    data: feedbacks,
+    isLoading: isLoadingFeedbacks,
+  } = useGetFeedbacks();
+
   const isMobile = useIsMobile();
 
   const addButtonText = isMobile
@@ -32,6 +40,10 @@ export const RoadmapPage = () => {
           </div>
         </div>
       </header>
+      <div className="roadmap-page__main">
+        {isLoadingFeedbacks && <p>loading...</p>}
+        {feedbacks && <Kanban feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />}
+      </div>
     </div>
   );
 };
