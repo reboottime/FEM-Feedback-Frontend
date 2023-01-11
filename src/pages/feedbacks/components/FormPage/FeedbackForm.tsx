@@ -93,6 +93,10 @@ export const FeedbackForm: React.FC<Props> = ({
           description="Include any specific comments on what should be improved, added,
               etc."
           disabled={disabled || (isAdminUser && isEditting)}
+          maxLength={{
+            value: 500,
+            message: 'Feedback detail is too long'
+          }}
           name="detail"
           placeholder="Please type feedback detail"
           required={{
