@@ -51,7 +51,11 @@
     }
   }
 
+  @include xl {
+    max-width: 92vw;
+  }
+
   @include xlg {
-    max-width: map.get($grid-breakpoints, "lg");
+    max-width: map.get($grid-breakpoints, "xl");
   }
 }
