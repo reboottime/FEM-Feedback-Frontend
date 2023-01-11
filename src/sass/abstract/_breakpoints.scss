@@ -33,6 +33,12 @@ $grid-breakpoints: (
   }
 }
 
+@mixin xl {
+  @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
+    @content;
+  }
+}
+
 @mixin xlg {
   @media screen and (min-width: map.get($grid-breakpoints, "xl")) {
     @content;
