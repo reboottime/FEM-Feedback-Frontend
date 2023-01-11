@@ -47,7 +47,7 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
                 key={key}
               >
                 <StatusBoard
-                  feedbacks={groupedItems[key]}
+                  feedbacks={groupedItems[key] ?? []}
                   status={key}
                 />
               </TabPanel>
