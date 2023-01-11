@@ -5,10 +5,13 @@ import Button from '@/components/Button';
 import { Textarea } from '@/components/Form';
 
 import { useAddFeedbackComment } from '@/hooks/queries/feedbacks';
+import { useIsMobile } from '@/hooks/mediaQueries';
 
 import './replyForm.style.scss';
 
 const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
+  const isMobile = useIsMobile();
+
   const mutation = useAddFeedbackComment();
 
   const methods = useForm({
@@ -39,8 +42,11 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
           }}
         />
         <div className="reply-form__btn-wrapper">
-          <Button type="submit"
-            variant="purple">
+          <Button
+            small={isMobile}
+            type="submit"
+            variant="purple"
+          >
             Post Reply
           </Button>
         </div>
