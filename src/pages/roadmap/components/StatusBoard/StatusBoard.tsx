@@ -48,8 +48,8 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                     )}
                   />
                   <div className="status-board__item-content">
-                    <div className="status-board__item-heading typography-body-3">
-                      <div className="status-board__item-status">
+                    <div className="status-board__item-heading flex-center-between typography-body-3">
+                      <div className="status-board__item-status flex-center-between">
                         <Dot size="small"
                           variant={themeVariant} />
                         <span>{status}</span>
