@@ -38,10 +38,8 @@ export const DetailPage = () => {
     ? `${(comments as Entities.TComment[]).length} Comments`
     : 'Comments';
 
-  const isNewFeedback = data.status === 'new';
-  const canEdit =
-    user?.id === (data as TFeedbackOverview).author?.id || isAdminUser(user);
-  const isEditable = isNewFeedback && canEdit;
+  const canEdit = user?.id === (data as TFeedbackOverview).author?.id || isAdminUser(user);
+  const isEditable = (data.status === 'new') && canEdit;
 
   return (
     <div className="detail-page">
