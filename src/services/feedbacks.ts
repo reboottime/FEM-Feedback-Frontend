@@ -22,6 +22,10 @@ export const getFeedback = (id: string) => {
   return axios.get(`/feedbacks/${id}`);
 };
 
+export const getFeedbackComments = (id: Entities.Feedback.TFeedback['id']) => {
+  return axios.get(`/feedbacks/${id}/comments`);
+};
+
 export const getFeedbacks = (params?: TQueryParams) => {
   const data = params
     ? { params }
