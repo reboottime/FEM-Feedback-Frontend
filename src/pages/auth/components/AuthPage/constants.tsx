@@ -8,8 +8,8 @@ export const PAGE_INFO_MAP: Record<AuthFormProps['type'], TPageInfo> = {
     title: 'Sign In',
     reminderText: (
       <>
-        Doesn&apos;t have an account, sign up {' '}
-        <Link to="/auth/sign-up">here</Link>.
+        Doesn&apos;t have an account,
+        <Link to="/auth/sign-up">sign up</Link>.
       </>
     ),
   },
@@ -17,7 +17,7 @@ export const PAGE_INFO_MAP: Record<AuthFormProps['type'], TPageInfo> = {
     title: 'Sign Up',
     reminderText: (
       <>
-        Already have an account, sign in <Link to="/auth/sign-in">here</Link>.
+        Already have an account,  <Link to="/auth/sign-in">sign in</Link>.
       </>
     ),
   },
