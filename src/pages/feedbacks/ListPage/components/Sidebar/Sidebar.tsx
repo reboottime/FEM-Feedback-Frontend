@@ -35,7 +35,7 @@ export const Sidebar: React.FC<Props> = ({ children, className }) => {
           <small className='typography-body-3'>Feedback board</small>
         </div>
         <button
-          className="home__toggle-btn"
+          className="sidebar__toggle-btn"
           onClick={handleSidebarToggle}
         >
           {isSidebarOpen
