@@ -1,21 +1,29 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import { useAuthContext, AuthContextType } from './AuthProvider';
+import { useGetCurrentUser } from '@/hooks/queries/users';
 
 export const ProtectedRoute: React.FC<Props> = ({ toPath, children }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const {
+    data: user,
+    isSuccess,
+    isError
+  } = useGetCurrentUser();
 
-  if (user) {
+  if (isSuccess && user) {
     return children;
   }
 
-  return (
-    <Navigate
-      replace
-      to={toPath}
-    />
-  );
+  if (isError) {
+    return (
+      <Navigate
+        replace
+        to={toPath}
+      />
+    );
+  }
+
+  return null;
 };
 
 export interface Props {
