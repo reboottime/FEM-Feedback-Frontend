@@ -56,7 +56,25 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
     );
   }
 
-  return <p>desktop version is under building</p>;
+  return (
+    <div className={classNames('kanban', {
+      'kanban--tablet': !isMobile
+    })}>
+      <ul className='kanban__list'>
+        {BOARD_ORDER.map((key) => (
+          <li
+            className="kanban__list-item"
+            key={key}
+          >
+            <StatusBoard
+              feedbacks={groupedItems[key]}
+              status={key}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 interface Props {

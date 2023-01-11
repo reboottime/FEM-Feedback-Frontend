@@ -21,7 +21,6 @@ $line-variants: (
   }
 
   /************************** Board item**********************/
-
   &__item {
     margin-bottom: 16px;
   }
@@ -55,5 +54,11 @@ $line-variants: (
     gap: 8px;
     margin-bottom: 16px;
     text-transform: capitalize;
+  }
+
+  @include lg {
+    &__item {
+      margin-bottom: 24px;
+    }
   }
 }

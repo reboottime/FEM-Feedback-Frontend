@@ -36,4 +36,31 @@
   &__tabpanel {
     margin: 0 24px;
   }
+
+  /************** Tablet and beyound version layout****************************/
+  @include md {
+    &--tablet {
+      margin-top: 8px;
+    }
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    &__list-item {
+      width: calc(33.3% - 8px);
+      flex-shrink: 0;
+    }
+
+    @include lg {
+      &__list {
+        gap: 16px;
+      }
+      &__list-item {
+        width: calc(33.3% - 16px);
+        flex-shrink: 0;
+      }
+    }
+  }
 }
