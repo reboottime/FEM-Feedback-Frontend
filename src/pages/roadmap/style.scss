@@ -45,7 +45,7 @@
       @include typography-heading(heading-1);
     }
     &__main {
-      padding: 0 map.get($content-margin, "tablet");
+      padding: 0 map.get($content-margin, "mobile");
     }
   }
 }

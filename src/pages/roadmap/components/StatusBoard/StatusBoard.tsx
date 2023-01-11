@@ -6,7 +6,6 @@ import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
 
 import { ROADMAP_STATUS_DESCRIPTION } from '@/constants/feedbacks';
-import Button from '@/components/Button';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { mapStatusToDotVariant } from '@/utils/feedback';
 import { isAdminUser } from '@/utils/user';
@@ -65,7 +64,10 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                           </Link>
                         )}
                       </div>
-                      <Feedback {...feedback} />
+                      <Feedback
+                        {...feedback}
+                        smallSize
+                      />
                     </div>
                   </Link>
                 </li>
