@@ -9,3 +9,7 @@ const DOT_VARIANT_MAP: Record<Entities.Feedback.TRoadmapStatus, DotProps['varian
 export const mapStatusToDotVariant = (status: Entities.Feedback.TRoadmapStatus) => {
   return DOT_VARIANT_MAP[status];
 };
+
+export const isPublishedFeedback = (feedback: Entities.Feedback.TFeedback) => {
+  return feedback.status === 'live';
+};
