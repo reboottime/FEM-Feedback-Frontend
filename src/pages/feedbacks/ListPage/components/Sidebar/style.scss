@@ -5,8 +5,8 @@ $header-height: 72px;
 
 .sidebar {
   height: 100vh;
-  max-width: 70vw;
-  min-width: 268px;
+  max-width: 320px;
+  width: 80vw;
   position: absolute;
   right: 0;
   top: $header-height;
