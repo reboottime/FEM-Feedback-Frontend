@@ -9,7 +9,12 @@ import { useIsMobile } from '@/hooks/mediaQueries';
 
 import './replyForm.style.scss';
 
-const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment, toUser }) => {
+const CommentReplyForm: React.FC<Props> = ({
+  onAdded,
+  toFeedback,
+  toComment,
+  toUser,
+}) => {
   const isMobile = useIsMobile();
 
   const mutation = useAddFeedbackComment();
@@ -29,9 +34,9 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment, toUser }) =>
       replyToUser: toUser,
     } as never);
 
-
     if (reuslt.id) {
       methods.reset();
+      onAdded();
     }
   };
 
@@ -48,11 +53,9 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment, toUser }) =>
           }}
         />
         <div className="reply-form__btn-wrapper">
-          <Button
-            small={isMobile}
+          <Button small={isMobile}
             type="submit"
-            variant="purple"
-          >
+            variant="purple">
             Post Reply
           </Button>
         </div>
@@ -62,6 +65,7 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment, toUser }) =>
 };
 
 interface Props {
+  onAdded: () => void;
   toComment: Entities.TComment['id'];
   toFeedback: Entities.Feedback.TFeedback['id'];
   toUser: Entities.TComment['author']['id'];

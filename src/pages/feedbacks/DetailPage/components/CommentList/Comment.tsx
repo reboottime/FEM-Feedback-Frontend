@@ -36,6 +36,7 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
       <p className="comment__content">{comment.detail}</p>
       {showReplyInput && (
         <ReplyForm
+          onAdded={handleReplyButtonClick}
           toComment={replyToComment || comment.id}
           toFeedback={comment.feedbackId}
           toUser={comment.author.id}
