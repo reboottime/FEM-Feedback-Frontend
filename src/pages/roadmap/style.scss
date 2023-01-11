@@ -13,10 +13,7 @@
   }
 
   &__header-content {
-    align-items: center;
     background-color: map.get($colors, "dark1");
-    display: flex;
-    justify-content: space-between;
   }
 
   &__title {

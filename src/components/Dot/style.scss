@@ -15,16 +15,16 @@ $dot-variants: (
 .dot {
   border-radius: 50%;
   display: inline-block;
+  height: map.get($dot-sizes, "large");
+  width: map.get($dot-sizes, "large");
 
-  @each $size-name, $size-value in $dot-sizes {
-    &--#{$size-name} {
-      height: $size-value;
-      width: $size-value;
-    }
+  &--small {
+    height: map.get($dot-sizes, "small");
+    width: map.get($dot-sizes, "small");
   }
 
   @each $name, $background-color in $dot-variants {
-    &--#{'' + $name} {
+    &--#{"" + $name} {
       background-color: $background-color;
     }
   }

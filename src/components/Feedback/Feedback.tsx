@@ -45,7 +45,7 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
           />
         </RequireAuth>
       </div>
-      <div className="feedback__comment-stats">
+      <div className="feedback__comment-stats flex-center-end">
         <CommentsIcon />
         <span
           className={classNames('feedback__comment-count', 'fw-semi-bold', {

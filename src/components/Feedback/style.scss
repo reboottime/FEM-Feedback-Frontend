@@ -26,10 +26,7 @@
   }
 
   &__comment-stats {
-    align-items: center;
     color: map.get($colors, "dark2");
-    display: flex;
-    justify-content: flex-end;
     width: 50%;
   }
 
