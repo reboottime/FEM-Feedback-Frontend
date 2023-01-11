@@ -93,10 +93,13 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                 )}
               />
               <div className="status-board__item-content status-board__item-content--empty">
-                <EmptyImg />
-                <h3 className="typography--heading-3 fw-semi-bold title">
-                  Currently there is no suggestion that the product team is working on.
+                <EmptyImg className='img' />
+                <h3 className="typography-heading-3 fw-semi-bold title">
+                  hmmm
                 </h3>
+                <p className='typography-body-1'>
+                  Currently, the development team is taking a break.
+                </p>
               </div>
             </li>
           )}
