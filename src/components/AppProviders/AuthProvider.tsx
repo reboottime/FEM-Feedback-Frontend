@@ -17,16 +17,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
   );
 };
 
-interface Props {
-  children: React.ReactElement;
-}
-
-type TUser = Entities.TAuthedUser | null;
-
-export type AuthContextType = {
-  setUser: (user: TUser) => void;
-  user: TUser;
-};
+export default AuthProvider;
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
@@ -35,7 +26,16 @@ export const useAuthContext = () => {
     return context;
   }
 
-  throw new Error('useAuthContex should be used inside AuthProvider');
+  throw new Error('useAuthContext should be used inside AuthProvider');
 };
 
-export default AuthProvider;
+export type AuthContextType = {
+  setUser: (user: TUser) => void;
+  user: TUser;
+};
+
+interface Props {
+  children: React.ReactElement;
+}
+
+type TUser = Entities.TAuthedUser | null;

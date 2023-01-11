@@ -24,7 +24,10 @@ export const AddPage = () => {
       >
         <React.Fragment>
           <Cancell />
-          <Button mobileFullWidth>Save Changes</Button>
+          <Button
+            mobileFullWidth
+            type="submit"
+          >Create Feedback</Button>
         </React.Fragment>
       </FeedbackForm>
     </FormPage>
