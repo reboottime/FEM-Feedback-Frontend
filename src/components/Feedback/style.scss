@@ -18,8 +18,7 @@
   }
 
   &__detail {
-    margin: 10px 0 15px 0;
-    word-break: break-word;
+    margin: 8px 0;
   }
 
   &__vote {
@@ -54,8 +53,8 @@
       @include typography-heading(heading-3);
     }
 
-    &__detail {
-      @include typography-heading(body-1);
+    &__details {
+      @include typography-body(body-1);
       margin: 4px 0 12px 0;
     }
 
@@ -69,5 +68,26 @@
       order: 1;
       width: auto;
     }
+  }
+}
+
+.feedback--small-size {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+
+  .feedback__content {
+    width: 100%;
+    order: 1;
+    margin-bottom: 16px;
+  }
+  .feedback__vote {
+    width: 50%;
+    order: 2;
+  }
+  .feedback__comment-stats {
+    width: 50%;
+    order: 3;
   }
 }

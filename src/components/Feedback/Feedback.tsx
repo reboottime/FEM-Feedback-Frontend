@@ -12,31 +12,36 @@ import { useVoteFeedback } from '@/hooks/queries/feedbacks';
 
 import './style.scss';
 
-export const Feedback: React.FC<Props> = ({ ...feedback }) => {
+export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
   const { user } = useAuthContext() as AuthContextType;
 
-  const mutation = useVoteFeedback();
+  const hasVoted =
+    !!user && !!feedback.votes.find((voter) => voter === user.id);
 
-  const handleVote = () => {
-    mutation.mutate(feedback.id as never);
+  const voteMutation = useVoteFeedback();
+
+  const handleVoteFeedback = () => {
+    voteMutation.mutate(feedback.id as never);
   };
 
-  const hasVoted = !!user && !!feedback.votes.find((voter) => voter === user.id);
-
   return (
-    <div className='feedback'>
+    <div
+      className={classNames('feedback', {
+        'feedback--small-size': smallSize,
+      })}
+    >
       <div className="feedback__content">
         <h3 className="feedback__title fw-bold">{feedback.title}</h3>
-        <p className="feedback__detail fw-regular">{feedback.detail}</p>
+        <p className="feedback__detail">{feedback.detail}</p>
         <Tag>{feedback.category}</Tag>
       </div>
       <div className="feedback__vote">
-        <RequireAuth actionName='onVote'>
+        <RequireAuth actionName="onVote">
           <Vote
             hasVoted={hasVoted}
             mode="horizontal"
-            onVote={handleVote}
-            votes={feedback.vote_count}
+            onVote={handleVoteFeedback}
+            votes={feedback.votes.length}
           />
         </RequireAuth>
       </div>
@@ -56,4 +61,5 @@ export const Feedback: React.FC<Props> = ({ ...feedback }) => {
 
 export interface Props extends Omit<Entities.Feedback.TFeedback, 'auhtor'> {
   className?: string;
+  smallSize?: boolean;
 }

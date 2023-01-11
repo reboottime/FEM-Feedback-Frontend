@@ -1,0 +1,6 @@
+// https://stackoverflow.com/questions/42025632/how-to-detect-only-with-css-mobile-screens
+@mixin touchscreen {
+  @media only screen and (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}

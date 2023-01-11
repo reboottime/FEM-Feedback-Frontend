@@ -5,6 +5,7 @@ import Kanban from './components/Kanban';
 import AddButton from '@/components/AddButton';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Goback from '@/components/Goback';
+import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
@@ -48,6 +49,7 @@ export const RoadmapPage = () => {
           <div className="roadmap-page__actions">
             <AddButton>{addButtonText}</AddButton>
             {user && <UserIcon />}
+            <ToHome />
           </div>
         </div>
       </header>

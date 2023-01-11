@@ -8,9 +8,12 @@ $line-variants: (
 );
 
 .status-board {
-  /************************** Board Stats informaiton**********************/
+  /************ Mobile version layout: kanban stats informaiton****************/
   &__stats {
     margin: map.get($content-margin, "mobile") 0;
+  }
+  &__stats-metadata {
+    margin-left: 8px
   }
   &__title {
     @include typography-heading(heading-3);
@@ -18,24 +21,16 @@ $line-variants: (
   }
   &__description {
     @include typography-body(body-3);
+    color: map.get($colors, "dark4");
   }
 
-  /************************** Board item**********************/
-
+  /*********** Mobile version layout:  kanban item ***************************/
   &__item {
     margin-bottom: 16px;
-  }
-  &__item-link {
     background-color: map.get($colors, "white1");
-    color: inherit;
     display: block;
-    text-decoration: none;
     border: 1px solid transparent;
     overflow: hidden;
-
-    &:hover {
-      border-color: map.get($colors, "blue1");
-    }
   }
   &__item-line {
     height: 6px;
@@ -48,12 +43,57 @@ $line-variants: (
   &__item-content {
     padding: 16px 24px;
   }
-  &__item-status {
-    align-items: center;
-    color: map.get($colors, "dark4");
-    display: flex;
-    gap: 8px;
+  &__item-heading {
     margin-bottom: 16px;
+  }
+  &__item-status {
+    color: map.get($colors, "dark4");
+    gap: 6px;
     text-transform: capitalize;
+  }
+
+  &__item-btn {
+    color: map.get($colors, "blue1");
+    margin-left: 8px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+      color: map.get($colors, "blue2");
+    }
+
+    @include touchscreen {
+      text-decoration: underline;
+    }
+  }
+
+  /************************** Tablet & desktop version layout  **********************/
+
+  @include md {
+    &__item-content {
+      padding: 20px;
+    }
+    &__item-heading {
+      margin-bottom: 14px;
+    }
+  }
+
+  @include lg {
+    &__item-heading {
+      margin-bottom: 8px;
+    }
+    &__description {
+      @include typography-body(body-1);
+      color: map.get($colors, "dark4");
+    }
+    &__item-content {
+      padding: 24px;
+    }
+  }
+
+  @include xl {
+    &__item-content {
+      padding: 24px 32px;
+    }
   }
 }

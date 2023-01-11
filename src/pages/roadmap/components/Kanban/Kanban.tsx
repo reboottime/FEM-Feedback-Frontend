@@ -5,12 +5,14 @@ import React from 'react';
 import { groupBy } from 'lodash';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
+
 import StatusBoard from '@/pages/roadmap/components/StatusBoard';
+
 import { mapStatusToDotVariant } from '@/utils/feedback';
 
 import './style.scss';
 
-const TAB_ORDER: Entities.Feedback.TRoadmapStatus[] = [
+const BOARD_ORDER: Entities.Feedback.TRoadmapStatus[] = [
   'planned',
   'in progress',
   'live',
@@ -26,7 +28,7 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
       <div className="kanban">
         <Tabs>
           <TabList className="kanban__tablist">
-            {TAB_ORDER.map((key) => (
+            {BOARD_ORDER.map((key) => (
               <Tab
                 className={classNames(
                   'kanban__tab',
@@ -39,7 +41,7 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
             ))}
           </TabList>
           <TabPanels>
-            {TAB_ORDER.map((key) => (
+            {BOARD_ORDER.map((key) => (
               <TabPanel
                 className="kanban__tabpanel"
                 key={key}
@@ -56,7 +58,25 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
     );
   }
 
-  return <p>desktop version is under building</p>;
+  return (
+    <div className={classNames('kanban', {
+      'kanban--tablet': !isMobile
+    })}>
+      <ul className='kanban__list'>
+        {BOARD_ORDER.map((key) => (
+          <li
+            className="kanban__list-item"
+            key={key}
+          >
+            <StatusBoard
+              feedbacks={groupedItems[key]}
+              status={key}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 interface Props {
