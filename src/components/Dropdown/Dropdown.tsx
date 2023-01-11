@@ -38,7 +38,7 @@ export const Dropdown: React.FC<Props> = React.forwardRef(
             role="option"
             tabIndex={0}
           >
-            <div className="dropdown__option-content">
+            <div className="dropdown__option-content flex-center-between">
               <span>{item.label}</span>
               {isSelected && (
                 <CheckIcon className="dropdown__option-check-mark" />

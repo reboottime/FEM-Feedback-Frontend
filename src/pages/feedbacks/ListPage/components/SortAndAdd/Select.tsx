@@ -62,7 +62,7 @@ const Select: React.FC<Props> = ({
   }, [isExpanded]);
 
   return (
-    <div className="select">
+    <div className="select flex-center-between">
       <OutsideClickHandler onOutsideClick={handleOutsideClick}>
         <button
           aria-expanded={isExpanded}

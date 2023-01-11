@@ -19,12 +19,6 @@ $border-color: map.get($colors, "dark4");
     padding: map.get($content-margin, "mobile");
   }
 
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   &__body {
     overflow: auto;
     padding: map.get($content-margin, "mobile") 0;

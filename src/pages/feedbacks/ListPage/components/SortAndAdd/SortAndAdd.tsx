@@ -37,13 +37,13 @@ export const SortAndAdd: React.FC<Props> = ({
 
   return (
     <div
-      className={classNames('sort-and-add', className, {
+      className={classNames('sort-and-add', 'flex-center-between', className, {
         'border-rounded--large': isNotMobile,
       })}
     >
-      <div className="sort-and-add__sort">
+      <div className="sort-and-add__sort flex-center-between">
         {isNotMobile && (
-          <div className="sort-and-add__stats">
+          <div className="sort-and-add__stats flex-center-between">
             <BulbIcon />
             <h3 className="typograph-heading-3 fw-bold">
               {stats.isLoading

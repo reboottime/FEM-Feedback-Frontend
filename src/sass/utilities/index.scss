@@ -2,11 +2,22 @@
 @use "@/sass/abstract" as *;
 @use "./typography.scss";
 
-
 .border-rounded {
   @each $name, $value in $border-radius {
     &--#{$name} {
       border-radius: $value;
     }
   }
+}
+
+.flex-center-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-center-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
