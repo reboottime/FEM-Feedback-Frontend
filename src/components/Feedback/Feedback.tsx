@@ -32,7 +32,7 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
     >
       <div className="feedback__content">
         <h3 className="feedback__title fw-bold">{feedback.title}</h3>
-        <p className="feedback__details">{feedback.detail}</p>
+        <p className="feedback__detail">{feedback.detail}</p>
         <Tag>{feedback.category}</Tag>
       </div>
       <div className="feedback__vote">
