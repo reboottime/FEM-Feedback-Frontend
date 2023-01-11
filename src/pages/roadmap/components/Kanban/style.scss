@@ -36,12 +36,13 @@
   &__tabpanel {
     margin: 0 24px;
   }
+}
 
-  /************** Tablet and beyound version layout****************************/
+/************** Tablet and beyound version layout****************************/
+
+.kanban {
   @include md {
-    &--tablet {
-      margin-top: 8px;
-    }
+    margin-top: 8px;
     &__list {
       display: flex;
       justify-content: space-between;

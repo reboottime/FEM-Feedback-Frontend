@@ -7,7 +7,7 @@ import Feedback from '@/components/Feedback';
 
 import { ROADMAP_STATUS_DESCRIPTION } from '@/constants/feedbacks';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
-import { mapStatusToDotVariant } from '@/utils/feedback';
+import { isPublishedFeedback, mapStatusToDotVariant } from '@/utils/feedback';
 import { isAdminUser } from '@/utils/user';
 
 import './style.scss';
@@ -36,23 +36,26 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
           ? (
             <React.Fragment>
               {feedbacks.map((feedback) => (
-                <li className="status-board__item border-rounded--large"
-                  key={feedback.id}>
-                  <div
-                    className={classNames(
-                      'status-board__item-line',
-                      `status-board__item-line--${themeVariant}`
-                    )}
-                  ></div>
+                <li
+                  className="status-board__item border-rounded--large"
+                  key={feedback.id}
+                >
+                  <div className={classNames(
+                    'status-board__item-line',
+                    `status-board__item-line--${themeVariant}`
+                  )}
+                  />
                   <div className="status-board__item-content">
-                    <div className="status-board__item-status typography-body-3">
-                      <div>
-                        <Dot size="small"
-                          variant={themeVariant} />
+                    <div className="status-board__item-heading typography-body-3">
+                      <div className='status-board__item-status'>
+                        <Dot
+                          size="small"
+                          variant={themeVariant}
+                        />
                         <span>{status}</span>
                       </div>
                       <div className="status-board__btn-group">
-                        {(isAdminUser(user) && (feedback.status !== 'live')) && (
+                        {(isAdminUser(user) && !isPublishedFeedback(feedback)) && (
                           <Link
                             className="status-board__item-btn typography-body-3 fw-regular"
                             to={`/feedbacks/${feedback.id}/edit`}
