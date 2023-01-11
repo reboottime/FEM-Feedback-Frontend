@@ -48,11 +48,11 @@ export const ListPage = () => {
       {isMobile
         ? (
           <Sidebar>
-            <Roadmap />
             <Categories
               onCategorySelect={handleCategorySelect}
               selectedCategory={category}
             />
+            <Roadmap />
           </Sidebar>
         )
         : (
