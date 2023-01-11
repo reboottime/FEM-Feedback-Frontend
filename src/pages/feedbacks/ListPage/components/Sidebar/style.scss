@@ -45,5 +45,8 @@ $header-height: 72px;
 
   &__toggle-btn {
     margin-right: 16px;
+    @include touchscreen {
+      margin-right: 0;
+    }
   }
 }
