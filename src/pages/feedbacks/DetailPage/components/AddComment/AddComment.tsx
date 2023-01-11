@@ -7,12 +7,15 @@ import { Textarea } from '@/components/Form';
 import RequireAuth from '@/components/RequireAuth';
 
 import { useAddFeedbackComment } from '@/hooks/queries/feedbacks';
+import { useIsMobile } from '@/hooks/mediaQueries';
 
 import './style.scss';
 
 const MAX_LENGTH = 250;
 
 export const AddComment: React.FC<Props> = ({ toFeedback }) => {
+  const isMobile = useIsMobile();
+
   const mutation = useAddFeedbackComment();
 
   const methods = useForm({
@@ -65,6 +68,7 @@ export const AddComment: React.FC<Props> = ({ toFeedback }) => {
             </span>
             <Button
               disabled={remainingLength < 0}
+              small={isMobile}
               type="submit"
             >
               Post Comment
