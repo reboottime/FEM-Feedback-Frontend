@@ -6,12 +6,16 @@ import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
 
 import { ROADMAP_STATUS_DESCRIPTION } from '@/constants/feedbacks';
-
+import Button from '@/components/Button';
+import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { mapStatusToDotVariant } from '@/utils/feedback';
+import { isAdminUser } from '@/utils/user';
 
 import './style.scss';
 
 export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
+  const { user } = useAuthContext() as AuthContextType;
+
   const stats = {
     ...ROADMAP_STATUS_DESCRIPTION[status],
     count: feedbacks.length,
@@ -45,11 +49,21 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                         `status-board__item-line--${themeVariant}`
                       )}
                     ></div>
-                    <div className='status-board__item-content'>
+                    <div className="status-board__item-content">
                       <div className="status-board__item-status typography-body-3">
-                        <Dot size="small"
-                          variant={themeVariant} />
-                        <span>{status}</span>
+                        <div>
+                          <Dot size="small"
+                            variant={themeVariant} />
+                          <span>{status}</span>
+                        </div>
+                        {(isAdminUser(user) && (feedback.status !== 'live')) && (
+                          <Link
+                            className="status-board__item-edit typography-body-3 fw-regular"
+                            to={`/feedbacks/${feedback.id}/edit`}
+                          >
+                            Edit
+                          </Link>
+                        )}
                       </div>
                       <Feedback {...feedback} />
                     </div>

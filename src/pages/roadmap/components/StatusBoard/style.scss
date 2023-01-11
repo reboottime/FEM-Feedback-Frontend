@@ -54,6 +54,14 @@ $line-variants: (
     gap: 8px;
     margin-bottom: 16px;
     text-transform: capitalize;
+    justify-content: space-between;
+  }
+  &__item-edit {
+    color: map.get($colors, "blue1");
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   @include lg {
