@@ -1,4 +1,4 @@
-import classsNames from 'classnames';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 import Brand from './components/Brand';
@@ -48,11 +48,11 @@ export const ListPage = () => {
       {isMobile
         ? (
           <Sidebar>
-            <Roadmap />
             <Categories
               onCategorySelect={handleCategorySelect}
               selectedCategory={category}
             />
+            <Roadmap />
           </Sidebar>
         )
         : (
@@ -74,7 +74,7 @@ export const ListPage = () => {
           </nav>
         )}
       <main
-        className={classsNames('list-page__main', {
+        className={classNames('list-page__main', {
           'list-page__main--mobile': isMobile,
         })}
       >
