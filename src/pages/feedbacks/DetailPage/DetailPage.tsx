@@ -29,8 +29,8 @@ export const DetailPage = () => {
   const { data = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
 
   const isNewFeedback = (data.status === 'new');
-  const isFeedbackAuthor = (user?.id === (data as TFeedbackOverview).author?.id) || isAdminUser(user);
-  const isEditable = isNewFeedback && isFeedbackAuthor;
+  const canEdit = (user?.id === (data as TFeedbackOverview).author?.id) || isAdminUser(user);
+  const isEditable = isNewFeedback && canEdit;
 
   return (
     <div className="detail-page">
