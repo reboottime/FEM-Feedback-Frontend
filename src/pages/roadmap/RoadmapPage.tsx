@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Kanban from './components/Kanban';
 
@@ -16,9 +16,20 @@ export const RoadmapPage = () => {
   const { user } = useAuthContext() as AuthContextType;
 
   const {
-    data: feedbacks,
-    isLoading: isLoadingFeedbacks,
+    data,
+    isLoading: isFeedbacksLoading,
+    isSuccess: isFeedbacksLoaded
   } = useGetFeedbacks();
+
+  const feedbacks = useMemo(() => {
+    if (!data) {
+      return [];
+    }
+
+    return (data as unknown as Entities.Feedback.TFeedback[]).filter(
+      (item) => item.status !== 'new'
+    );
+  }, [data]);
 
   const isMobile = useIsMobile();
 
@@ -41,8 +52,10 @@ export const RoadmapPage = () => {
         </div>
       </header>
       <div className="roadmap-page__main">
-        {isLoadingFeedbacks && <p>loading...</p>}
-        {feedbacks && <Kanban feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />}
+        {isFeedbacksLoading && <p>loading...</p>}
+        {isFeedbacksLoaded && (
+          <Kanban feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />
+        )}
       </div>
     </div>
   );

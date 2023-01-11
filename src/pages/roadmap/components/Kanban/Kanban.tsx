@@ -2,9 +2,10 @@ import { Tabs, TabList, Tab, TabPanels, TabPanel } from '@reach/tabs';
 import '@reach/tabs/styles.css';
 import classNames from 'classnames';
 import React from 'react';
+import { groupBy } from 'lodash';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
-import StatusItems from '@/pages/roadmap/components/StatusItems';
+import StatusBoard from '@/pages/roadmap/components/StatusBoard';
 import { mapStatusToDotVariant } from '@/utils/feedback';
 
 import './style.scss';
@@ -17,6 +18,8 @@ const TAB_ORDER: Entities.Feedback.TRoadmapStatus[] = [
 
 export const Kanban: React.FC<Props> = ({ feedbacks }) => {
   const isMobile = useIsMobile();
+
+  const groupedItems = groupBy(feedbacks, (item) => item.status);
 
   if (isMobile) {
     return (
@@ -37,9 +40,14 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
           </TabList>
           <TabPanels>
             {TAB_ORDER.map((key) => (
-              <TabPanel className="kanban__tabpanel"
-                key={key}>
-                <StatusItems feedbacks={[]} />
+              <TabPanel
+                className="kanban__tabpanel"
+                key={key}
+              >
+                <StatusBoard
+                  feedbacks={groupedItems[key]}
+                  status={key}
+                />
               </TabPanel>
             ))}
           </TabPanels>

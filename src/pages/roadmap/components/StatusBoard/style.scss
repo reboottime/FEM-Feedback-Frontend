@@ -1,0 +1,27 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+.status-board {
+  // &__stats {
+  // }
+  // &__title {
+  // }
+  // &__description {
+  // }
+
+  // &__items {
+  // }
+
+  &__item {
+    background-color: map.get($colors, "white1");
+    margin-bottom: 16px;
+    padding: 16px 24px 24px 24px;
+  }
+  &__item-status {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    text-transform: capitalize;
+    margin-bottom: 16px;
+  }
+}
