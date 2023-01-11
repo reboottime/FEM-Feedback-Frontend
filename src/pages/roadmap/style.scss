@@ -45,4 +45,13 @@
       padding: 0 map.get($content-margin, "mobile");
     }
   }
+
+  @include xl {
+    &__header {
+      border-radius: map.get($border-radius, "large");
+    }
+    &__main {
+      padding: 0;
+    }
+  }
 }

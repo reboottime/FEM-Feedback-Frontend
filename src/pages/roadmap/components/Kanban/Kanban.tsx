@@ -5,7 +5,9 @@ import React from 'react';
 import { groupBy } from 'lodash';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
+
 import StatusBoard from '@/pages/roadmap/components/StatusBoard';
+
 import { mapStatusToDotVariant } from '@/utils/feedback';
 
 import './style.scss';

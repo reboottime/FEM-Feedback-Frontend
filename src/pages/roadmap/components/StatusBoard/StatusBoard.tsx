@@ -2,11 +2,12 @@ import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
 
 import { ROADMAP_STATUS_DESCRIPTION } from '@/constants/feedbacks';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+
 import { isPublishedFeedback, mapStatusToDotVariant } from '@/utils/feedback';
 import { isAdminUser } from '@/utils/user';
 
@@ -40,31 +41,30 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                   className="status-board__item border-rounded--large"
                   key={feedback.id}
                 >
-                  <div className={classNames(
-                    'status-board__item-line',
-                    `status-board__item-line--${themeVariant}`
-                  )}
+                  <div
+                    className={classNames(
+                      'status-board__item-line',
+                      `status-board__item-line--${themeVariant}`
+                    )}
                   />
                   <div className="status-board__item-content">
                     <div className="status-board__item-heading typography-body-3">
-                      <div className='status-board__item-status'>
-                        <Dot
-                          size="small"
-                          variant={themeVariant}
-                        />
+                      <div className="status-board__item-status">
+                        <Dot size="small"
+                          variant={themeVariant} />
                         <span>{status}</span>
                       </div>
                       <div className="status-board__btn-group">
-                        {(isAdminUser(user) && !isPublishedFeedback(feedback)) && (
+                        {isAdminUser(user) && !isPublishedFeedback(feedback) && (
                           <Link
-                            className="status-board__item-btn typography-body-3 fw-regular"
+                            className="status-board__item-btn typography-body-3 fw-semi-bold"
                             to={`/feedbacks/${feedback.id}/edit`}
                           >
                             Edit
                           </Link>
                         )}
                         <Link
-                          className="status-board__item-btn typography-body-3 fw-regular"
+                          className="status-board__item-btn typography-body-3 fw-semi-bold"
                           to={`/feedbacks/${feedback.id}`}
                         >
                           View
