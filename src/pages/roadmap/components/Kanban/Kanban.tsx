@@ -10,7 +10,7 @@ import { mapStatusToDotVariant } from '@/utils/feedback';
 
 import './style.scss';
 
-const TAB_ORDER: Entities.Feedback.TRoadmapStatus[] = [
+const BOARD_ORDER: Entities.Feedback.TRoadmapStatus[] = [
   'planned',
   'in progress',
   'live',
@@ -26,7 +26,7 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
       <div className="kanban">
         <Tabs>
           <TabList className="kanban__tablist">
-            {TAB_ORDER.map((key) => (
+            {BOARD_ORDER.map((key) => (
               <Tab
                 className={classNames(
                   'kanban__tab',
@@ -39,7 +39,7 @@ export const Kanban: React.FC<Props> = ({ feedbacks }) => {
             ))}
           </TabList>
           <TabPanels>
-            {TAB_ORDER.map((key) => (
+            {BOARD_ORDER.map((key) => (
               <TabPanel
                 className="kanban__tabpanel"
                 key={key}
