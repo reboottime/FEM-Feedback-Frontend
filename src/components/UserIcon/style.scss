@@ -7,9 +7,6 @@
   &__picture {
     display: flex;
 
-    svg {
-      fill: map.get($colors, "purple1");
-    }
     span {
       color: map.get($colors, "white1");
       margin-left: 8px;
@@ -19,6 +16,13 @@
       svg {
         fill: map.get($colors, "dark4");
       }
+    }
+  }
+
+  &__svg {
+    fill: map.get($colors, "dark4");
+    &--active {
+      fill: map.get($colors, "purple1");
     }
   }
 
