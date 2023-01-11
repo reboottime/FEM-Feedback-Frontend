@@ -42,6 +42,15 @@ $line-variants: (
   }
   &__item-content {
     padding: 16px 24px;
+
+    &--empty {
+      text-align: center;
+
+      .title {
+        margin: 24px 0;
+        text-align: justify;
+      }
+    }
   }
   &__item-heading {
     margin-bottom: 16px;
