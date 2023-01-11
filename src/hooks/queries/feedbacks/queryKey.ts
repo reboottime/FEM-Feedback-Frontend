@@ -11,3 +11,9 @@ export const getFeedbackQueryKey = (id: string) => {
 
   return [prefix, id];
 };
+
+export const getFeedbackStatsQueryKey = () => {
+  const prefix = getFeedbcksQueryKey();
+
+  return [...prefix, 'stats'];
+};

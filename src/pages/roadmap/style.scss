@@ -28,6 +28,10 @@
     gap: 16px;
   }
 
+  &__main {
+    margin-bottom: 5vw;
+  }
+
   @include md {
     &__content {
       max-width: map.get($grid-breakpoints, "lg");

@@ -11,6 +11,7 @@ $tag-background-colors: (
   @include typography-body(body-3);
   background-color: map.get($tag-background-colors, "default");
   color: map.get($colors, "blue1");
+  display: inline-block;
   padding: 6px 16px;
   text-transform: capitalize;
 
