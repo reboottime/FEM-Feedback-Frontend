@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
-import { Portal } from 'react-portal';
+import React, { useEffect, useRef, useState } from 'react';
+import FocusLock from 'react-focus-lock';
 
 import { ReactComponent as CloseIcon } from '@/assets/shared/mobile/icon-close.svg';
 import { ReactComponent as OpenIcon } from '@/assets/shared/mobile/icon-hamburger.svg';
@@ -10,14 +10,25 @@ import Overlay from '@/components/Overlay';
 import './style.scss';
 
 export const Sidebar: React.FC<Props> = ({ children, className }) => {
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  useEffect(() => {
+    const sidebar = sidebarRef.current;
+
+    if (sidebar) {
+      sidebar.tabIndex = -1;
+      sidebar.focus();
+    }
+  }, []);
+
   return (
-    <React.Fragment>
+    <FocusLock disabled={!isSidebarOpen}>
       <header className={classNames('sidebar__brand', className)}>
         <div className="sidebar__brand-name">
           <h1 className="typography-body-2 fw-bold">Frontend mentor</h1>
@@ -33,21 +44,24 @@ export const Sidebar: React.FC<Props> = ({ children, className }) => {
         </button>
       </header>
       {isSidebarOpen && (
-        <Portal>
-          <aside className="sidebar">
+        <React.Fragment>
+          <div
+            className="sidebar"
+            ref={sidebarRef}
+          >
             <div className="sidebar__content">
               {React.Children.map(children, (child) => {
                 return <div className="sidebar__item">{child}</div>;
               })}
             </div>
-          </aside>
+          </div>
           <Overlay
             className="sidebar__overlay"
             onClick={handleSidebarToggle}
           />
-        </Portal>
+        </React.Fragment>
       )}
-    </React.Fragment>
+    </FocusLock>
   );
 };
 
