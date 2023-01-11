@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import {
   getFeedbackCommentsQueryKey,
   getFeedbackQueryKey,
+  getFeedbackStatsQueryKey,
   getFeedbcksQueryKey,
 } from './queryKey';
 
@@ -68,6 +69,7 @@ export const useGetFeedbacks = (query?: TQueryParams) => {
 export const useGetFeedbacksStats = () => {
   return useQuery({
     queryFn: getFeedbacksStats,
+    queryKey: getFeedbackStatsQueryKey(),
   });
 };
 

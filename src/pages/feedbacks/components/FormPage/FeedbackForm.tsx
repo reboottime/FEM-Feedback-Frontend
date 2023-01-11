@@ -8,6 +8,8 @@ import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import { Input, Select, Textarea } from '@/components/Form';
 
 import { category, status } from '@/constants/feedbacks';
+import { isAdminUser as currentUserIsAdmin } from '@/utils/user';
+import { isPublishedFeedback as feedbackIsPublished } from '@/utils/feedback';
 
 import './style.scss';
 
@@ -28,10 +30,10 @@ export const FeedbackForm: React.FC<Props> = ({
 
   const { user } = useAuthContext() as AuthContextType;
 
-  const isAdminUser = (user?.role === 'admin');
+  const isAdminUser = currentUserIsAdmin(user);
 
   const isEditting = (type === 'edit');
-  const isPublishedFeedback = (defaultValues.status === 'live');
+  const isPublishedFeedback = feedbackIsPublished(defaultValues as Entities.Feedback.TFeedback);
   const disabled = isPublishedFeedback || isFormDisabled;
 
   return (
@@ -66,7 +68,7 @@ export const FeedbackForm: React.FC<Props> = ({
         {(isAdminUser && (type === 'edit')) && (
           <Select
             description="update feedback status"
-            disabled={(defaultValues.status === 'live')}
+            disabled={isPublishedFeedback}
             name="status"
             options={statusOptions}
             placeholder="Please select status"

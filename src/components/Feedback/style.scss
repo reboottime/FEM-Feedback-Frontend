@@ -53,8 +53,9 @@
       @include typography-heading(heading-3);
     }
 
-    &__details {
+    &__detail {
       @include typography-body(body-1);
+      color: map.get($colors, 'dark4');
       margin: 4px 0 12px 0;
     }
 

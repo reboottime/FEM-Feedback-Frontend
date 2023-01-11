@@ -39,7 +39,9 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
         <RequireAuth actionName="onVote">
           <Vote
             hasVoted={hasVoted}
-            mode="horizontal"
+            mode={smallSize
+              ? 'horizontal'
+              : 'vertical'}
             onVote={handleVoteFeedback}
             votes={feedback.votes.length}
           />

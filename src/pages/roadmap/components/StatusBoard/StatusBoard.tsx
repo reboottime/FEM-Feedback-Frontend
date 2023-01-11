@@ -2,6 +2,8 @@ import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+
+import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
@@ -84,7 +86,21 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
           )
           : (
             <li className="status-board__item border-rounded--large">
-              No data so far
+              <div
+                className={classNames(
+                  'status-board__item-line',
+                  `status-board__item-line--${themeVariant}`
+                )}
+              />
+              <div className="status-board__item-content status-board__item-content--empty">
+                <EmptyImg className='img' />
+                <h3 className="typography-heading-3 fw-semi-bold title">
+                  hmmm
+                </h3>
+                <p className='typography-body-1'>
+                  Currently, the development team is taking a break.
+                </p>
+              </div>
             </li>
           )}
       </ul>

@@ -13,7 +13,7 @@ $line-variants: (
     margin: map.get($content-margin, "mobile") 0;
   }
   &__stats-metadata {
-    margin-left: 8px
+    margin-left: 8px;
   }
   &__title {
     @include typography-heading(heading-3);
@@ -42,6 +42,17 @@ $line-variants: (
   }
   &__item-content {
     padding: 16px 24px;
+
+    &--empty {
+      .title {
+        text-align: center;
+      }
+      .img {
+        display: block;
+        max-width: 80%;
+        margin: 12px auto;
+      }
+    }
   }
   &__item-heading {
     margin-bottom: 16px;

@@ -25,6 +25,7 @@ $vote-background-color: (
 
   &--vertical {
     flex-direction: column;
+    min-width: 32px;
   }
 
   &--horizontal {
