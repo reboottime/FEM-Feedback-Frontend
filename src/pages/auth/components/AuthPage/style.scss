@@ -24,13 +24,13 @@
   &__content {
     background-color: map.get($colors, "white1");
     padding: map.get($content-margin, "mobile");
-    margin: 20vh 0;
+    margin: 20vh auto;
+    width: 80vw;
+    max-width: 376px;
+    min-width: 300px;
   }
 
-  @include md {
-    &__content {
-      width: 376px;
-      margin: 20vh auto auto auto;
-    }
+  &__footer {
+    text-align: right;
   }
 }
