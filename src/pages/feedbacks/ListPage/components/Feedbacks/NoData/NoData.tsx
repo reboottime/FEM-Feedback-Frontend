@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 
-import AddButton from '@/pages/feedbacks/ListPage/components/AddButton';
+import AddButton from '@/components/AddButton';
 
 import './style.scss';
 
