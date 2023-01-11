@@ -1,4 +1,6 @@
+import classNames from 'classnames';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
@@ -14,35 +16,44 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
     ...ROADMAP_STATUS_DESCRIPTION[status],
     count: feedbacks.length,
   };
+  const themeVariant = mapStatusToDotVariant(status);
 
   return (
     <div className="status-board">
       <div className="status-board__stats">
         <h3 className="status-board__title ">
-          <Dot variant={mapStatusToDotVariant(status)} /> {stats.title} (
-          {stats.count})
+          <Dot variant={themeVariant} /> {stats.title} ({stats.count})
         </h3>
-        <p className="status-board-description fw-regular">
+        <p className="status-board__description fw-regular">
           {stats.description}
         </p>
       </div>
-      <ul className="status-board__items">
+      <ul>
         {feedbacks.length
           ? (
             <React.Fragment>
               {feedbacks.map((feedback) => (
-                <li
-                  className="status-board__item"
-                  key={feedback.id}
-                >
-                  <div className="status-board__item-status typography-body-3">
-                    <Dot
-                      size='small'
-                      variant={mapStatusToDotVariant(status)}
-                    />
-                    <span>{status}</span>
-                  </div>
-                  <Feedback {...feedback} />
+                <li className="status-board__item"
+                  key={feedback.id}>
+                  <Link
+                    className="status-board__item-link border-rounded--large"
+                    to={`/feedbacks/${feedback.id}`}
+                  >
+                    <div
+                      className={classNames(
+                        'status-board__item-line',
+                        `status-board__item-line--${themeVariant}`
+                      )}
+                    ></div>
+                    <div className='status-board__item-content'>
+                      <div className="status-board__item-status typography-body-3">
+                        <Dot size="small"
+                          variant={themeVariant} />
+                        <span>{status}</span>
+                      </div>
+                      <Feedback {...feedback} />
+                    </div>
+                  </Link>
                 </li>
               ))}
             </React.Fragment>
