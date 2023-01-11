@@ -21,12 +21,17 @@ const CommentReplyForm: React.FC<Props> = ({ toFeedback, toComment }) => {
     },
   });
 
-  const onSubmit = ({ detail }: FieldValues) => {
-    mutation.mutate({
+  const onSubmit = async ({ detail }: FieldValues) => {
+    const reuslt = await mutation.mutateAsync({
       detail,
       feedbackId: toFeedback,
       replyTo: toComment,
     } as never);
+
+
+    if (reuslt.id) {
+      methods.reset();
+    }
   };
 
   return (
