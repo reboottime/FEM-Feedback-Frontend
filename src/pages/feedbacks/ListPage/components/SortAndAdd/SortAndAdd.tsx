@@ -7,7 +7,7 @@ import Select from './Select';
 import { ReactComponent as BulbIcon } from '@/assets/shared/icon-bulb.svg';
 
 import UserIcon from '@/components/UserIcon';
-import AddButton from '@/pages/feedbacks/ListPage/components/AddButton';
+import AddButton from '@/components/AddButton';
 
 import { useIsSmallMobile, useIsTablet } from '@/hooks/mediaQueries';
 
