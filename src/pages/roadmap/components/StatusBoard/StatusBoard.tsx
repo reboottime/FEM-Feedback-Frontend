@@ -26,7 +26,8 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
     <div className="status-board">
       <div className="status-board__stats">
         <h3 className="status-board__title ">
-          <Dot variant={themeVariant} /> {stats.title} ({stats.count})
+          <Dot variant={themeVariant} />
+          <span className='status-board__stats-metadata'>{stats.title} ({stats.count})</span>
         </h3>
         <p className="status-board__description fw-regular">
           {stats.description}
@@ -50,7 +51,8 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                   <div className="status-board__item-content">
                     <div className="status-board__item-heading flex-center-between typography-body-3">
                       <div className="status-board__item-status flex-center-between">
-                        <Dot size="small"
+                        <Dot
+                          size="small"
                           variant={themeVariant} />
                         <span>{status}</span>
                       </div>

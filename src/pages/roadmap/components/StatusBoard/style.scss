@@ -12,6 +12,9 @@ $line-variants: (
   &__stats {
     margin: map.get($content-margin, "mobile") 0;
   }
+  &__stats-metadata {
+    margin-left: 8px
+  }
   &__title {
     @include typography-heading(heading-3);
     margin-bottom: 4px;
@@ -45,7 +48,7 @@ $line-variants: (
   }
   &__item-status {
     color: map.get($colors, "dark4");
-    gap: 4px;
+    gap: 6px;
     text-transform: capitalize;
   }
 
