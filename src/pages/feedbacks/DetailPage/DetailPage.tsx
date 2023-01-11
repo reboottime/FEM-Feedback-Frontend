@@ -4,9 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import AddComment from './components/AddComment';
 import Card from './components/Card';
 import Metadata from './components/Metadata';
+import CommentList from './components/CommentList';
 
-import CommentList from './components/CommentList/CommentList';
-import mockComments from './comments';
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
@@ -30,16 +29,18 @@ export const DetailPage = () => {
 
   const { user } = useAuthContext() as AuthContextType;
 
-  const { data = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
-  const { data: comments = mockComments, isSuccess: commentsAreLoaded } =
-    useGetFeedbackComments(feedbackId);
+  const { data: feedback = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
+  const {
+    data: comments = [],
+    isSuccess: commentsAreLoaded,
+  } = useGetFeedbackComments(feedbackId);
 
   const commentCardTitle = (comments as Entities.TComment[]).length
     ? `${(comments as Entities.TComment[]).length} Comments`
     : 'Comments';
 
-  const canEdit = user?.id === (data as TFeedbackOverview).author?.id || isAdminUser(user);
-  const isEditable = (data.status === 'new') && canEdit;
+  const canEdit = user?.id === (feedback as TFeedbackOverview).author?.id || isAdminUser(user);
+  const isEditable = (feedback.status === 'new') && canEdit;
 
   return (
     <div className="detail-page">
