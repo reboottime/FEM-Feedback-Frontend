@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 
 import { QUERY_KEY_USER_DATA } from './queryKey';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { AuthContextType, queryClient, useAuthContext } from '@/components/AppProviders';
 
 import {
   getCurrentUser,
@@ -67,6 +67,7 @@ export const useSignOutUser = () => {
     onSuccess: () => {
       helpers.auth.clearToken();
       setUser(null);
+      queryClient.invalidateQueries(QUERY_KEY_USER_DATA);
 
       toast.info('You have logined out');
     }
