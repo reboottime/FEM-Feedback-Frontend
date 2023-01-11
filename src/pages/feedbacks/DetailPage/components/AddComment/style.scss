@@ -10,11 +10,8 @@
 
   &__action {
     @include typography-body(body-3);
-    align-items: center;
     color: map.get($colors, "dark4");
-    display: flex;
     margin-top: 16px;
-    justify-content: space-between;
   }
 
   &__reminder {

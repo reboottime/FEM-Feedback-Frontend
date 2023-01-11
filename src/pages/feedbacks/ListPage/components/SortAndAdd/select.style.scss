@@ -3,10 +3,7 @@
 
 .select {
   &__trigger {
-    align-items: center;
     color: map.get($colors, "white1");
-    display: flex;
-    justify-content: space-between;
     text-transform: capitalize;
     width: 100%;
   }

@@ -54,7 +54,7 @@ export const Modal: React.FC<Props> = ({
         >
           <OutsideClickHandler onOutsideClick={onClose}>
             <div className="modal__content border-rounded--large">
-              <header className="modal__header">
+              <header className="modal__header flex-center-between">
                 <h3 className="modal__title typography-body-1 fw-semi-bold">
                   {title}
                 </h3>

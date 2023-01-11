@@ -52,7 +52,7 @@ export const AddComment: React.FC<Props> = ({ toFeedback }) => {
               message: '',
             }}
           />
-          <div className="add-comment__action">
+          <div className="add-comment__action flex-center-between">
             <span
               aria-label="remaining comment character"
               className={classNames('add-comment__reminder', {
