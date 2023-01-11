@@ -37,12 +37,12 @@
   &__control {
     @include input();
 
-    &::placeholder {
-      text-transform: capitalize;
+    &::placeholder:first-letter {
+      text-transform: uppercase;
     }
-    &:-webkit-input-placeholder {
+    &:-webkit-input-placeholder::first-letter {
       /* Edge */
-      text-transform: capitalize;
+      text-transform: uppercase;
     }
   }
 
