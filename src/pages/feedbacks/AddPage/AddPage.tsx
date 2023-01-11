@@ -3,6 +3,7 @@ import { FieldValues } from 'react-hook-form';
 
 import Button from '@/components/Button';
 import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
+
 import { useAddFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
 export const AddPage = () => {
@@ -18,10 +19,10 @@ export const AddPage = () => {
         onSubmit={handleSubmit}
         type="add"
       >
-        <React.Fragment>
+        <div className='add-page__buttons'>
           <Cancell />
-          <Button>Save Changes</Button>
-        </React.Fragment>
+          <Button mobileFullWidth>Save Changes</Button>
+        </div>
       </FeedbackForm>
     </FormPage>
   );
