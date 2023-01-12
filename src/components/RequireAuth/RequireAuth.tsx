@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { AUTH_REMINDER_TEXT } from './constants';
 
 import AuthForm, { AuthFormProps } from '@/components/AuthForm';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Modal from '@/components/Modal';
 
@@ -18,7 +18,7 @@ export const RequireAuth: React.FC<Props> = ({
   actionName,
   children,
 }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [authType, setAuthType] = useState<AuthFormProps['type']>('signIn');

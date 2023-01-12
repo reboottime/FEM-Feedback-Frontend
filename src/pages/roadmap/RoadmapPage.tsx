@@ -3,7 +3,7 @@ import React, { useMemo } from 'react';
 import Kanban from './components/Kanban';
 
 import AddButton from '@/components/AddButton';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
@@ -14,7 +14,7 @@ import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 import './style.scss';
 
 export const RoadmapPage = () => {
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const {
     data: feedbacks,

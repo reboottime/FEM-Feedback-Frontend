@@ -1,6 +1,12 @@
 import React, { useContext, useState } from 'react';
 
-const AuthContext = React.createContext<AuthContextType | null>(null);
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+const emptyFunc = () => { };
+
+const AuthContext = React.createContext<AuthContextType>({
+  user: null,
+  setUser: emptyFunc
+});
 
 const AuthProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<TUser>(null);
@@ -19,15 +25,7 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
 
 export default AuthProvider;
 
-export const useAuthContext = () => {
-  const context = useContext(AuthContext);
-
-  if (context) {
-    return context;
-  }
-
-  throw new Error('useAuthContext should be used inside AuthProvider');
-};
+export const useAuthContext = () => useContext(AuthContext);
 
 export type AuthContextType = {
   setUser: (user: TUser) => void;

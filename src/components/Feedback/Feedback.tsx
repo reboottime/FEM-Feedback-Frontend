@@ -3,7 +3,7 @@ import React from 'react';
 
 import { ReactComponent as CommentsIcon } from '@/assets/shared/icon-comments.svg';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import RequireAuth from '@/components/RequireAuth';
 import Tag from '@/components/Tag';
 import Vote from '@/components/Vote';
@@ -13,10 +13,9 @@ import { useVoteFeedback } from '@/hooks/queries/feedbacks';
 import './style.scss';
 
 export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
-  const hasVoted =
-    !!user && !!feedback.votes.find((voter) => voter === user.id);
+  const hasVoted = !!feedback.votes.find((voter) => voter === user?.id);
 
   const voteMutation = useVoteFeedback();
 

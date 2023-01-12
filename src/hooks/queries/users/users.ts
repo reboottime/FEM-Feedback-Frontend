@@ -3,14 +3,14 @@ import { toast } from 'react-toastify';
 
 import { QUERY_KEY_USER_DATA } from './queryKey';
 
-import { AuthContextType, queryClient, useAuthContext } from '@/components/AppProviders';
+import { queryClient, useAuthContext } from '@/components/AppProviders';
 
 import userApi from '@/services/users.service';
 
 import helpers from '@/utils/helpers';
 
 export const useSignInUser = () => {
-  const { setUser } = useAuthContext() as AuthContextType;
+  const { setUser } = useAuthContext();
 
   return useMutation(userApi.signIn, {
     onError: () => {
@@ -24,7 +24,7 @@ export const useSignInUser = () => {
 };
 
 export const useSignUpUser = () => {
-  const { setUser } = useAuthContext() as AuthContextType;
+  const { setUser } = useAuthContext();
 
   return useMutation(userApi.signUp, {
     onError: () => {
@@ -40,7 +40,7 @@ export const useSignUpUser = () => {
 };
 
 export const useGetCurrentUser = () => {
-  const { setUser } = useAuthContext() as AuthContextType;
+  const { setUser } = useAuthContext();
 
   return useQuery({
     queryFn: userApi.getCurrent,
@@ -56,7 +56,7 @@ export const useGetCurrentUser = () => {
 };
 
 export const useSignOutUser = () => {
-  const { setUser } = useAuthContext() as AuthContextType;
+  const { setUser } = useAuthContext();
 
   return useMutation(userApi.signOut, {
     onSuccess: () => {

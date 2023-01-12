@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Dropdown, { IOption } from '@/components/Dropdown';
 import RequireAuth from '@/components/RequireAuth';
 
@@ -13,7 +13,7 @@ import './style.scss';
 
 export const UserIcon = () => {
   const signOutMutation = useSignOutUser();
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
@@ -42,7 +42,7 @@ export const UserIcon = () => {
             })}
             />
           </button>
-          {showDropdown && user && (
+          {(showDropdown && user) && (
             <Dropdown
               className="user-icon__actions"
               onSelect={handleSelect}

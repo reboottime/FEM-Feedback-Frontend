@@ -4,13 +4,13 @@ import { Navigate, Link } from 'react-router-dom';
 import { PAGE_INFO_MAP } from './constants';
 
 import AuthForm, { AuthFormProps } from '@/components/AuthForm';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 
 import './style.scss';
 
 export const AuthPage: React.FC<Omit<AuthFormProps, 'children'>> = ({ onSubmit, type }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   if (user) {
     return (
