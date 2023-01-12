@@ -25,7 +25,7 @@ declare namespace Entities {
     detail: string;
     feedbackId: Feedback.TFeedback['id'];
     replyToComment?: TComment['id'];
-    replyToUser: TComment['author']['id'];
+    replyToUser: TComment['author'];
   }
 
   declare namespace Feedback {
