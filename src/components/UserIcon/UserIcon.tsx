@@ -10,6 +10,7 @@ import RequireAuth from '@/components/RequireAuth';
 import { useSignOutUser } from '@/hooks/queries/users';
 
 import './style.scss';
+import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
 
 export const UserIcon = () => {
   const signOutMutation = useSignOutUser();
@@ -30,6 +31,21 @@ export const UserIcon = () => {
       await signOutMutation.mutateAsync();
     }
   };
+
+  React.useEffect(() => {
+    const handler = handleEscapeKeydown(() => {
+      setShowDropdown(false);
+    });
+
+    if (showDropdown) {
+      window.addEventListener('keydown', handler);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handler);
+    };
+  }, [showDropdown]);
+
 
   return (
     <OutsideClickHandler onOutsideClick={handleOutsideClick}>
