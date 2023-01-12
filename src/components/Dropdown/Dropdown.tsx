@@ -3,7 +3,10 @@ import * as React from 'react';
 
 import { ReactComponent as CheckIcon } from '@/assets/shared/icon-check.svg';
 
-import { handleEnterSpaceKeydown } from '@/utils/keyboard-handlers';
+import {
+  handleEnterSpaceKeydown,
+  handleVerticalNavigation,
+} from '@/utils/keyboard-handlers';
 
 import './style.scss';
 
@@ -14,6 +17,7 @@ export const Dropdown: React.FC<Props> = React.forwardRef(
   ) => (
     <ul
       className={classNames('dropdown', className)}
+      onKeyDown={handleVerticalNavigation}
       ref={ref}
       role="listbox"
       tabIndex={-1}

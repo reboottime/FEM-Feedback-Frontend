@@ -19,7 +19,7 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
   return (
     <div
       className={classNames('comment', {
-        'comment--has-sub': comment.replyToUser,
+        'comment--has-sub': comments?.length,
       })}
     >
       <div className="comment__header">

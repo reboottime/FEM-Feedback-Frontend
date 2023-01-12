@@ -9,10 +9,12 @@ import Tag from '@/components/Tag';
 import Vote from '@/components/Vote';
 
 import { useVoteFeedback } from '@/hooks/queries/feedbacks';
+import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
 import './style.scss';
 
 export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
+  const isSmallMobile = useIsSmallMobile();
   const { user } = useAuthContext();
 
   const hasVoted = !!feedback.votes.find((voter) => voter === user?.id);
@@ -38,7 +40,7 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
         <RequireAuth actionName="onVote">
           <Vote
             hasVoted={hasVoted}
-            mode={smallSize
+            mode={(smallSize || isSmallMobile)
               ? 'horizontal'
               : 'vertical'}
             onVote={handleVoteFeedback}

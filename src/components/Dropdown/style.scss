@@ -15,6 +15,10 @@
   outline: none;
   z-index: map.get($z-index, "dropdown");
 
+  &:focus-within {
+    border:  1px solid map.get($colors, 'blue2');
+  }
+
   &__option {
     outline: none;
     &:not(:last-child)::after {

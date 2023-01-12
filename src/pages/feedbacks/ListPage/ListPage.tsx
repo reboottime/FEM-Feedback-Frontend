@@ -24,9 +24,8 @@ export const ListPage = () => {
 
   const {
     data: feedbacks,
-    isError: isFeedbacksError,
-    isLoading: isFeedbacksLoading,
-    isSuccess: isFeedbacksLoaded,
+    isError: feedbacksAreFailed,
+    isSuccess: feedbacksAreLoaded,
   } = useGetFeedbacks({
     sort: { [sort.field]: sort.order },
     ...(category === 'All')
@@ -82,13 +81,12 @@ export const ListPage = () => {
           onSort={handleSort}
           sort={sort}
           stats={{
-            isLoading: isFeedbacksLoading,
+            isReady: feedbacksAreLoaded,
             count: feedbacks?.length ?? 0,
           }}
         />
-        {isFeedbacksLoading && <p>Loading...</p>}
-        {isFeedbacksError && <p>Failed to load</p>}
-        {isFeedbacksLoaded && (
+        {feedbacksAreFailed && <p>Failed to load</p>}
+        {feedbacksAreLoaded && (
           <Feedbacks feedbacks={feedbacks} />
         )}
       </main>

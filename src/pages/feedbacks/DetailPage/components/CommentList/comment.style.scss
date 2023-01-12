@@ -29,6 +29,7 @@
 
     color: map.get($colors, "dark4");
     font-weight: map.get($font-weight, "regular") !important;
+    word-break: break-all;
   }
 
   &__reply-to {

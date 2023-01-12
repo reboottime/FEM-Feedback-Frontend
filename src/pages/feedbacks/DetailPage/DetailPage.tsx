@@ -62,7 +62,7 @@ export const DetailPage = () => {
     ? `${comments.length} Comments`
     : 'Comments';
 
-  const canEdit = (user?.id === feedback?.author?.id) || isAdminUser(user);
+  const canEdit = user && (user?.id === feedback?.author?.id) || isAdminUser(user);
   const isEditable = !isPublishedFeedback(feedback) && canEdit;
 
   return (
@@ -105,9 +105,11 @@ export const DetailPage = () => {
           </React.Fragment>
         )}
       </Card>
-      <Card title="Add Comment">
-        <AddComment toFeedback={feedbackId} />
-      </Card>
+      {commentsAreLoaded && (
+        <Card title="Add Comment">
+          <AddComment toFeedback={feedbackId} />
+        </Card>
+      )}
     </div>
   );
 };
