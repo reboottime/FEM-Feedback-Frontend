@@ -18,6 +18,29 @@ export const handleArrowKeydown = (handler: React.KeyboardEventHandler) => {
     }
   };
 };
+export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if (SELECT_KEYS.includes(e.key)) {
+      handler(e);
+    }
+  };
+};
+
+export const handleEscapeKeydown = (handler: React.KeyboardEventHandler) => {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if (e.key === KEYBOARD_KEYS.escape) {
+      handler(e);
+    }
+  };
+};
+
+export const handleTabKeydown = (handler: React.KeyboardEventHandler) => {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if (e.key === KEYBOARD_KEYS.tab) {
+      handler(e);
+    }
+  };
+};
 
 export const handleVerticalNavigation =  (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) => {
   const targetElement = e.target as HTMLElement;
@@ -48,28 +71,4 @@ export const handleVerticalNavigation =  (e: React.KeyboardEvent<HTMLElement> | 
       prevElementSibling.focus();
     }
   }
-};
-
-export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
-    if (SELECT_KEYS.includes(e.key)) {
-      handler(e);
-    }
-  };
-};
-
-export const handleTabKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
-    if (e.key === KEYBOARD_KEYS.tab) {
-      handler(e);
-    }
-  };
-};
-
-export const handleEscapeKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
-    if (e.key === KEYBOARD_KEYS.escape) {
-      handler(e);
-    }
-  };
 };
