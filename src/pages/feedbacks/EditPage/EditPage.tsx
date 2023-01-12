@@ -8,6 +8,7 @@ import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/Fo
 import { useGetFeedback, useUpdateFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
 import './style.scss';
+import { isAdminUser } from '@/utils/user';
 
 export const EditPage = () => {
   const { feedbackId = '' } = useParams();
@@ -20,7 +21,8 @@ export const EditPage = () => {
 
   const { user } = useAuthContext();
 
-  const isNotAuthor = (user?.id !== feedback?.author.id);
+  const canEdit = (feedback?.status !== 'live') &&
+    (isAdminUser(user) || feedback?.author.id === user?.id);
 
   const mutation = useUpdateFeedback();
 
@@ -37,13 +39,13 @@ export const EditPage = () => {
       {isSuccess && (
         <FeedbackForm
           defaultValues={feedback}
-          disabled={isNotAuthor}
+          disabled={!canEdit}
           onSubmit={handleSubmit}
           type="edit"
         >
           <React.Fragment>
             <Cancell />
-            <Button>Save Changes</Button>
+            <Button disabled={!canEdit}>Save Changes</Button>
           </React.Fragment>
         </FeedbackForm>)
       }
