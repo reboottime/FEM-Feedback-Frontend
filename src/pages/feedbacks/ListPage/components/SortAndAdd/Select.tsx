@@ -10,10 +10,7 @@ import { ReactComponent as ArrowUpIcon } from '@/assets/shared/icon-arrow-up.svg
 
 import Dropdown, { IOption } from '@/components/Dropdown';
 
-import {
-  handleEnterSpaceKeydown,
-  handleEscapeKeydown,
-} from '@/utils/keyboard-handlers';
+import { handleEscapeKeydown, } from '@/utils/keyboard-handlers';
 
 import './select.style.scss';
 
@@ -47,17 +44,17 @@ const Select: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    if (isExpanded) {
-      const handleEscKeydown = handleEscapeKeydown(() => {
-        setIsExpanded(false);
-        triggerRef.current?.blur();
-      });
+    const handler = handleEscapeKeydown(() => {
+      setIsExpanded(false);
+      triggerRef.current?.blur();
+    });
 
-      window.addEventListener('keydown', handleEscKeydown as never);
+    if (isExpanded) {
+      window.addEventListener('keydown', handler);
     }
 
     return () => {
-      window.removeEventListener('keydown', handleEnterSpaceKeydown as never);
+      window.removeEventListener('keydown', handler);
     };
   }, [isExpanded]);
 
@@ -107,3 +104,5 @@ interface Props {
   options: IOption[];
   value: string;
 }
+
+

@@ -10,7 +10,7 @@ export const KEYBOARD_KEYS = {
 export const SELECT_KEYS = [KEYBOARD_KEYS.enter, KEYBOARD_KEYS.space];
 
 export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement>) {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (SELECT_KEYS.includes(e.key)) {
       handler(e);
     }
@@ -18,7 +18,7 @@ export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => 
 };
 
 export const handleTabKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement>) {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (e.key === KEYBOARD_KEYS.tab) {
       handler(e);
     }
@@ -26,7 +26,7 @@ export const handleTabKeydown = (handler: React.KeyboardEventHandler) => {
 };
 
 export const handleEscapeKeydown = (handler: React.KeyboardEventHandler) => {
-  return function (e: React.KeyboardEvent<HTMLElement> | never) {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (e.key === KEYBOARD_KEYS.escape) {
       handler(e);
     }
