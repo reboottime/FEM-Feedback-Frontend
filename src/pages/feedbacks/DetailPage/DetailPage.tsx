@@ -62,7 +62,7 @@ export const DetailPage = () => {
     ? `${comments.length} Comments`
     : 'Comments';
 
-  const canEdit = (user?.id === feedback?.author?.id) || isAdminUser(user);
+  const canEdit = user && (user?.id === feedback?.author?.id) || isAdminUser(user);
   const isEditable = !isPublishedFeedback(feedback) && canEdit;
 
   return (
