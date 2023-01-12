@@ -2,8 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { FieldValues } from 'react-hook-form';
 
-import Button from '@/components/Button';
 import { useAuthContext } from '@/components/AppProviders';
+import Button from '@/components/Button';
+import YouAreLost from '@/components/YouAreLost';
 
 import {
   useGetFeedback,
@@ -19,7 +20,6 @@ import FormPage, {
 } from '@/pages/feedbacks/components/FormPage';
 
 import './style.scss';
-import YouAreLost from '@/components/YouAreLost';
 
 export const EditPage = () => {
   const { feedbackId = '' } = useParams();
