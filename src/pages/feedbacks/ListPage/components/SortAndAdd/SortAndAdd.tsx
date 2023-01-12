@@ -46,9 +46,7 @@ export const SortAndAdd: React.FC<Props> = ({
           <div className="sort-and-add__stats flex-center-between">
             <BulbIcon />
             <h3 className="typograph-heading-3 fw-bold">
-              {stats.isLoading
-                ? <span>loading...</span>
-                : <React.Fragment>{stats.count} Suggestions</React.Fragment>
+              {stats.isReady && <React.Fragment>{stats.count} Suggestions</React.Fragment>
               }
             </h3>
           </div>
@@ -78,6 +76,6 @@ interface Props {
   sort: TSort;
   stats: {
     count: number;
-    isLoading: boolean;
+    isReady: boolean;
   }
 }
