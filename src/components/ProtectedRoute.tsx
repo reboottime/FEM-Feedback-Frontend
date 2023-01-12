@@ -3,14 +3,13 @@ import { Navigate } from 'react-router-dom';
 
 import { useGetCurrentUser } from '@/hooks/queries/users';
 
-export const ProtectedRoute: React.FC<Props> = ({ toPath, children }) => {
+const ProtectedRoute: React.FC<Props> = ({ toPath, children }) => {
   const {
-    data: user,
     isSuccess,
     isError
   } = useGetCurrentUser();
 
-  if (isSuccess && user) {
+  if (isSuccess) {
     return children;
   }
 
@@ -25,6 +24,8 @@ export const ProtectedRoute: React.FC<Props> = ({ toPath, children }) => {
 
   return null;
 };
+
+export default ProtectedRoute;
 
 export interface Props {
   children: React.ReactElement;

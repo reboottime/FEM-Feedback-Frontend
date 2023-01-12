@@ -1,7 +1,7 @@
 import React from 'react';
 
 import LazyWrap from '@/components/LazyWrap';
-import { ProtectedRoute } from '@/components/AppProviders';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 const AddPage = React.lazy(() => import('./AddPage'));
 const EditPage = React.lazy(() => import('./EditPage'));
