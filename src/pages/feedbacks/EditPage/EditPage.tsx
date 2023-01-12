@@ -4,11 +4,14 @@ import { FieldValues } from 'react-hook-form';
 
 import Button from '@/components/Button';
 import { useAuthContext } from '@/components/AppProviders';
-import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
+
+import { isAdminUser } from '@/utils/user';
+
 import { useGetFeedback, useUpdateFeedback } from '@/hooks/queries/feedbacks/feedbacks';
 
+import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
+
 import './style.scss';
-import { isAdminUser } from '@/utils/user';
 
 export const EditPage = () => {
   const { feedbackId = '' } = useParams();
