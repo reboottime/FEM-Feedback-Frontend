@@ -40,9 +40,9 @@ export const RequireAuth: React.FC<Props> = ({
 
   const handleSubmit: AuthFormProps['onSubmit'] = (data) => {
     if (authType === 'signIn') {
-      signInMutation.mutate(data as never);
+      signInMutation.mutate(data);
     } else {
-      signUpMutation.mutate(data as never);
+      signUpMutation.mutate(data);
     }
   };
 
