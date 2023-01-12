@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Dot from '@/components/Dot';
 import Feedback from '@/components/Feedback';
 
@@ -16,7 +16,7 @@ import { isAdminUser } from '@/utils/user';
 import './style.scss';
 
 export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const stats = {
     ...ROADMAP_STATUS_DESCRIPTION[status],

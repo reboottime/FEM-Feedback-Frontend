@@ -7,7 +7,7 @@ import Metadata from './components/Metadata';
 import CommentList from './components/CommentList';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
@@ -28,7 +28,7 @@ import './style.scss';
 export const DetailPage = () => {
   const { feedbackId = '' } = useParams();
   const isSmallMobile = useIsSmallMobile();
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const {
     data: feedback,

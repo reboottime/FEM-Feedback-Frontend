@@ -3,26 +3,27 @@ import React, { useState } from 'react';
 import { FaUserAlt } from 'react-icons/fa';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import Dropdown, { IOption } from '@/components/Dropdown';
 import RequireAuth from '@/components/RequireAuth';
 
 import { useSignOutUser } from '@/hooks/queries/users';
 
 import './style.scss';
+import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
 
 export const UserIcon = () => {
   const signOutMutation = useSignOutUser();
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const handleUserIconClick = () => {
-    setShowDropdown(!showDropdown);
+    setIsExpanded(!isExpanded);
   };
 
   const handleOutsideClick = () => {
-    setShowDropdown(false);
+    setIsExpanded(false);
   };
 
   const handleSelect = async ({ value }: IOption) => {
@@ -30,6 +31,21 @@ export const UserIcon = () => {
       await signOutMutation.mutateAsync();
     }
   };
+
+  React.useEffect(() => {
+    const handler = handleEscapeKeydown(() => {
+      setIsExpanded(false);
+    });
+
+    if (isExpanded) {
+      window.addEventListener('keydown', handler);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handler);
+    };
+  }, [isExpanded]);
+
 
   return (
     <OutsideClickHandler onOutsideClick={handleOutsideClick}>
@@ -42,7 +58,7 @@ export const UserIcon = () => {
             })}
             />
           </button>
-          {showDropdown && user && (
+          {(isExpanded && user) && (
             <Dropdown
               className="user-icon__actions"
               onSelect={handleSelect}

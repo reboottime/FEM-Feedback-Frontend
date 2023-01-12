@@ -19,7 +19,7 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
   return (
     <div
       className={classNames('comment', {
-        'comment--has-sub': replyToComment
+        'comment--has-sub': comment.replyToUser,
       })}
     >
       <div className="comment__header">
@@ -33,7 +33,14 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
           </button>
         </RequireAuth>
       </div>
-      <p className="comment__content">{comment.detail}</p>
+      <p className="comment__content">
+        {comment.replyToUser && (
+          <span className="comment__reply-to fw-semi-bold">
+            @{comment.replyToUser.username}
+          </span>
+        )}
+        {comment.detail}
+      </p>
       {showReplyInput && (
         <ReplyForm
           onAdded={handleReplyButtonClick}
@@ -43,10 +50,8 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
         />
       )}
       {comments?.length && (
-        <CommentList
-          comments={comments}
-          replyToComment={replyToComment}
-        />
+        <CommentList comments={comments}
+          replyToComment={replyToComment} />
       )}
     </div>
   );
@@ -54,7 +59,8 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
 
 export default Comment;
 
-export interface Props extends Entities.TComment {
+export interface Props extends TComment {
   comments?: Entities.TComment[];
-  replyToComment?: Entities.TComment['id'];
+  replyToComment?: TComment['id'];
+  replyToUser?: TComment['author'];
 }

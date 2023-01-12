@@ -1,6 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 import { useFormContext } from 'react-hook-form';
 import OutsideClickHandler, {
   Props as OutsideClickHandlerProps,
@@ -51,30 +52,31 @@ export const Select: React.FC<SelectProps> = ({
     }
   );
 
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   const handleOptionClick = (item: IOption) => {
     setSelectedItem(item);
-    setIsOpen(false);
+    setIsExpanded(false);
 
     filedProps.onChange({
       target: {
         name,
         value: item.value,
       },
+      type: 'change'
     });
   };
 
   const handleOutsideClick: OutsideClickHandlerProps['onOutsideClick'] = () => {
     inputRef.current?.blur();
-    setIsOpen(false);
+    setIsExpanded(false);
   };
 
   const handleTriggerClick: React.MouseEventHandler = (e) => {
     e.preventDefault();
 
     inputRef.current?.focus();
-    setIsOpen(!isOpen);
+    setIsExpanded(!isExpanded);
   };
 
   const handleInputFocus = () => {
@@ -83,18 +85,18 @@ export const Select: React.FC<SelectProps> = ({
 
   React.useEffect(() => {
     const handler = handleEscapeKeydown(() => {
-      setIsOpen(false);
+      setIsExpanded(false);
       inputRef.current?.blur();
     });
 
-    if (isOpen) {
+    if (isExpanded) {
       window.addEventListener('keydown', handler);
     }
 
     return () => {
       window.removeEventListener('keydown', handler);
     };
-  }, [isOpen]);
+  }, [isExpanded]);
 
   return (
     <div className="form-field form-field--full-width">
@@ -113,7 +115,7 @@ export const Select: React.FC<SelectProps> = ({
         title={title} />
       <OutsideClickHandler onOutsideClick={handleOutsideClick}>
         <button
-          aria-expanded={isOpen}
+          aria-expanded={isExpanded}
           className={classNames('form-field__trigger', {
             'form-field--disabled': disabled,
             'form-field__trigger--error': !!errors[name],
@@ -127,7 +129,7 @@ export const Select: React.FC<SelectProps> = ({
             {selectedItem?.label ?? placeholder}
           </span>
           <span className="form-field__trigger-icon">
-            {isOpen
+            {isExpanded
               ? <ArrowUpIcon />
               : <ArrowDownIcon />}
           </span>
@@ -137,13 +139,15 @@ export const Select: React.FC<SelectProps> = ({
           ref={optionsContainerRef}
         />
         <Portal node={optionsContainerRef.current}>
-          {isOpen && (
-            <Dropdown
-              className="form-field__select-options"
-              onSelect={handleOptionClick}
-              options={options}
-              selected={selectedItem?.value}
-            />
+          {isExpanded && (
+            <FocusLock>
+              <Dropdown
+                className="form-field__select-options"
+                onSelect={handleOptionClick}
+                options={options}
+                selected={selectedItem?.value}
+              />
+            </FocusLock>
           )}
         </Portal>
       </OutsideClickHandler>
@@ -164,8 +168,3 @@ export interface SelectProps
   FormFieldProps {
   options: IOption[];
 }
-
-function handler(this: Window, ev: KeyboardEvent) {
-  throw new Error('Function not implemented.');
-}
-
