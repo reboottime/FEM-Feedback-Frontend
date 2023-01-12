@@ -10,6 +10,10 @@ export const mapStatusToDotVariant = (status: Entities.Feedback.TRoadmapStatus) 
   return DOT_VARIANT_MAP[status];
 };
 
-export const isPublishedFeedback = (feedback: Entities.Feedback.TFeedback) => {
+export const isPublishedFeedback = (feedback?: Entities.Feedback.TFeedback) => {
+  if (!feedback) {
+    return false;
+  }
+
   return feedback.status === 'live';
 };

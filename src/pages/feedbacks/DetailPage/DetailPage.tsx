@@ -19,6 +19,7 @@ import {
 } from '@/hooks/queries/feedbacks';
 import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
+import { isPublishedFeedback } from '@/utils/feedback';
 import { isAdminUser } from '@/utils/user';
 
 import './style.scss';
@@ -36,11 +37,11 @@ export const DetailPage = () => {
   } = useGetFeedbackComments(feedbackId);
 
   const commentCardTitle = comments.length
-    ? `${(comments as Entities.TComment[]).length} Comments`
+    ? `${comments.length} Comments`
     : 'Comments';
 
-  const canEdit = user?.id === feedback?.author?.id || isAdminUser(user);
-  const isEditable = (feedback?.status === 'new') && canEdit;
+  const canEdit = (user?.id === feedback?.author?.id) || isAdminUser(user);
+  const isEditable = !isPublishedFeedback(feedback) && canEdit;
 
   return (
     <div className="detail-page">

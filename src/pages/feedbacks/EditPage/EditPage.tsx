@@ -5,9 +5,10 @@ import { FieldValues } from 'react-hook-form';
 import Button from '@/components/Button';
 import { useAuthContext } from '@/components/AppProviders';
 
-import { isAdminUser } from '@/utils/user';
-
 import { useGetFeedback, useUpdateFeedback } from '@/hooks/queries/feedbacks/feedbacks';
+
+import { isAdminUser } from '@/utils/user';
+import { isPublishedFeedback } from '@/utils/feedback';
 
 import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
 
@@ -24,7 +25,7 @@ export const EditPage = () => {
 
   const { user } = useAuthContext();
 
-  const canEdit = (feedback?.status !== 'live') &&
+  const canEdit = !isPublishedFeedback(feedback) &&
     (isAdminUser(user) || feedback?.author.id === user?.id);
 
   const mutation = useUpdateFeedback();
