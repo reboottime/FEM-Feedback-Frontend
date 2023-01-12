@@ -5,19 +5,14 @@ import { QUERY_KEY_USER_DATA } from './queryKey';
 
 import { AuthContextType, queryClient, useAuthContext } from '@/components/AppProviders';
 
-import {
-  getCurrentUser,
-  signIn,
-  signOut,
-  signUp,
-} from '@/services/users';
+import userApi from '@/services/users.service';
 
 import helpers from '@/utils/helpers';
 
 export const useSignInUser = () => {
   const { setUser } = useAuthContext() as AuthContextType;
 
-  return useMutation(signIn as never, {
+  return useMutation(userApi.signIn, {
     onError: () => {
       toast.error('Signed in failed, please check your username and password');
     },
@@ -31,7 +26,7 @@ export const useSignInUser = () => {
 export const useSignUpUser = () => {
   const { setUser } = useAuthContext() as AuthContextType;
 
-  return useMutation(signUp as never, {
+  return useMutation(userApi.signUp, {
     onError: () => {
       toast.error('Failed to sign up');
     },
@@ -48,7 +43,7 @@ export const useGetCurrentUser = () => {
   const { setUser } = useAuthContext() as AuthContextType;
 
   return useQuery({
-    queryFn: getCurrentUser,
+    queryFn: userApi.getCurrent,
     queryKey: QUERY_KEY_USER_DATA,
     retry: 0,
     onSuccess: (userData: Entities.TAuthedUser) => {
@@ -63,14 +58,14 @@ export const useGetCurrentUser = () => {
 export const useSignOutUser = () => {
   const { setUser } = useAuthContext() as AuthContextType;
 
-  return useMutation(signOut, {
+  return useMutation(userApi.signOut, {
     onSuccess: () => {
       helpers.auth.clearToken();
       setUser(null);
       queryClient.invalidateQueries(QUERY_KEY_USER_DATA);
 
       toast.info('You have logined out');
-    }
+    },
   });
 };
 

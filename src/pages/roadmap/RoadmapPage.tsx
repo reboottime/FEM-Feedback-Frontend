@@ -17,20 +17,20 @@ export const RoadmapPage = () => {
   const { user } = useAuthContext() as AuthContextType;
 
   const {
-    data,
+    data: feedbacks,
     isLoading: isFeedbacksLoading,
     isSuccess: isFeedbacksLoaded
   } = useGetFeedbacks();
 
-  const feedbacks = useMemo(() => {
-    if (!data) {
+  const roadmapFeedbacks = useMemo(() => {
+    if (!feedbacks) {
       return [];
     }
 
-    return (data as unknown as Entities.Feedback.TFeedback[]).filter(
+    return feedbacks.filter(
       (item) => item.status !== 'new'
     );
-  }, [data]);
+  }, [feedbacks]);
 
   const isMobile = useIsMobile();
 
@@ -56,7 +56,7 @@ export const RoadmapPage = () => {
       <div className="roadmap-page__main">
         {isFeedbacksLoading && <p>loading...</p>}
         {isFeedbacksLoaded && (
-          <Kanban feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]} />
+          <Kanban feedbacks={roadmapFeedbacks} />
         )}
       </div>
     </div>

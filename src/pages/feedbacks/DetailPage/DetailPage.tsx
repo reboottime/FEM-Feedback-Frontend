@@ -4,9 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import AddComment from './components/AddComment';
 import Card from './components/Card';
 import Metadata from './components/Metadata';
+import CommentList from './components/CommentList';
 
-import CommentList from './components/CommentList/CommentList';
-import mockComments from './comments';
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { AuthContextType, useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
@@ -30,18 +29,18 @@ export const DetailPage = () => {
 
   const { user } = useAuthContext() as AuthContextType;
 
-  const { data = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
-  const { data: comments = mockComments, isSuccess: commentsAreLoaded } =
-    useGetFeedbackComments(feedbackId);
+  const { data: feedback } = useGetFeedback(feedbackId);
+  const {
+    data: comments = [],
+    isSuccess: commentsAreLoaded,
+  } = useGetFeedbackComments(feedbackId);
 
-  const commentCardTitle = (comments as Entities.TComment[]).length
+  const commentCardTitle = comments.length
     ? `${(comments as Entities.TComment[]).length} Comments`
     : 'Comments';
 
-  const isNewFeedback = data.status === 'new';
-  const canEdit =
-    user?.id === (data as TFeedbackOverview).author?.id || isAdminUser(user);
-  const isEditable = isNewFeedback && canEdit;
+  const canEdit = user?.id === feedback?.author?.id || isAdminUser(user);
+  const isEditable = (feedback?.status === 'new') && canEdit;
 
   return (
     <div className="detail-page">
@@ -69,10 +68,10 @@ export const DetailPage = () => {
         {/* no data */}
         {commentsAreLoaded && (
           <React.Fragment>
-            {(comments as Entities.TComment[]).length
+            {comments.length
               ? (
                 <CommentList
-                  comments={comments as Entities.TComment[]}
+                  comments={comments}
                   replyToComment={undefined}
                 />
               )
@@ -93,5 +92,3 @@ export const DetailPage = () => {
 };
 
 export default DetailPage;
-
-type TFeedbackOverview = Omit<Entities.Feedback.TFeedback, 'comments'>;

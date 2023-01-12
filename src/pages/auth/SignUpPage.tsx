@@ -10,7 +10,7 @@ export const SignUpPage = () => {
   const mutation = useSignUpUser();
 
   const onSubmit = async (data: TUserPass) => {
-    await mutation.mutateAsync(data as never);
+    await mutation.mutateAsync(data);
 
     navigate('/feedbacks');
   };
