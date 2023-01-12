@@ -63,6 +63,7 @@ export const Select: React.FC<SelectProps> = ({
         name,
         value: item.value,
       },
+      type: 'change'
     });
   };
 
