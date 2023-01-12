@@ -164,8 +164,3 @@ export interface SelectProps
   FormFieldProps {
   options: IOption[];
 }
-
-function handler(this: Window, ev: KeyboardEvent) {
-  throw new Error('Function not implemented.');
-}
-
