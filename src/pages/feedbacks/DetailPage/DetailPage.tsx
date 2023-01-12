@@ -92,5 +92,3 @@ export const DetailPage = () => {
 };
 
 export default DetailPage;
-
-type TFeedbackOverview = Omit<Entities.Feedback.TFeedback, 'comments'>;
