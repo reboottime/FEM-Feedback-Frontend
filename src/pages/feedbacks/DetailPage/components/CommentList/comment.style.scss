@@ -31,6 +31,11 @@
     font-weight: map.get($font-weight, "regular") !important;
   }
 
+  &__reply-to {
+    color: map.get($colors, 'purple1');
+    margin-right: 4px;
+  }
+
   @include md {
     &__reply-button {
       display: inline-block;
