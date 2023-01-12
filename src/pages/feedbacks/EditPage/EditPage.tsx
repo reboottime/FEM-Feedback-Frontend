@@ -13,23 +13,22 @@ export const EditPage = () => {
   const { feedbackId = '' } = useParams();
 
   const {
-    data,
+    data: feedback,
     isLoading,
     isSuccess
   } = useGetFeedback(feedbackId);
-  const feedbackData = (data as unknown as Entities.Feedback.TFeedback);
 
   const { user } = useAuthContext();
 
-  const isNotAuthor = (user?.id !== feedbackData?.author.id);
+  const isNotAuthor = (user?.id !== feedback?.author.id);
 
   const mutation = useUpdateFeedback();
 
   const handleSubmit = (data: FieldValues) => {
     mutation.mutateAsync({
       id: feedbackId,
-      update: data
-    } as never);
+      update: data as TFeedbackUpdate
+    });
   };
 
   return (
@@ -37,7 +36,7 @@ export const EditPage = () => {
       {isLoading && <p>loading...</p>}
       {isSuccess && (
         <FeedbackForm
-          defaultValues={feedbackData}
+          defaultValues={feedback}
           disabled={isNotAuthor}
           onSubmit={handleSubmit}
           type="edit"

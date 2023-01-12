@@ -29,7 +29,7 @@ export const AddComment: React.FC<Props> = ({ toFeedback }) => {
     const result = await mutation.mutateAsync({
       detail,
       feedbackId: toFeedback,
-    } as never);
+    });
 
     if ((result as Entities.TComment).id) {
       methods.reset();

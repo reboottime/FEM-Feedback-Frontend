@@ -8,12 +8,13 @@ import FormPage, {
 } from '@/pages/feedbacks/components/FormPage';
 
 import { useAddFeedback } from '@/hooks/queries/feedbacks/feedbacks';
+import { TFeedbackCreatDto } from '@/services/feedbacks.service';
 
 export const AddPage = () => {
   const mutation = useAddFeedback();
 
   const handleSubmit = (data: FieldValues) => {
-    mutation.mutate(data as never);
+    mutation.mutate(data as TFeedbackCreatDto);
   };
 
   return (

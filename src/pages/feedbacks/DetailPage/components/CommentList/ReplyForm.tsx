@@ -32,7 +32,7 @@ const CommentReplyForm: React.FC<Props> = ({
       feedbackId: toFeedback,
       replyToComment: toComment,
       replyToUser: toUser,
-    } as never);
+    });
 
     if (reuslt.id) {
       methods.reset();

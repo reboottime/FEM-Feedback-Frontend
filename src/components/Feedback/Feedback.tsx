@@ -21,7 +21,7 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
   const voteMutation = useVoteFeedback();
 
   const handleVoteFeedback = () => {
-    voteMutation.mutate(feedback.id as never);
+    voteMutation.mutate(feedback.id);
   };
 
   return (

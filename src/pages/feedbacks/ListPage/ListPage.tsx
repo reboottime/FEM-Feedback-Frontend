@@ -83,16 +83,13 @@ export const ListPage = () => {
           sort={sort}
           stats={{
             isLoading: isFeedbacksLoading,
-            count: (feedbacks as unknown as Entities.Feedback.TFeedback[])
-              ?.length,
+            count: feedbacks?.length ?? 0,
           }}
         />
         {isFeedbacksLoading && <p>Loading...</p>}
         {isFeedbacksError && <p>Failed to load</p>}
         {isFeedbacksLoaded && (
-          <Feedbacks
-            feedbacks={feedbacks as unknown as Entities.Feedback.TFeedback[]}
-          />
+          <Feedbacks feedbacks={feedbacks} />
         )}
       </main>
     </div>

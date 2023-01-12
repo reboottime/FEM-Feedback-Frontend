@@ -29,18 +29,18 @@ export const DetailPage = () => {
 
   const { user } = useAuthContext() as AuthContextType;
 
-  const { data: feedback = {} as TFeedbackOverview } = useGetFeedback(feedbackId);
+  const { data: feedback } = useGetFeedback(feedbackId);
   const {
     data: comments = [],
     isSuccess: commentsAreLoaded,
   } = useGetFeedbackComments(feedbackId);
 
-  const commentCardTitle = (comments as Entities.TComment[]).length
+  const commentCardTitle = comments.length
     ? `${(comments as Entities.TComment[]).length} Comments`
     : 'Comments';
 
-  const canEdit = user?.id === (feedback as TFeedbackOverview).author?.id || isAdminUser(user);
-  const isEditable = (feedback.status === 'new') && canEdit;
+  const canEdit = user?.id === feedback?.author?.id || isAdminUser(user);
+  const isEditable = (feedback?.status === 'new') && canEdit;
 
   return (
     <div className="detail-page">
@@ -68,10 +68,10 @@ export const DetailPage = () => {
         {/* no data */}
         {commentsAreLoaded && (
           <React.Fragment>
-            {(comments as Entities.TComment[]).length
+            {comments.length
               ? (
                 <CommentList
-                  comments={comments as Entities.TComment[]}
+                  comments={comments}
                   replyToComment={undefined}
                 />
               )

@@ -11,22 +11,13 @@ import {
 
 import { queryClient } from '@/components/AppProviders';
 
-import {
-  addFeedback,
-  addFeedbackComment,
-  getFeedback,
-  getFeedbackComments,
-  getFeedbacks,
-  getFeedbacksStats,
-  updateFeedback,
-  voteFeedback,
-} from '@/services/feedbacks';
+import feedbacksApi from '@/services/feedbacks.service';
 
 export const useAddFeedback = () => {
   const navigate = useNavigate();
 
-  return useMutation(addFeedback as never, {
-    onSuccess: (data: Entities.Feedback.TFeedback) => {
+  return useMutation(feedbacksApi.addFeedback, {
+    onSuccess: (data: TFeedback) => {
       toast.success('Updated feedback successfully');
 
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
@@ -41,7 +32,7 @@ export const useAddFeedback = () => {
 
 export const useGetFeedback = (id: string) => {
   return useQuery({
-    queryFn: () => getFeedback(id),
+    queryFn: () => feedbacksApi.getFeedback(id),
     queryKey: getFeedbackQueryKey(id),
     retry: 2,
     onError: () => {
@@ -50,32 +41,32 @@ export const useGetFeedback = (id: string) => {
   });
 };
 
-export const useGetFeedbackComments = (
-  id: Entities.Feedback.TFeedback['id']
-) => {
+export const useGetFeedbackComments = (id: TFeedback['id']) => {
   return useQuery({
-    queryFn: () => getFeedbackComments(id),
+    queryFn: () => feedbacksApi.getFeedbackComments(id),
     queryKey: getFeedbackCommentsQueryKey(id),
   });
 };
 
 export const useGetFeedbacks = (query?: TQueryParams) => {
   return useQuery({
-    queryFn: () => getFeedbacks(query),
+    queryFn: () => feedbacksApi.getFeedbacks(query),
     queryKey: getFeedbcksQueryKey(query),
   });
 };
 
 export const useGetFeedbacksStats = () => {
   return useQuery({
-    queryFn: getFeedbacksStats,
+    queryFn: feedbacksApi.getFeedbacksStats,
     queryKey: getFeedbackStatsQueryKey(),
   });
 };
 
 export const useVoteFeedback = () => {
-  return useMutation(voteFeedback as never, {
-    onSuccess: (data: Entities.Feedback.TFeedback) => {
+  const queryFn = (id: TFeedback['id']) => feedbacksApi.voteFeedback(id);
+
+  return useMutation(queryFn, {
+    onSuccess: (data: TFeedback) => {
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
       queryClient.invalidateQueries(getFeedbcksQueryKey());
     },
@@ -89,10 +80,10 @@ export const useUpdateFeedback = () => {
   const navigate = useNavigate();
 
   const queryFn = (args: { id: string; update: TFeedbackUpdate }) =>
-    updateFeedback(args);
+    feedbacksApi.updateFeedback(args);
 
-  return useMutation(queryFn as never, {
-    onSuccess: (data: Entities.Feedback.TFeedback) => {
+  return useMutation(queryFn, {
+    onSuccess: (data: TFeedback) => {
       toast.success('Feedback updated');
 
       queryClient.invalidateQueries(getFeedbackQueryKey(data.id));
@@ -108,13 +99,13 @@ export const useUpdateFeedback = () => {
 export const useAddFeedbackComment = () => {
   const queryFn = (args: {
     detail: string;
-    feedbackId: Entities.Feedback.TFeedback['id'];
-    replyToComment?: Entities.TComment['id'];
-    replyToUser?: Entities.TComment['author']['username'];
-  }) => addFeedbackComment(args);
+    feedbackId: TFeedback['id'];
+    replyToComment?: TComment['id'];
+    replyToUser?: TComment['author']['id'];
+  }) => feedbacksApi.addFeedbackComment(args);
 
-  return useMutation(queryFn as never, {
-    onSuccess: (data: Entities.TComment) => {
+  return useMutation(queryFn, {
+    onSuccess: (data: TComment) => {
       const commentQueryKey = getFeedbackCommentsQueryKey(data.feedbackId);
       const feedbackQueryKey = getFeedbackQueryKey(data.feedbackId);
 
