@@ -1,6 +1,7 @@
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
 import * as React from 'react';
+import FocusLock from 'react-focus-lock';
 import { useFormContext } from 'react-hook-form';
 import OutsideClickHandler, {
   Props as OutsideClickHandlerProps,
@@ -138,12 +139,14 @@ export const Select: React.FC<SelectProps> = ({
         />
         <Portal node={optionsContainerRef.current}>
           {isOpen && (
-            <Dropdown
-              className="form-field__select-options"
-              onSelect={handleOptionClick}
-              options={options}
-              selected={selectedItem?.value}
-            />
+            <FocusLock>
+              <Dropdown
+                className="form-field__select-options"
+                onSelect={handleOptionClick}
+                options={options}
+                selected={selectedItem?.value}
+              />
+            </FocusLock>
           )}
         </Portal>
       </OutsideClickHandler>
