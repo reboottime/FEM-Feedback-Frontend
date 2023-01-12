@@ -105,9 +105,11 @@ export const DetailPage = () => {
           </React.Fragment>
         )}
       </Card>
-      <Card title="Add Comment">
-        <AddComment toFeedback={feedbackId} />
-      </Card>
+      {commentsAreLoaded && (
+        <Card title="Add Comment">
+          <AddComment toFeedback={feedbackId} />
+        </Card>
+      )}
     </div>
   );
 };
