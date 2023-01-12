@@ -43,6 +43,7 @@ export const useGetFeedback = (id: string) => {
 
 export const useGetFeedbackComments = (id: TFeedback['id']) => {
   return useQuery({
+    enabled: !!id,
     queryFn: () => feedbacksApi.getFeedbackComments(id),
     queryKey: getFeedbackCommentsQueryKey(id),
   });

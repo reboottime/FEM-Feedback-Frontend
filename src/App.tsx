@@ -3,6 +3,7 @@ import { Navigate, useRoutes } from 'react-router-dom';
 
 import authRoutes from '@/pages/auth';
 import feedbackRoutes from '@/pages/feedbacks';
+import NotFoundPage from '@/pages/NotFoundPage';
 import Roadmap from '@/pages/roadmap';
 
 import { useGetCurrentUser } from '@/hooks/queries/users';
@@ -29,7 +30,7 @@ const App: React.FC = () => {
     },
     {
       path: '*',
-      element: <h1>Not found</h1>,
+      element: <NotFoundPage />,
     },
   ]);
 };

@@ -12,6 +12,7 @@ import Button from '@/components/Button';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
+import YouAreLost from '@/components/YouAreLost';
 
 import {
   useGetFeedback,
@@ -19,6 +20,7 @@ import {
 } from '@/hooks/queries/feedbacks';
 import { useIsSmallMobile } from '@/hooks/mediaQueries';
 
+import { isPublishedFeedback } from '@/utils/feedback';
 import { isAdminUser } from '@/utils/user';
 
 import './style.scss';
@@ -26,21 +28,42 @@ import './style.scss';
 export const DetailPage = () => {
   const { feedbackId = '' } = useParams();
   const isSmallMobile = useIsSmallMobile();
-
   const { user } = useAuthContext() as AuthContextType;
 
-  const { data: feedback } = useGetFeedback(feedbackId);
+  const {
+    data: feedback,
+    isFetched: feedbackIsFeched,
+  } = useGetFeedback(feedbackId);
   const {
     data: comments = [],
     isSuccess: commentsAreLoaded,
-  } = useGetFeedbackComments(feedbackId);
+  } = useGetFeedbackComments(feedback?.id ?? '');
+
+
+  if (feedbackIsFeched && !feedback) {
+    // return early
+    return (
+      <div className="detail-page">
+        <header className="detail-page__header">
+          <Goback />
+          <div className="detail-page__header-nav">
+            {user && <UserIcon />}
+            <ToHome />
+          </div>
+        </header>
+        <Card title='You are lost'>
+          <YouAreLost />
+        </Card>
+      </div>
+    );
+  }
 
   const commentCardTitle = comments.length
-    ? `${(comments as Entities.TComment[]).length} Comments`
+    ? `${comments.length} Comments`
     : 'Comments';
 
-  const canEdit = user?.id === feedback?.author?.id || isAdminUser(user);
-  const isEditable = (feedback?.status === 'new') && canEdit;
+  const canEdit = (user?.id === feedback?.author?.id) || isAdminUser(user);
+  const isEditable = !isPublishedFeedback(feedback) && canEdit;
 
   return (
     <div className="detail-page">
@@ -64,8 +87,6 @@ export const DetailPage = () => {
       </Card>
       <Card title={commentCardTitle}>
         {/* isLoading */}
-        {/* isSuccess */}
-        {/* no data */}
         {commentsAreLoaded && (
           <React.Fragment>
             {comments.length

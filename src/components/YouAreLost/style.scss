@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+.you-are-lost {
+  background-color: map.get($colors, "white1");
+  padding: 6vw;
+  text-align: center;
+
+  p {
+    margin: 24px auto;
+    max-width: 80%;
+    line-height: 2.05;
+  }
+}
