@@ -12,6 +12,7 @@ import Button from '@/components/Button';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
+import YouAreLost from '@/components/YouAreLost';
 
 import {
   useGetFeedback,
@@ -27,14 +28,35 @@ import './style.scss';
 export const DetailPage = () => {
   const { feedbackId = '' } = useParams();
   const isSmallMobile = useIsSmallMobile();
-
   const { user } = useAuthContext() as AuthContextType;
 
-  const { data: feedback } = useGetFeedback(feedbackId);
+  const {
+    data: feedback,
+    isFetched: feedbackIsFeched,
+  } = useGetFeedback(feedbackId);
   const {
     data: comments = [],
     isSuccess: commentsAreLoaded,
-  } = useGetFeedbackComments(feedbackId);
+  } = useGetFeedbackComments(feedback?.id ?? '');
+
+
+  if (feedbackIsFeched && !feedback) {
+    // return early
+    return (
+      <div className="detail-page">
+        <header className="detail-page__header">
+          <Goback />
+          <div className="detail-page__header-nav">
+            {user && <UserIcon />}
+            <ToHome />
+          </div>
+        </header>
+        <Card title='You are lost'>
+          <YouAreLost />
+        </Card>
+      </div>
+    );
+  }
 
   const commentCardTitle = comments.length
     ? `${comments.length} Comments`
@@ -65,8 +87,6 @@ export const DetailPage = () => {
       </Card>
       <Card title={commentCardTitle}>
         {/* isLoading */}
-        {/* isSuccess */}
-        {/* no data */}
         {commentsAreLoaded && (
           <React.Fragment>
             {comments.length

@@ -5,14 +5,21 @@ import { FieldValues } from 'react-hook-form';
 import Button from '@/components/Button';
 import { useAuthContext } from '@/components/AppProviders';
 
-import { useGetFeedback, useUpdateFeedback } from '@/hooks/queries/feedbacks/feedbacks';
+import {
+  useGetFeedback,
+  useUpdateFeedback,
+} from '@/hooks/queries/feedbacks/feedbacks';
 
 import { isAdminUser } from '@/utils/user';
 import { isPublishedFeedback } from '@/utils/feedback';
 
-import FormPage, { Cancell, FeedbackForm } from '@/pages/feedbacks/components/FormPage';
+import FormPage, {
+  Cancell,
+  FeedbackForm,
+} from '@/pages/feedbacks/components/FormPage';
 
 import './style.scss';
+import YouAreLost from '@/components/YouAreLost';
 
 export const EditPage = () => {
   const { feedbackId = '' } = useParams();
@@ -20,12 +27,13 @@ export const EditPage = () => {
   const {
     data: feedback,
     isLoading,
-    isSuccess
+    isFetched: feedbackIsFeched,
   } = useGetFeedback(feedbackId);
 
   const { user } = useAuthContext();
 
-  const canEdit = !isPublishedFeedback(feedback) &&
+  const canEdit =
+    !isPublishedFeedback(feedback) &&
     (isAdminUser(user) || feedback?.author.id === user?.id);
 
   const mutation = useUpdateFeedback();
@@ -33,28 +41,36 @@ export const EditPage = () => {
   const handleSubmit = (data: FieldValues) => {
     mutation.mutateAsync({
       id: feedbackId,
-      update: data as TFeedbackUpdate
+      update: data as TFeedbackUpdate,
     });
   };
 
-  return (
-    <FormPage type="edit">
-      {isLoading && <p>loading...</p>}
-      {isSuccess && (
-        <FeedbackForm
-          defaultValues={feedback}
-          disabled={!canEdit}
-          onSubmit={handleSubmit}
-          type="edit"
-        >
-          <React.Fragment>
-            <Cancell />
-            <Button disabled={!canEdit}>Save Changes</Button>
-          </React.Fragment>
-        </FeedbackForm>)
-      }
-    </FormPage>
-  );
+  if (feedbackIsFeched) {
+    return feedback
+      ? (
+        <FormPage type="edit">
+          {isLoading && <p>loading...</p>}
+          <FeedbackForm
+            defaultValues={feedback}
+            disabled={!canEdit}
+            onSubmit={handleSubmit}
+            type="edit"
+          >
+            <React.Fragment>
+              <Cancell />
+              <Button disabled={!canEdit}>Save Changes</Button>
+            </React.Fragment>
+          </FeedbackForm>
+        </FormPage>
+      )
+      : (
+        <FormPage type="edit">
+          <YouAreLost />
+        </FormPage>
+      );
+  }
+
+  return null;
 };
 
 export default EditPage;

@@ -24,6 +24,6 @@ export const FormPage: React.FC<Props> = ({ children, type }) => (
 );
 
 export interface Props {
-  children: (React.ReactElement | boolean)[] | React.ReactElement;
+  children?: (React.ReactElement | boolean)[] | React.ReactElement;
   type: 'add' | 'edit';
 }
