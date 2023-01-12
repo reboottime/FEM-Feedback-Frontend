@@ -73,6 +73,14 @@ export class Api extends Axios {
     return this.post(url, data, config);
   }
 
+  public patch<T, B, R = AxiosResponse<T>>(
+    url: string,
+    data?: B,
+    config?: AxiosRequestConfig
+  ): Promise<R> {
+    return this.put(url, data, config);
+  }
+
   public put<T, B, R = AxiosResponse<T>>(
     url: string,
     data?: B,
