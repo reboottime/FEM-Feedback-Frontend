@@ -4,7 +4,7 @@ import { useForm, FormProvider, FieldValues } from 'react-hook-form';
 import { PAGE_INFO } from './constants';
 import { getSelectOptions } from './utils';
 
-import { AuthContextType, useAuthContext } from '@/components/AppProviders';
+import { useAuthContext } from '@/components/AppProviders';
 import { Input, Select, Textarea } from '@/components/Form';
 
 import { category, status } from '@/constants/feedbacks';
@@ -28,7 +28,7 @@ export const FeedbackForm: React.FC<Props> = ({
     defaultValues,
   });
 
-  const { user } = useAuthContext() as AuthContextType;
+  const { user } = useAuthContext();
 
   const isAdminUser = currentUserIsAdmin(user);
 
