@@ -36,10 +36,10 @@ export const Modal: React.FC<Props> = ({
     const handler = handleEscapeKeydown(onCloseRef.current);
 
     // @todo: resolve never
-    document.addEventListener('keydown', handler as never);
+    document.addEventListener('keydown', handler);
 
     return () => {
-      document.removeEventListener('keydown', handler as never);
+      document.removeEventListener('keydown', handler);
     };
   }, []);
 

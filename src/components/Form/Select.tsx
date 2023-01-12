@@ -1,6 +1,6 @@
 import { ErrorMessage } from '@hookform/error-message';
 import classNames from 'classnames';
-import * as React from 'react'; // Avoid react testing lib compalins
+import * as React from 'react';
 import { useFormContext } from 'react-hook-form';
 import OutsideClickHandler, {
   Props as OutsideClickHandlerProps,
@@ -17,10 +17,7 @@ import { ReactComponent as ArrowUpIcon } from '@/assets/shared/icon-arrow-up.svg
 
 import Dropdown, { IOption } from '@/components/Dropdown';
 
-import {
-  handleEnterSpaceKeydown,
-  handleEscapeKeydown,
-} from '@/utils/keyboard-handlers';
+import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
 
 import './select.style.scss';
 
@@ -85,17 +82,17 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   React.useEffect(() => {
-    if (isOpen) {
-      const handleEscKeydown = handleEscapeKeydown(() => {
-        setIsOpen(false);
-        inputRef.current?.blur();
-      });
+    const handler = handleEscapeKeydown(() => {
+      setIsOpen(false);
+      inputRef.current?.blur();
+    });
 
-      window.addEventListener('keydown', handleEscKeydown as never);
+    if (isOpen) {
+      window.addEventListener('keydown', handler);
     }
 
     return () => {
-      window.removeEventListener('keydown', handleEnterSpaceKeydown as never);
+      window.removeEventListener('keydown', handler);
     };
   }, [isOpen]);
 
@@ -167,3 +164,8 @@ export interface SelectProps
   FormFieldProps {
   options: IOption[];
 }
+
+function handler(this: Window, ev: KeyboardEvent) {
+  throw new Error('Function not implemented.');
+}
+

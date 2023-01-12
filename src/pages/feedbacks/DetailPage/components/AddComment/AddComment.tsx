@@ -31,7 +31,7 @@ export const AddComment: React.FC<Props> = ({ toFeedback }) => {
       feedbackId: toFeedback,
     });
 
-    if ((result as Entities.TComment).id) {
+    if (result.id) {
       methods.reset();
     }
   };

@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "@/sass/abstract/" as *;
 
-.category {
+.categories {
   align-items: flex-start;
   background-color: map.get($colors, "white1");
   display: flex;

@@ -14,7 +14,7 @@ export const Categories: React.FC<Props> = ({
 }) => {
   return (
     <nav className={classNames(
-      'category border-rounded--large',
+      'categories border-rounded--large',
       className
     )}
     >
