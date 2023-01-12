@@ -88,17 +88,17 @@ export const Select: React.FC<SelectProps> = ({
   };
 
   React.useEffect(() => {
-    const handler = handleEscapeKeydown(() => {
+    const handleKeydown = handleEscapeKeydown(() => {
       setIsExpanded(false);
       inputRef.current?.blur();
     });
 
     if (isExpanded) {
-      window.addEventListener('keydown', handler);
+      window.addEventListener('keydown', handleKeydown);
     }
 
     return () => {
-      window.removeEventListener('keydown', handler);
+      window.removeEventListener('keydown', handleKeydown);
     };
   }, [isExpanded]);
 
