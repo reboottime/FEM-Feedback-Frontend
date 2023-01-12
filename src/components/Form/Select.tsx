@@ -52,11 +52,11 @@ export const Select: React.FC<SelectProps> = ({
     }
   );
 
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = React.useState<boolean>(false);
 
   const handleOptionClick = (item: IOption) => {
     setSelectedItem(item);
-    setIsOpen(false);
+    setIsExpanded(false);
 
     filedProps.onChange({
       target: {
@@ -69,14 +69,14 @@ export const Select: React.FC<SelectProps> = ({
 
   const handleOutsideClick: OutsideClickHandlerProps['onOutsideClick'] = () => {
     inputRef.current?.blur();
-    setIsOpen(false);
+    setIsExpanded(false);
   };
 
   const handleTriggerClick: React.MouseEventHandler = (e) => {
     e.preventDefault();
 
     inputRef.current?.focus();
-    setIsOpen(!isOpen);
+    setIsExpanded(!isExpanded);
   };
 
   const handleInputFocus = () => {
@@ -85,18 +85,18 @@ export const Select: React.FC<SelectProps> = ({
 
   React.useEffect(() => {
     const handler = handleEscapeKeydown(() => {
-      setIsOpen(false);
+      setIsExpanded(false);
       inputRef.current?.blur();
     });
 
-    if (isOpen) {
+    if (isExpanded) {
       window.addEventListener('keydown', handler);
     }
 
     return () => {
       window.removeEventListener('keydown', handler);
     };
-  }, [isOpen]);
+  }, [isExpanded]);
 
   return (
     <div className="form-field form-field--full-width">
@@ -115,7 +115,7 @@ export const Select: React.FC<SelectProps> = ({
         title={title} />
       <OutsideClickHandler onOutsideClick={handleOutsideClick}>
         <button
-          aria-expanded={isOpen}
+          aria-expanded={isExpanded}
           className={classNames('form-field__trigger', {
             'form-field--disabled': disabled,
             'form-field__trigger--error': !!errors[name],
@@ -129,7 +129,7 @@ export const Select: React.FC<SelectProps> = ({
             {selectedItem?.label ?? placeholder}
           </span>
           <span className="form-field__trigger-icon">
-            {isOpen
+            {isExpanded
               ? <ArrowUpIcon />
               : <ArrowDownIcon />}
           </span>
@@ -139,7 +139,7 @@ export const Select: React.FC<SelectProps> = ({
           ref={optionsContainerRef}
         />
         <Portal node={optionsContainerRef.current}>
-          {isOpen && (
+          {isExpanded && (
             <FocusLock>
               <Dropdown
                 className="form-field__select-options"

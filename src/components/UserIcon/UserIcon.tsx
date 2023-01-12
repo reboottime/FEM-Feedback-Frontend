@@ -16,14 +16,14 @@ export const UserIcon = () => {
   const signOutMutation = useSignOutUser();
   const { user } = useAuthContext();
 
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+  const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   const handleUserIconClick = () => {
-    setShowDropdown(!showDropdown);
+    setIsExpanded(!isExpanded);
   };
 
   const handleOutsideClick = () => {
-    setShowDropdown(false);
+    setIsExpanded(false);
   };
 
   const handleSelect = async ({ value }: IOption) => {
@@ -34,17 +34,17 @@ export const UserIcon = () => {
 
   React.useEffect(() => {
     const handler = handleEscapeKeydown(() => {
-      setShowDropdown(false);
+      setIsExpanded(false);
     });
 
-    if (showDropdown) {
+    if (isExpanded) {
       window.addEventListener('keydown', handler);
     }
 
     return () => {
       window.removeEventListener('keydown', handler);
     };
-  }, [showDropdown]);
+  }, [isExpanded]);
 
 
   return (
@@ -58,7 +58,7 @@ export const UserIcon = () => {
             })}
             />
           </button>
-          {(showDropdown && user) && (
+          {(isExpanded && user) && (
             <Dropdown
               className="user-icon__actions"
               onSelect={handleSelect}
