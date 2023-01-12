@@ -18,7 +18,7 @@ import { ReactComponent as ArrowUpIcon } from '@/assets/shared/icon-arrow-up.svg
 
 import Dropdown, { IOption } from '@/components/Dropdown';
 
-import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
+import { handleArrowKeydown, handleEscapeKeydown } from '@/utils/keyboard-handlers';
 
 import './select.style.scss';
 
@@ -79,6 +79,10 @@ export const Select: React.FC<SelectProps> = ({
     setIsExpanded(!isExpanded);
   };
 
+  const handleTriggerKeydown = handleArrowKeydown(() => {
+    setIsExpanded(true);
+  });
+
   const handleInputFocus = () => {
     triggerRef.current?.focus();
   };
@@ -122,6 +126,7 @@ export const Select: React.FC<SelectProps> = ({
           })}
           disabled={disabled}
           onClick={handleTriggerClick}
+          onKeyDown={handleTriggerKeydown}
           ref={triggerRef}
           tabIndex={0}
         >
