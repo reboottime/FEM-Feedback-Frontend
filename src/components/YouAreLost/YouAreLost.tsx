@@ -1,12 +1,13 @@
+import classNames from 'classnames';
 import React from 'react';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 
 import './style.scss';
 
-export const YouAreLost = () => {
+export const YouAreLost: React.FC<Props> = ({ className, children }) => {
   return (
-    <div className="you-are-lost border-rounded--large">
+    <div className={classNames('you-are-lost border-rounded--large', className)}>
       <EmptyImg />
       <p className="typography-body-1">
         When we lose something that is precious to us, we are left with a
@@ -15,6 +16,12 @@ export const YouAreLost = () => {
         missing. Throughout our life we amass collections of friends and
         treasured possessions.
       </p>
+      {children}
     </div>
   );
 };
+
+interface Props {
+  children?: React.ReactNode;
+  className?: string;
+}

@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "@/sass/abstract/" as *;
+
+.lost-page {
+  height: 100vh;
+
+  &__lost {
+    width: 90vw;
+    max-width: 768px;
+    margin: 0 auto;
+  }
+}
