@@ -24,7 +24,7 @@ export const CommentList: React.FC<Props> = ({ comments, replyToComment }) => {
         <li className="comment-list__item"
           key={item.id}>
           <Comment
-            {...item as any}
+            {...item}
             comments={restcomments[item.id]}
             replyToComment={replyToComment || item.id}
           />
@@ -35,7 +35,7 @@ export const CommentList: React.FC<Props> = ({ comments, replyToComment }) => {
 };
 
 export interface Props {
-  comments: Entities.TComment[];
+  comments: TComment[];
   replyToComment?: Entities.TComment['id'];
 }
 
