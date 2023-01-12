@@ -9,6 +9,16 @@ export const KEYBOARD_KEYS = {
 
 export const SELECT_KEYS = [KEYBOARD_KEYS.enter, KEYBOARD_KEYS.space];
 
+export const handleArrowKeydown = (handler: React.KeyboardEventHandler) => {
+  return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if (e.key === KEYBOARD_KEYS.arrowDown) {
+      e.preventDefault();
+
+      handler(e);
+    }
+  };
+};
+
 export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
   return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (SELECT_KEYS.includes(e.key)) {

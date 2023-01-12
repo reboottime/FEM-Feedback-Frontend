@@ -10,7 +10,7 @@ import { ReactComponent as ArrowUpIcon } from '@/assets/shared/icon-arrow-up.svg
 
 import Dropdown, { IOption } from '@/components/Dropdown';
 
-import { handleEscapeKeydown, } from '@/utils/keyboard-handlers';
+import { handleArrowKeydown, handleEscapeKeydown, } from '@/utils/keyboard-handlers';
 
 import './select.style.scss';
 
@@ -43,9 +43,14 @@ const Select: React.FC<Props> = ({
     setIsExpanded(!isExpanded);
   };
 
+  const handleTriggerKeydown = handleArrowKeydown(() => {
+    setIsExpanded(true);
+  });
+
   useEffect(() => {
     const handler = handleEscapeKeydown(() => {
       setIsExpanded(false);
+
       triggerRef.current?.blur();
     });
 
@@ -65,6 +70,7 @@ const Select: React.FC<Props> = ({
           aria-expanded={isExpanded}
           className="select__trigger fw-semi-bold"
           onClick={handleTriggerClick}
+          onKeyDown={handleTriggerKeydown}
           ref={triggerRef}
           tabIndex={0}
         >
