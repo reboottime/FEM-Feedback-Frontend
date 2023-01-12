@@ -8,6 +8,13 @@ export type TFeedbackCreatDto = {
   title: string;
 };
 
+export type TAddComemntDto = {
+  detail: string;
+  feedbackId: TFeedback['id'];
+  replyToComment?: TComment['id'];
+  replyToUser?: TComment['author']['id'];
+};
+
 class FeedbacksApi extends Api {
   constructor(config: AxiosRequestConfig) {
     super(config);
@@ -17,16 +24,11 @@ class FeedbacksApi extends Api {
     return this.post('/', data);
   };
 
-  addFeedbackComment: (args: {
-    detail: string;
-    feedbackId: TFeedback['id'];
-    replyToComment?: TComment['id'];
-    replyToUser?: TComment['author']['id'];
-  }) => Promise<TComment> = (args) => {
-      const { feedbackId, ...comment } = args;
+  addFeedbackComment: (args: TAddComemntDto) => Promise<TComment> = (args) => {
+    const { feedbackId, ...comment } = args;
 
-      return this.post(`/${feedbackId}/comments`, comment);
-    };
+    return this.post(`/${feedbackId}/comments`, comment);
+  };
 
   getFeedback: (id: TFeedback['id']) => Promise<TFeedback> = (id) => {
     return this.get(`/${id}`);

@@ -11,7 +11,7 @@ import {
 
 import { queryClient } from '@/components/AppProviders';
 
-import feedbacksApi from '@/services/feedbacks.service';
+import feedbacksApi, { TAddComemntDto } from '@/services/feedbacks.service';
 
 export const useAddFeedback = () => {
   const navigate = useNavigate();
@@ -98,12 +98,7 @@ export const useUpdateFeedback = () => {
 };
 
 export const useAddFeedbackComment = () => {
-  const queryFn = (args: {
-    detail: string;
-    feedbackId: TFeedback['id'];
-    replyToComment?: TComment['id'];
-    replyToUser?: TComment['author']['id'];
-  }) => feedbacksApi.addFeedbackComment(args);
+  const queryFn = (args: TAddComemntDto) => feedbacksApi.addFeedbackComment(args);
 
   return useMutation(queryFn, {
     onSuccess: (data: TComment) => {
