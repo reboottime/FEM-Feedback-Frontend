@@ -9,7 +9,7 @@ class UserApi extends Api {
     super(config);
   }
 
-  public signUp: (data: TUserPass) => Promise<TUser> = (data) => {
+  signUp: (data: TUserPass) => Promise<TUser> = (data) => {
     return this.post('/sign-up', data);
   };
 
