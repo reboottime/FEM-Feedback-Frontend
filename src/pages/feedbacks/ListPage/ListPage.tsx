@@ -8,6 +8,7 @@ import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
 
+import Playaround from './components/Playaround';
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
@@ -52,6 +53,7 @@ export const ListPage = () => {
               selectedCategory={category}
             />
             <Roadmap />
+            <Playaround />
           </Sidebar>
         )
         : (
@@ -68,6 +70,9 @@ export const ListPage = () => {
               </li>
               <li className="list-page__nav-item">
                 <Roadmap />
+              </li>
+              <li className='list-page__nav-item'>
+                <Playaround />
               </li>
             </ul>
           </nav>
