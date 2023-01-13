@@ -9,4 +9,12 @@
     color: map.get($colors, "dark2");
     margin-bottom: 24px;
   }
+
+  &__sign-in {
+    color: map.get($colors, "blue1");
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
