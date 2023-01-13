@@ -5,6 +5,7 @@ import Kanban from './components/Kanban';
 import AddButton from '@/components/AddButton';
 import { useAuthContext } from '@/components/AppProviders';
 import Goback from '@/components/Goback';
+import Spinner from '@/components/Spinner';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
 
@@ -18,8 +19,8 @@ export const RoadmapPage = () => {
 
   const {
     data: feedbacks,
-    isLoading: isFeedbacksLoading,
-    isSuccess: isFeedbacksLoaded
+    isLoading: feedbacksAreLoading,
+    isSuccess: feedbacksAreLoaded
   } = useGetFeedbacks();
 
   const roadmapFeedbacks = useMemo(() => {
@@ -54,8 +55,12 @@ export const RoadmapPage = () => {
         </div>
       </header>
       <div className="roadmap-page__main">
-        {isFeedbacksLoading && <p>loading...</p>}
-        {isFeedbacksLoaded && (
+        {feedbacksAreLoading && (
+          <Spinner
+            center
+            className='roadmap-page__spinner'
+          />)}
+        {feedbacksAreLoaded && (
           <Kanban feedbacks={roadmapFeedbacks} />
         )}
       </div>
