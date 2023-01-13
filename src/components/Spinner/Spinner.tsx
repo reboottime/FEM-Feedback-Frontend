@@ -17,6 +17,6 @@ export const Spinner: React.FC<Props> = ({ className, center }) => {
 };
 
 interface Props {
-  center: boolean;
+  center?: boolean;
   className?: string;
 }

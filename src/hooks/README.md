@@ -1,3 +1,3 @@
 # README
 
-Shared hooks
+Shared hooks by all pages

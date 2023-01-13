@@ -61,7 +61,6 @@ export const handleVerticalNavigation =  (e: React.KeyboardEvent<HTMLElement> | 
     }
   }
 
-
   if (e.key === KEYBOARD_KEYS.arrowUp) {
     e.preventDefault();
 

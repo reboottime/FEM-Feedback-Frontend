@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Brand from './components/Brand';
 import Categories from './components/Categories';
 import Feedbacks from './components/Feedbacks';
+import Playaround from './components/Playaround';
 import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
@@ -58,6 +59,7 @@ export const ListPage = () => {
               selectedCategory={category}
             />
             <Roadmap />
+            <Playaround />
           </Sidebar>
         )
         : (
@@ -74,6 +76,9 @@ export const ListPage = () => {
               </li>
               <li className="list-page__nav-item">
                 <Roadmap />
+              </li>
+              <li className='list-page__nav-item'>
+                <Playaround />
               </li>
             </ul>
           </nav>
