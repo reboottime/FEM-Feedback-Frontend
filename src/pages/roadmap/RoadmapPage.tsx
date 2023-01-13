@@ -18,8 +18,8 @@ export const RoadmapPage = () => {
 
   const {
     data: feedbacks,
-    isLoading: isFeedbacksLoading,
-    isSuccess: isFeedbacksLoaded
+    isLoading: feedbacksAreLoading,
+    isSuccess: feedbacksAreLoaded
   } = useGetFeedbacks();
 
   const roadmapFeedbacks = useMemo(() => {
@@ -54,8 +54,8 @@ export const RoadmapPage = () => {
         </div>
       </header>
       <div className="roadmap-page__main">
-        {isFeedbacksLoading && <p>loading...</p>}
-        {isFeedbacksLoaded && (
+        {feedbacksAreLoading && <p>loading...</p>}
+        {feedbacksAreLoaded && (
           <Kanban feedbacks={roadmapFeedbacks} />
         )}
       </div>
