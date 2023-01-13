@@ -60,11 +60,15 @@ export const useSignOutUser = () => {
 
   return useMutation(userApi.signOut, {
     onSuccess: () => {
+      const showToast = !!helpers.auth.getToken();
+
       helpers.auth.clearToken();
       setUser(null);
       queryClient.invalidateQueries(QUERY_KEY_USER_DATA);
 
-      toast.info('You have logined out');
+      if (showToast) {
+        toast.info('You have logined out');
+      }
     },
   });
 };
