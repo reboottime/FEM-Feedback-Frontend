@@ -7,6 +7,7 @@ import Metadata from './components/Metadata';
 import CommentList from './components/CommentList';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
+
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Goback from '@/components/Goback';
