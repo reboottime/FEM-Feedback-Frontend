@@ -1,4 +1,5 @@
 import React from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
 import { Link, useParams } from 'react-router-dom';
 
 import AddComment from './components/AddComment';
@@ -37,12 +38,12 @@ export const DetailPage = () => {
   } = useGetFeedback(feedbackId);
   const {
     data: comments = [],
+    isLoading: commentsAreLoading,
     isSuccess: commentsAreLoaded,
   } = useGetFeedbackComments(feedback?.id ?? '');
 
 
   if (feedbackIsFeched && !feedback) {
-    // return early
     return (
       <div className="detail-page">
         <header className="detail-page__header">
@@ -87,7 +88,13 @@ export const DetailPage = () => {
         <Metadata feedbackId={feedbackId} />
       </Card>
       <Card title={commentCardTitle}>
-        {/* isLoading */}
+        {commentsAreLoading && (
+          <div className='detail-page__comments-spinner '>
+            <InfinitySpin
+              color="hsl(230 76% 59% / 100%)"
+              width='200'
+            />
+          </div>)}
         {commentsAreLoaded && (
           <React.Fragment>
             {comments.length
