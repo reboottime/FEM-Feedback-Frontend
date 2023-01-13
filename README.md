@@ -21,3 +21,14 @@
 ```sh
 VITE_API_BASE_URL=[YOUR VITE_API_BASE_URL]
 ```
+- install all dependencies
+
+```sh
+yarn
+```
+
+- start application locally
+
+```sh
+yarn dev
+```
