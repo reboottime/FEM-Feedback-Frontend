@@ -45,7 +45,7 @@ export const Modal: React.FC<Props> = ({
 
   return (
     <Portal>
-      <FocusLock>
+      <FocusLock returnFocus>
         <div
           className="modal"
           onClick={handleModalClick}

@@ -28,7 +28,10 @@ export const Sidebar: React.FC<Props> = ({ children, className }) => {
   }, []);
 
   return (
-    <FocusLock disabled={!isSidebarOpen}>
+    <FocusLock
+      disabled={!isSidebarOpen}
+      returnFocus
+    >
       <header className={classNames('sidebar__brand', className)}>
         <div className="sidebar__brand-name">
           <h1 className="typography-body-2 fw-bold">Frontend mentor</h1>
