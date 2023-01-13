@@ -145,7 +145,7 @@ export const Select: React.FC<SelectProps> = ({
         />
         <Portal node={optionsContainerRef.current}>
           {isExpanded && (
-            <FocusLock>
+            <FocusLock returnFocus>
               <Dropdown
                 className="form-field__select-options"
                 onSelect={handleOptionClick}

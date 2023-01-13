@@ -88,7 +88,7 @@ const Select: React.FC<Props> = ({
         />
         <Portal node={optionsContainerRef.current}>
           {isExpanded && (
-            <FocusLock>
+            <FocusLock returnFocus>
               <Dropdown
                 className="select__options fw-regular"
                 onSelect={handleOptionClick}
