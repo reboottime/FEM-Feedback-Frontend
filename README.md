@@ -9,5 +9,15 @@
 
 ## Document
 
-- [User Stories](./UserStories.md)
-- [Database and API designs](./DatabaseAndAPIs.md)
+- [User Stories](./docs/UserStories.md)
+- [Database and API designs](./docs/DatabaseAndAPIs.md)
+
+## How to rung applicaiton locally
+
+- copy `.env.example
+` as `.env`
+- update [YOUR VITE_API_BASE_URL] as the API service URL
+
+```sh
+VITE_API_BASE_URL=[YOUR VITE_API_BASE_URL]
+```

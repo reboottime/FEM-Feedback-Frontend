@@ -1,3 +1,3 @@
 # README
 
-pages
+Pages, organized by domain.
