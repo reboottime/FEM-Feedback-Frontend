@@ -51,6 +51,7 @@ export const useGetFeedbackComments = (id: TFeedback['id']) => {
 
 export const useGetFeedbacks = (query?: TQueryParams) => {
   return useQuery({
+    keepPreviousData: true,
     queryFn: () => feedbacksApi.getFeedbacks(query),
     queryKey: getFeedbcksQueryKey(query),
   });
