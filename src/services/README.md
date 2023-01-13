@@ -1,3 +1,3 @@
 # README
 
-API request related functions
+API request related functions.

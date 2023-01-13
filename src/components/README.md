@@ -1,3 +1,3 @@
 # README
 
-Shared components
+Shared components across pages.
