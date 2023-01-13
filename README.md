@@ -12,7 +12,7 @@
 - [User Stories](./docs/UserStories.md)
 - [Database and API designs](./docs/DatabaseAndAPIs.md)
 
-## How to rung applicaiton locally
+## How to run applicaiton locally
 
 - copy `.env.example
 ` as `.env`
