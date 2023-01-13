@@ -5,6 +5,17 @@
   &__main--mobile {
     padding-top: 72px;
   }
+  &__feedbacks {
+    position: relative;
+    min-height: 50vh;
+  }
+  &__spinner {
+    position: absolute;
+    left: 50vh;
+    top: 25vh;
+    transform: translate(-50%, 0);
+    z-index: 999;
+  }
   @include md {
     margin: 0 map.get($content-margin, "tablet");
     /************ navigation layout for tablet *************/
