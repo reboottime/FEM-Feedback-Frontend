@@ -8,6 +8,17 @@
   font: inherit;
 }
 
+// To help scroll top top smoothly
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   @include typography-body(body-1);
   background-color: map.get($colors, "white2");
@@ -26,6 +37,7 @@ button {
   }
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
