@@ -1,9 +1,10 @@
+// For demo purpose, you know
 export const ADMIN_PASS = {
-  username: '',
-  password: '',
+  username: 'powerful denis',
+  password: 'Wl4OP6Z3wSimfj8',
 };
 
 export const USER_PASS = {
-  username: '',
-  password: '',
+  username: 'Denis_Fritsch8',
+  password: 'Wl4OP6Z3wSimfj8',
 };
