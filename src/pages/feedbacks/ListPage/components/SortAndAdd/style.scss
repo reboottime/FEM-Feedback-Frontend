@@ -2,12 +2,13 @@
 @use "@/sass/abstract" as *;
 
 .sort-and-add {
-  position: sticky;
-  top: 72px;
   background-color: map.get($colors, "dark1");
   color: map.get($colors, "white1");
-  padding: 0 map.get($content-margin, "mobile");
   height: 56px;
+  padding: 0 map.get($content-margin, "mobile");
+  position: sticky;
+  top: 72px;
+  z-index: map.get($z-index, 'sticky');
 
   &__sort {
     gap: 38px;
