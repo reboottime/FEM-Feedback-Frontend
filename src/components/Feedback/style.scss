@@ -20,6 +20,10 @@
   &__detail {
     margin: 8px 0;
     word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__vote {
@@ -56,7 +60,7 @@
 
     &__detail {
       @include typography-body(body-1);
-      color: map.get($colors, 'dark4');
+      color: map.get($colors, "dark4");
       margin: 4px 0 12px 0;
     }
 
