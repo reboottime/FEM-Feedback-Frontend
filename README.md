@@ -9,5 +9,5 @@
 
 ## Document
 
-- [User Stories](./UserStories.md)
-- [Database and API designs](./DatabaseAndAPIs.md)
+- [User Stories](./docs/UserStories.md)
+- [Database and API designs](./docs/DatabaseAndAPIs.md)
