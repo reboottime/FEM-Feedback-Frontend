@@ -1,5 +1,6 @@
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { InfinitySpin } from 'react-loader-spinner';
 
 import Brand from './components/Brand';
 import Categories from './components/Categories';
@@ -25,6 +26,7 @@ export const ListPage = () => {
 
   const {
     data: feedbacks,
+    isLoading: feedbacksAreLoading,
     isError: feedbacksAreFailed,
     isSuccess: feedbacksAreLoaded,
   } = useGetFeedbacks({
@@ -34,6 +36,9 @@ export const ListPage = () => {
       : { category }
   } as TQueryParams);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [feedbacks]);
 
   const handleCategorySelect = (category: TCategory) => {
     setCategory(category);
@@ -90,10 +95,19 @@ export const ListPage = () => {
             count: feedbacks?.length ?? 0,
           }}
         />
-        {feedbacksAreFailed && <p>Failed to load</p>}
-        {feedbacksAreLoaded && (
-          <Feedbacks feedbacks={feedbacks} />
-        )}
+        <div className='list-page__feedbacks'>
+          {feedbacksAreLoading && (
+            <div className='list-page__spinner'>
+              <InfinitySpin
+                color="hsl(230 76% 59% / 100%)"
+                width='200'
+              />
+            </div>)}
+          {feedbacksAreFailed && <p>Failed to load</p>}
+          {feedbacksAreLoaded && (
+            <Feedbacks feedbacks={feedbacks} />
+          )}
+        </div>
       </main>
     </div>
   );

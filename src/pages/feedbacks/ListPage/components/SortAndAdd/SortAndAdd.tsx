@@ -46,8 +46,7 @@ export const SortAndAdd: React.FC<Props> = ({
           <div className="sort-and-add__stats flex-center-between">
             <BulbIcon />
             <h3 className="typograph-heading-3 fw-bold">
-              {stats.isReady && <React.Fragment>{stats.count} Suggestions</React.Fragment>
-              }
+              {stats.isReady && stats.count} Suggestions
             </h3>
           </div>
         )}
