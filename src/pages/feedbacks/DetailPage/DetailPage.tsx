@@ -1,5 +1,4 @@
 import React from 'react';
-import { InfinitySpin } from 'react-loader-spinner';
 import { Link, useParams } from 'react-router-dom';
 
 import AddComment from './components/AddComment';
@@ -12,6 +11,7 @@ import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-em
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Goback from '@/components/Goback';
+import Spinner from '@/components/Spinner';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
 import YouAreLost from '@/components/YouAreLost';
@@ -32,16 +32,13 @@ export const DetailPage = () => {
   const isSmallMobile = useIsSmallMobile();
   const { user } = useAuthContext();
 
-  const {
-    data: feedback,
-    isFetched: feedbackIsFeched,
-  } = useGetFeedback(feedbackId);
+  const { data: feedback, isFetched: feedbackIsFeched } =
+    useGetFeedback(feedbackId);
   const {
     data: comments = [],
     isLoading: commentsAreLoading,
     isSuccess: commentsAreLoaded,
   } = useGetFeedbackComments(feedback?.id ?? '');
-
 
   if (feedbackIsFeched && !feedback) {
     return (
@@ -53,7 +50,7 @@ export const DetailPage = () => {
             <ToHome />
           </div>
         </header>
-        <Card title='You are lost'>
+        <Card title="You are lost">
           <YouAreLost />
         </Card>
       </div>
@@ -64,7 +61,8 @@ export const DetailPage = () => {
     ? `${comments.length} Comments`
     : 'Comments';
 
-  const canEdit = user && (user?.id === feedback?.author?.id) || isAdminUser(user);
+  const canEdit =
+    (user && user?.id === feedback?.author?.id) || isAdminUser(user);
   const isEditable = !isPublishedFeedback(feedback) && canEdit;
 
   return (
@@ -88,21 +86,13 @@ export const DetailPage = () => {
         <Metadata feedbackId={feedbackId} />
       </Card>
       <Card title={commentCardTitle}>
-        {commentsAreLoading && (
-          <div className='detail-page__comments-spinner '>
-            <InfinitySpin
-              color="hsl(230 76% 59% / 100%)"
-              width='200'
-            />
-          </div>)}
+        {commentsAreLoading && <Spinner center />}
         {commentsAreLoaded && (
           <React.Fragment>
             {comments.length
               ? (
-                <CommentList
-                  comments={comments}
-                  replyToComment={undefined}
-                />
+                <CommentList comments={comments}
+                  replyToComment={undefined} />
               )
               : (
                 <div className="detail-page__no-comments">

@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { useEffect, useState } from 'react';
-import { InfinitySpin } from 'react-loader-spinner';
 
 import Brand from './components/Brand';
 import Categories from './components/Categories';
@@ -8,6 +7,8 @@ import Feedbacks from './components/Feedbacks';
 import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
+
+import Spinner from '@/components/Spinner';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
@@ -30,9 +31,9 @@ export const ListPage = () => {
     isSuccess: feedbacksAreLoaded,
   } = useGetFeedbacks({
     sort: { [sort.field]: sort.order },
-    ...(category === 'All')
+    ...(category === 'All'
       ? {}
-      : { category }
+      : { category }),
   } as TQueryParams);
 
   useEffect(() => {
@@ -90,18 +91,10 @@ export const ListPage = () => {
             count: feedbacks?.length ?? 0,
           }}
         />
-        <div className='list-page__feedbacks'>
-          {feedbacksAreLoading && (
-            <div className='list-page__spinner'>
-              <InfinitySpin
-                color="hsl(230 76% 59% / 100%)"
-                width='200'
-              />
-            </div>)}
+        <div className="list-page__feedbacks">
+          {feedbacksAreLoading && <Spinner className="list-page__spinner" />}
           {feedbacksAreFailed && <p>Failed to load</p>}
-          {feedbacksAreLoaded && (
-            <Feedbacks feedbacks={feedbacks} />
-          )}
+          {feedbacksAreLoaded && <Feedbacks feedbacks={feedbacks} />}
         </div>
       </main>
     </div>

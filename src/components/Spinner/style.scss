@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &--center {
+    justify-content: center;
+  }
+}
