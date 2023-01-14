@@ -31,7 +31,7 @@ export const KanbanMobileLayout: React.FC = () => {
           <Tab
             className={classNames(
               'kanban__tab',
-              `kanban__tab--${mapStatusToDotVariant(key)}`
+              `kanban__tab--${mapStatusToDotVariant(key)}`,
             )}
             key={key}
           >

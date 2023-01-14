@@ -15,6 +15,7 @@ $tablist-border-height: 1px;
   }
 
   &__tab {
+    @include typography-heading(heading-4);
     border-bottom: 4px solid transparent;
     color: map.get($colors, "dark2");
     height: $tab-button-height;
@@ -47,29 +48,3 @@ $tablist-border-height: 1px;
   }
 }
 
-/************** Tablet and beyound version layout****************************/
-
-.kanban {
-  @include md {
-    margin-top: 8px;
-    &__list {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    &__list-item {
-      width: calc(33.3% - 8px);
-      flex-shrink: 0;
-    }
-
-    @include lg {
-      &__list {
-        gap: 16px;
-      }
-      &__list-item {
-        width: calc(33.3% - 16px);
-      }
-    }
-  }
-}
