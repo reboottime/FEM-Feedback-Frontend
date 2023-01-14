@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { EMPTY_MESSAGE } from './constants';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { useAuthContext } from '@/components/AppProviders';
@@ -99,7 +100,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                   hmmm
                 </h3>
                 <p className='typography-body-1'>
-                  Currently, the development team is taking a break.
+                  {EMPTY_MESSAGE[status]}
                 </p>
               </div>
             </li>

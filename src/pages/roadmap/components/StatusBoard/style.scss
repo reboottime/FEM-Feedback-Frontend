@@ -47,11 +47,12 @@ $line-variants: (
     &--empty {
       .title {
         text-align: center;
+        margin: 24px auto 12px auto;
       }
       .img {
         display: block;
         max-width: 80%;
-        margin: 12px auto;
+        margin: 0 auto;
       }
     }
   }
