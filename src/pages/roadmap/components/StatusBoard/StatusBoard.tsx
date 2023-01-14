@@ -37,7 +37,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
           {stats.description}
         </p>
       </div>
-      <ul>
+      <ul className='status-board__items'>
         {feedbacks.length
           ? (
             <React.Fragment>

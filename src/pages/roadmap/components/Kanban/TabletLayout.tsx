@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { groupBy } from 'lodash';
 import React from 'react';
 
@@ -25,19 +26,22 @@ export const KanbanTabletLayout: React.FC = () => {
 
   if (feedbacksAreLoaded) {
     return (
-      <ul className='kanban__list'>
-        {BOARD_ORDER.map((key) => (
-          <li
-            className="kanban__list-item"
-            key={key}
-          >
-            <StatusBoard
-              feedbacks={groupedFeedbacks[key] ?? []}
-              status={key}
-            />
-          </li>
-        ))}
-      </ul>
+      <div className={classNames('kanban', {
+      })}>
+        <ul className='kanban__list'>
+          {BOARD_ORDER.map((key) => (
+            <li
+              className="kanban__list-item"
+              key={key}
+            >
+              <StatusBoard
+                feedbacks={groupedFeedbacks[key] ?? []}
+                status={key}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 
