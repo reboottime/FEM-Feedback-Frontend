@@ -8,7 +8,7 @@ import Spinner from '@/components/Spinner';
 
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
-import './style.scss';
+import './tablet.style.scss';
 
 export const KanbanTabletLayout: React.FC = () => {
   const {
@@ -18,7 +18,6 @@ export const KanbanTabletLayout: React.FC = () => {
   } = useGetFeedbacks();
 
   const groupedFeedbacks = groupBy(feedbacks, (item) => item.status);
-
 
   if (feedbacksAreLoading) {
     return <Spinner center />;

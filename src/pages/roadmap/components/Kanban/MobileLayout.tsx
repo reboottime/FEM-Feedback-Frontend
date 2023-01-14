@@ -13,7 +13,7 @@ import StatusBoard from '@/pages/roadmap/components/StatusBoard';
 import { mapStatusToDotVariant } from '@/utils/feedback';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
-import './style.scss';
+import './mobile.style.scss';
 
 export const KanbanMobileLayout: React.FC = () => {
   const {
