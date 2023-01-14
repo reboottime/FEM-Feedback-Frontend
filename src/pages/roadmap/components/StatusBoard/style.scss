@@ -7,6 +7,8 @@ $line-variants: (
   purple: map.get($colors, "purple1"),
 );
 
+$card-height: 272px;
+
 .status-board {
   /************ Mobile version layout: kanban stats informaiton****************/
   &__stats {
@@ -42,16 +44,17 @@ $line-variants: (
   }
   &__item-content {
     padding: 16px 24px;
-    height: 272px;
+    height: $card-height;
 
     &--empty {
       .title {
         text-align: center;
+        margin: 24px auto 12px auto;
       }
       .img {
         display: block;
         max-width: 80%;
-        margin: 12px auto;
+        margin: 0 auto;
       }
     }
   }
@@ -82,6 +85,12 @@ $line-variants: (
   /************************** Tablet & desktop version layout  **********************/
 
   @include md {
+    height: 100%;
+    overflow: hidden;
+    &__items {
+      height: calc(100% - $card-height/3);
+      overflow: auto;
+    }
     &__item-content {
       padding: 20px;
     }

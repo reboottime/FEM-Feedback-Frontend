@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "@/sass/abstract" as *;
+
+.kanban {
+  &--tablet {
+    margin-top: 8px;
+  }
+  @include md {
+    &__list {
+      display: flex;
+      height: calc(100% - map.get($content-margin, 'tablet'));
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    &__list-item {
+      width: calc(33.3% - 8px);
+      flex-shrink: 0;
+      height: 100%;
+    }
+
+    @include lg {
+      &__list {
+        gap: 16px;
+      }
+      &__list-item {
+        width: calc(33.3% - 16px);
+      }
+    }
+  }
+}

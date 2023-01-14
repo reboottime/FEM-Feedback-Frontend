@@ -6,6 +6,11 @@
   align-items: center;
   justify-content: flex-start;
 
+  &--cover {
+    height: 100%;
+    width: 100%;
+  }
+
   &--center {
     justify-content: center;
   }

@@ -1,37 +1,19 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import Kanban from './components/Kanban';
+import { KanbanMobileLayout, KanbanTabletLayout } from './components/Kanban';
 
 import AddButton from '@/components/AddButton';
 import { useAuthContext } from '@/components/AppProviders';
 import Goback from '@/components/Goback';
-import Spinner from '@/components/Spinner';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
-import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
 
 import './style.scss';
 
 export const RoadmapPage = () => {
   const { user } = useAuthContext();
-
-  const {
-    data: feedbacks,
-    isLoading: feedbacksAreLoading,
-    isSuccess: feedbacksAreLoaded
-  } = useGetFeedbacks();
-
-  const roadmapFeedbacks = useMemo(() => {
-    if (!feedbacks) {
-      return [];
-    }
-
-    return feedbacks.filter(
-      (item) => item.status !== 'new'
-    );
-  }, [feedbacks]);
 
   const isMobile = useIsMobile();
 
@@ -41,29 +23,22 @@ export const RoadmapPage = () => {
 
   return (
     <div className="roadmap-page">
-      <header className="roadmap-page__header">
-        <div className="roadmap-page__header-content flex-center-between">
-          <div>
-            <Goback variant="white" />
-            <h1 className="fw-bold roadmap-page__title">Roadmap</h1>
-          </div>
-          <div className="roadmap-page__actions">
-            <AddButton>{addButtonText}</AddButton>
-            {user && <UserIcon />}
-            <ToHome />
-          </div>
+      <header className="roadmap-page__header flex-center-between">
+        <div>
+          <Goback variant="white" />
+          <h1 className="fw-bold roadmap-page__title">Roadmap</h1>
+        </div>
+        <div className="roadmap-page__actions">
+          <AddButton small={isMobile}>{addButtonText}</AddButton>
+          {user && <UserIcon />}
+          <ToHome />
         </div>
       </header>
-      <div className="roadmap-page__main">
-        {feedbacksAreLoading && (
-          <Spinner
-            center
-            className='roadmap-page__spinner'
-          />)}
-        {feedbacksAreLoaded && (
-          <Kanban feedbacks={roadmapFeedbacks} />
-        )}
-      </div>
+      <main className="roadmap-page__main">
+        {isMobile
+          ? <KanbanMobileLayout />
+          : <KanbanTabletLayout />}
+      </main>
     </div>
   );
 };

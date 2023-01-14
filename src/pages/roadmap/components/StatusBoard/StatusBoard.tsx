@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { EMPTY_MESSAGE } from './constants';
 
 import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-empty.svg';
 import { useAuthContext } from '@/components/AppProviders';
@@ -22,6 +23,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
     ...ROADMAP_STATUS_DESCRIPTION[status],
     count: feedbacks.length,
   };
+
   const themeVariant = mapStatusToDotVariant(status);
 
   return (
@@ -35,7 +37,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
           {stats.description}
         </p>
       </div>
-      <ul>
+      <ul className='status-board__items'>
         {feedbacks.length
           ? (
             <React.Fragment>
@@ -98,7 +100,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
                   hmmm
                 </h3>
                 <p className='typography-body-1'>
-                  Currently, the development team is taking a break.
+                  {EMPTY_MESSAGE[status]}
                 </p>
               </div>
             </li>
