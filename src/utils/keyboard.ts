@@ -14,14 +14,14 @@ export const handleArrowKeydown = (handler: React.KeyboardEventHandler) => {
     if (e.key === KEYBOARD_KEYS.arrowDown) {
       e.preventDefault();
 
-      handler(e);
+      handler(e as never);
     }
   };
 };
 export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
   return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (SELECT_KEYS.includes(e.key)) {
-      handler(e);
+      handler(e as never);
     }
   };
 };
@@ -29,7 +29,7 @@ export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => 
 export const handleEscapeKeydown = (handler: React.KeyboardEventHandler) => {
   return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (e.key === KEYBOARD_KEYS.escape) {
-      handler(e);
+      handler(e as never);
     }
   };
 };
@@ -37,7 +37,7 @@ export const handleEscapeKeydown = (handler: React.KeyboardEventHandler) => {
 export const handleTabKeydown = (handler: React.KeyboardEventHandler) => {
   return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (e.key === KEYBOARD_KEYS.tab) {
-      handler(e);
+      handler(e as never);
     }
   };
 };
