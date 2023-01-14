@@ -23,17 +23,15 @@ export const RoadmapPage = () => {
 
   return (
     <div className="roadmap-page">
-      <header className="roadmap-page__header">
-        <div className="roadmap-page__header-content flex-center-between">
-          <div>
-            <Goback variant="white" />
-            <h1 className="fw-bold roadmap-page__title">Roadmap</h1>
-          </div>
-          <div className="roadmap-page__actions">
-            <AddButton>{addButtonText}</AddButton>
-            {user && <UserIcon />}
-            <ToHome />
-          </div>
+      <header className="roadmap-page__header flex-center-between">
+        <div>
+          <Goback variant="white" />
+          <h1 className="fw-bold roadmap-page__title">Roadmap</h1>
+        </div>
+        <div className="roadmap-page__actions">
+          <AddButton small={isMobile}>{addButtonText}</AddButton>
+          {user && <UserIcon />}
+          <ToHome />
         </div>
       </header>
       <main className="roadmap-page__main">

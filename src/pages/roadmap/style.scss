@@ -1,6 +1,8 @@
 @use "sass:map";
 @use "@/sass/abstract" as *;
 
+$header-mobile-height: 72px;
+
 .roadmap-page {
   display: flex;
   flex-direction: column;
@@ -9,10 +11,8 @@
 
   &__header {
     background-color: map.get($colors, "dark1");
-    padding: map.get($content-margin, "mobile");
-  }
-
-  &__header-content {
+    padding: 0 map.get($content-margin, "mobile");
+    height: $header-mobile-height;
     background-color: map.get($colors, "dark1");
   }
 
