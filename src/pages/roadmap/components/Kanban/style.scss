@@ -1,19 +1,23 @@
 @use "sass:map";
 @use "@/sass/abstract" as *;
 
+$tab-button-height: 59px;
+$tablist-border-height: 1px;
+
 .kanban {
-  /**************Mobile version layout****************************/
+  height: 100%;
+
   &__tablist {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid
+    border-bottom: $tablist-border-height solid
       rgba($color: map.get($colors, "dark2"), $alpha: 0.25);
   }
 
   &__tab {
     border-bottom: 4px solid transparent;
     color: map.get($colors, "dark2");
-    height: 60px;
+    height: $tab-button-height;
     opacity: 0.4;
     text-transform: capitalize;
     width: 33.33%;
@@ -35,6 +39,11 @@
 
   &__tabpanel {
     margin: 0 24px;
+  }
+
+  &__panels {
+    height: calc(100% - ($tab-button-height + $tablist-border-height));
+    overflow: auto;
   }
 }
 

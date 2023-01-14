@@ -22,6 +22,7 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
     ...ROADMAP_STATUS_DESCRIPTION[status],
     count: feedbacks.length,
   };
+
   const themeVariant = mapStatusToDotVariant(status);
 
   return (

@@ -23,7 +23,7 @@ export const KanbanMobileLayout: React.FC = () => {
   const groupedFeedbacks = groupBy(feedbacks, (item) => item.status);
 
   return (
-    <Tabs>
+    <Tabs className='kanban'>
       <TabList className="kanban__tablist">
         {BOARD_ORDER.map((key) => (
           <Tab
@@ -37,7 +37,7 @@ export const KanbanMobileLayout: React.FC = () => {
           </Tab>
         ))}
       </TabList>
-      <TabPanels>
+      <TabPanels className='kanban__panels'>
         {feedbacksAreLoading
           ? <Spinner />
           : <React.Fragment>

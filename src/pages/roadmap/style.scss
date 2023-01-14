@@ -7,13 +7,14 @@ $header-mobile-height: 72px;
   display: flex;
   flex-direction: column;
   max-width: 1110px;
+  height: 100vh;
   margin: 0 auto;
 
   &__header {
     background-color: map.get($colors, "dark1");
-    padding: 0 map.get($content-margin, "mobile");
+    flex-shrink: 0;
     height: $header-mobile-height;
-    background-color: map.get($colors, "dark1");
+    padding: 0 map.get($content-margin, "mobile");
   }
 
   &__title {
@@ -31,7 +32,7 @@ $header-mobile-height: 72px;
   &__main {
     position: relative;
     margin-bottom: 5vw;
-    min-height: 50vh;
+    height: calc(100vh - $header-mobile-height);
   }
 
   &__spinner {
