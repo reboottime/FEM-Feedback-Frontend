@@ -18,7 +18,7 @@ import { ReactComponent as ArrowUpIcon } from '@/assets/shared/icon-arrow-up.svg
 
 import Dropdown, { IOption } from '@/components/Dropdown';
 
-import { handleArrowKeydown, handleEscapeKeydown } from '@/utils/keyboard-handlers';
+import { handleArrowKeydown, handleEscapeKeydown } from '@/utils/keyboard';
 
 import './select.style.scss';
 

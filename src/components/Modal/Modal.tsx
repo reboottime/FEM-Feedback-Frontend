@@ -7,7 +7,7 @@ import { ReactComponent as CloseIcon } from '@/assets/shared/mobile/icon-close.s
 
 import Overlay from '@/components/Overlay';
 
-import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
+import { handleEscapeKeydown } from '@/utils/keyboard';
 
 import './style.scss';
 

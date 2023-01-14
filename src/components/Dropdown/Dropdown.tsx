@@ -6,7 +6,7 @@ import { ReactComponent as CheckIcon } from '@/assets/shared/icon-check.svg';
 import {
   handleEnterSpaceKeydown,
   handleVerticalNavigation,
-} from '@/utils/keyboard-handlers';
+} from '@/utils/keyboard';
 
 import './style.scss';
 
