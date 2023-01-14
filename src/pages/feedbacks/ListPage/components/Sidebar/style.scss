@@ -38,6 +38,7 @@ $header-height: 72px;
     padding: 0 map.get($content-margin, "mobile");
     position: fixed;
     width: 100vw;
+    z-index: map.get($z-index, 'sticky');
     small {
       opacity: 0.75;
     }
