@@ -21,7 +21,11 @@ export const KanbanTabletLayout: React.FC = () => {
   const groupedFeedbacks = groupBy(feedbacks, (item) => item.status);
 
   if (feedbacksAreLoading) {
-    return <Spinner center />;
+    return (
+      <Spinner
+        center
+        cover
+      />);
   }
 
   if (feedbacksAreLoaded) {
