@@ -18,12 +18,13 @@ export const KanbanMobileLayout: React.FC = () => {
   const {
     data: feedbacks,
     isLoading: feedbacksAreLoading,
+    isSuccess: feedbacksAreLoaded,
   } = useGetFeedbacks();
 
   const groupedFeedbacks = groupBy(feedbacks, (item) => item.status);
 
   return (
-    <Tabs className='kanban'>
+    <Tabs className="kanban">
       <TabList className="kanban__tablist">
         {BOARD_ORDER.map((key) => (
           <Tab
@@ -37,23 +38,23 @@ export const KanbanMobileLayout: React.FC = () => {
           </Tab>
         ))}
       </TabList>
-      <TabPanels className='kanban__panels'>
-        {feedbacksAreLoading
-          ? <Spinner />
-          : <React.Fragment>
-            {BOARD_ORDER.map((key) => (
-              <TabPanel className="kanban__tabpanel"
-                key={key}>
-                {feedbacksAreLoading
-                  ? (<Spinner center />)
-                  : (
-                    <StatusBoard
-                      feedbacks={groupedFeedbacks[key] ?? []}
-                      status={key}
-                    />
-                  )}
-              </TabPanel>
-            ))}</React.Fragment>}
+      <TabPanels className="kanban__panels">
+        {feedbacksAreLoading && (
+          <Spinner
+            center
+            cover
+          />
+        )}
+        {feedbacksAreLoaded && BOARD_ORDER.map((key) => (
+          <TabPanel
+            className="kanban__tabpanel"
+            key={key}>
+            <StatusBoard
+              feedbacks={groupedFeedbacks[key] ?? []}
+              status={key}
+            />
+          </TabPanel>
+        ))}
       </TabPanels>
     </Tabs>
   );
