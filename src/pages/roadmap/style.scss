@@ -2,6 +2,7 @@
 @use "@/sass/abstract" as *;
 
 $header-mobile-height: 72px;
+$header-tablet-height: 92px;
 
 .roadmap-page {
   display: flex;
@@ -47,15 +48,18 @@ $header-mobile-height: 72px;
       max-width: map.get($grid-breakpoints, "lg");
       margin: 0 auto;
     }
+
     &__header {
-      padding: map.get($content-margin, "mobile")
-        map.get($content-margin, "tablet");
+      height: $header-tablet-height;
     }
+
     &__title {
       @include round-border(large);
       @include typography-heading(heading-1);
     }
+
     &__main {
+      height: calc(100vh - $header-tablet-height);
       padding: 0 map.get($content-margin, "mobile");
     }
   }
