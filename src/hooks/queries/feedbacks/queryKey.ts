@@ -7,15 +7,12 @@ export const getFeedbcksQueryKey = (query?: Record<string, string>) => {
 };
 
 export const getFeedbackQueryKey = (id: string) => {
-  const prefix = getFeedbcksQueryKey();
-
-  return [prefix, id];
+  return ['feedback', id, 'detail'];
 };
 
 export const getFeedbackCommentsQueryKey = (id: string) => {
-  const prefix = getFeedbackQueryKey(id);
 
-  return [...prefix, 'comments'];
+  return ['feedback', id, 'comments'];
 };
 
 export const getFeedbackStatsQueryKey = () => {
