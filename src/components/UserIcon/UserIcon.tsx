@@ -9,8 +9,9 @@ import RequireAuth from '@/components/RequireAuth';
 
 import { useSignOutUser } from '@/hooks/queries/users';
 
+import { handleEscapeKeydown } from '@/utils/keyboard';
+
 import './style.scss';
-import { handleEscapeKeydown } from '@/utils/keyboard-handlers';
 
 export const UserIcon = () => {
   const signOutMutation = useSignOutUser();

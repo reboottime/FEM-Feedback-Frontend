@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React from 'react';
 
-import { handleEnterSpaceKeydown } from '@/utils/keyboard-handlers';
+import { handleEnterSpaceKeydown } from '@/utils/keyboard';
 
 import './style.scss';
 
