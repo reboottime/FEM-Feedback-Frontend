@@ -5,9 +5,10 @@ import { groupBy } from 'lodash';
 import React from 'react';
 
 import { BOARD_ORDER } from './constants';
-import StatusBoard from '../StatusBoard';
 
 import Spinner from '@/components/Spinner';
+
+import StatusBoard from '@/pages/roadmap/components/StatusBoard';
 
 import { mapStatusToDotVariant } from '@/utils/feedback';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
