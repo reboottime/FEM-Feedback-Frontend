@@ -33,22 +33,22 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
           </button>
         </RequireAuth>
       </div>
-      <p className="comment__content">
+      <div className="comment__content">
         {comment.replyToUser && (
           <span className="comment__reply-to fw-semi-bold">
             @{comment.replyToUser.username}
           </span>
         )}
         {comment.detail}
-      </p>
-      {showReplyInput && (
-        <ReplyForm
-          onAdded={handleReplyButtonClick}
-          toComment={replyToComment || comment.id}
-          toFeedback={comment.feedbackId}
-          toUser={comment.author.id}
-        />
-      )}
+        {showReplyInput && (
+          <ReplyForm
+            onAdded={handleReplyButtonClick}
+            toComment={replyToComment || comment.id}
+            toFeedback={comment.feedbackId}
+            toUser={comment.author.id}
+          />
+        )}
+      </div>
       {comments?.length && (
         <CommentList comments={comments}
           replyToComment={replyToComment} />
