@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldValues } from 'react-hook-form';
 
+import DocumentTitle from '@/components/DocumentTitle';
 import Button from '@/components/Button';
 import FormPage, {
   Cancell,
@@ -19,6 +20,7 @@ export const AddPage = () => {
 
   return (
     <FormPage type="add">
+      <DocumentTitle title='Add Feedback' />
       <FeedbackForm
         onSubmit={handleSubmit}
         type="add"

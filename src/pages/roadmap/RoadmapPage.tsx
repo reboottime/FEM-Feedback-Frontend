@@ -4,6 +4,7 @@ import { KanbanMobileLayout, KanbanTabletLayout } from './components/Kanban';
 
 import AddButton from '@/components/AddButton';
 import { useAuthContext } from '@/components/AppProviders';
+import DocumentTitle from '@/components/DocumentTitle';
 import Goback from '@/components/Goback';
 import ToHome from '@/components/ToHome';
 import UserIcon from '@/components/UserIcon';
@@ -23,6 +24,7 @@ export const RoadmapPage = () => {
 
   return (
     <div className="roadmap-page">
+      <DocumentTitle title='Roadmap' />
       <header className="roadmap-page__header flex-center-between">
         <div>
           <Goback variant="white" />

@@ -6,6 +6,7 @@ import { PAGE_INFO_MAP } from './constants';
 import AuthForm, { AuthFormProps } from '@/components/AuthForm';
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
+import DocumentTitle from '@/components/DocumentTitle';
 
 import './style.scss';
 
@@ -24,6 +25,9 @@ export const AuthPage: React.FC<Omit<AuthFormProps, 'children'>> = ({ onSubmit, 
 
   return (
     <div className="auth-page">
+      <DocumentTitle title={(type === 'signIn')
+        ? 'Sign In'
+        : 'Sign Up'} />
       <div className="auth-page__content border-rounded--large">
         <header className="auth-page__header">
           <h1 className="typography-heading-3">{title}

@@ -10,6 +10,7 @@ import { ReactComponent as EmptyImg } from '@/assets/suggestions/illustration-em
 
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
+import DocumentTitle from '@/components/DocumentTitle';
 import Goback from '@/components/Goback';
 import Spinner from '@/components/Spinner';
 import ToHome from '@/components/ToHome';
@@ -43,6 +44,7 @@ export const DetailPage = () => {
   if (feedbackIsFeched && !feedback) {
     return (
       <div className="detail-page">
+        <DocumentTitle title='You are lost' />
         <header className="detail-page__header">
           <Goback />
           <div className="detail-page__header-nav">
@@ -67,6 +69,9 @@ export const DetailPage = () => {
 
   return (
     <div className="detail-page">
+      <DocumentTitle title={feedbackIsFeched
+        ? `Feedback - ${feedback?.title ?? ''}`
+        : 'Loading'} />
       <header className="detail-page__header">
         <Goback />
         <div className="detail-page__header-nav">
