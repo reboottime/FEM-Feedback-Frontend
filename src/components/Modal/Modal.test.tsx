@@ -40,7 +40,10 @@ describe('Modal', () => {
     expect(onClose).toBeCalledTimes(1);
   });
 
-  // "Exceeded timeout of 5000 ms for a test.
-  // @todo: how to test it in new version of react testing lib
-  it.todo('expect to call onClose if user presses ESC key');
+  it('expect to call onClose if user presses ESC key', async () => {
+    // https://codesandbox.io/s/v14-userevent-keyboard-escape-14jq5t?file=/src/App.test.js:819-844
+    await user.keyboard('{Escape}');
+
+    expect(onClose).toBeCalled();
+  });
 });
