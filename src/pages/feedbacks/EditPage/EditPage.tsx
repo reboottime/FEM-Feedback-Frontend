@@ -4,6 +4,7 @@ import { FieldValues } from 'react-hook-form';
 
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
+import DocumentTitle from '@/components/DocumentTitle';
 import YouAreLost from '@/components/YouAreLost';
 
 import {
@@ -50,6 +51,7 @@ export const EditPage = () => {
       ? (
         <FormPage type="edit">
           {isLoading && <p>loading...</p>}
+          <DocumentTitle title={`Edit Feedback - ${feedback.title}`} />
           <FeedbackForm
             defaultValues={feedback}
             disabled={!canEdit}
@@ -65,6 +67,7 @@ export const EditPage = () => {
       )
       : (
         <FormPage type="edit">
+          <DocumentTitle title={'You are lost'} />
           <YouAreLost />
         </FormPage>
       );

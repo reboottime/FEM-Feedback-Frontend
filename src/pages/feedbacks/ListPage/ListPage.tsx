@@ -9,6 +9,7 @@ import Roadmap from './components/Roadmap';
 import Sidebar from './components/Sidebar';
 import SortAndAdd from './components/SortAndAdd';
 
+import DocumentTitle from '@/components/DocumentTitle';
 import Spinner from '@/components/Spinner';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
@@ -51,6 +52,7 @@ export const ListPage = () => {
 
   return (
     <div className="list-page">
+      <DocumentTitle title='Feedbacks' />
       {isMobile
         ? (
           <Sidebar>
