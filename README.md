@@ -16,7 +16,8 @@
 
 - copy `.env.example
 ` as `.env`
-- update [YOUR VITE_API_BASE_URL] as the API service URL
+- update [YOUR VITE_API_BASE_URL] as the API service URL https://rebootkate.com/
+
 
 ```sh
 VITE_API_BASE_URL=[YOUR VITE_API_BASE_URL]
