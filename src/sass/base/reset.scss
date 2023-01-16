@@ -37,6 +37,14 @@ button {
   }
 }
 
+a:focus-visible,
+button:focus-visible,
+[role=button]:focus-visible {
+  outline-width: 2px;
+  outline-style: dotted;
+  outline-color: map.get($colors, 'blue1');
+}
+
 ul,
 li {
   list-style: none;
