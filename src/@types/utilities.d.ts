@@ -9,6 +9,8 @@ declare type TCategory = Entities.Feedback.TCategory | 'All';
 
 declare type TComment = Entities.TComment;
 
+declare type TRoadmapStatus = Entities.Feedback.TRoadmapStatus;
+
 declare interface TUserPass {
   password: string;
   username: string;
