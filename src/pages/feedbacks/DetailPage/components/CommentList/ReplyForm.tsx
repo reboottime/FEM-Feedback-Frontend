@@ -45,6 +45,7 @@ const CommentReplyForm: React.FC<Props> = ({
       <form className="reply-form"
         onSubmit={methods.handleSubmit(onSubmit)}>
         <Textarea
+          className='reply-form__textarea'
           name="detail"
           placeholder="Type your comment here"
           required={{

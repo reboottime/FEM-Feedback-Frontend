@@ -10,6 +10,7 @@ import { FormFieldProps } from './typings';
 import ErrorDesc from './ErrorDesc';
 
 export const Textarea: React.FC<TextareaProps> = ({
+  className,
   description,
   disabled,
   fullWidth = true,
@@ -40,7 +41,7 @@ export const Textarea: React.FC<TextareaProps> = ({
 
   return (
     <div
-      className={classNames('form-field', {
+      className={classNames('form-field', className, {
         'form-field--full-width': fullWidth,
       })}
     >
