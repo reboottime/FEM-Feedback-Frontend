@@ -27,7 +27,7 @@ class UserApi extends Api {
 }
 
 const userApi = new UserApi({
-  timeout: 1000,
+  timeout: 2000,
   baseURL: import.meta.env.VITE_API_BASE_URL + '/auth',
 });
 

@@ -1,7 +1,7 @@
 // For demo purpose, you know
 export const ADMIN_PASS = {
-  username: 'powerful denis',
-  password: 'Wl4OP6Z3wSimfj8',
+  username: 'Keeley_Davis',
+  password: 'snlI5WmpuLsuVJ5'
 };
 
 export const USER_PASS = {

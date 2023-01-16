@@ -65,7 +65,7 @@ class FeedbacksApi extends Api {
 }
 
 const feedbacksApi = new FeedbacksApi({
-  timeout: 1000,
+  timeout: 2000,
   baseURL: import.meta.env.VITE_API_BASE_URL + '/feedbacks',
 });
 
