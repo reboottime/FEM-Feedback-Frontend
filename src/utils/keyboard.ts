@@ -18,6 +18,7 @@ export const handleArrowKeydown = (handler: React.KeyboardEventHandler) => {
     }
   };
 };
+
 export const handleEnterSpaceKeydown = (handler: React.KeyboardEventHandler) => {
   return function (e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
     if (SELECT_KEYS.includes(e.key)) {

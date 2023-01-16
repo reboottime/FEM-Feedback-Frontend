@@ -1,3 +1,0 @@
-# README
-
-globally used utils
