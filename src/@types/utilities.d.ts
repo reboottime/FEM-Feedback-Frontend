@@ -11,6 +11,8 @@ declare type TComment = Entities.TComment;
 
 declare type TRoadmapStatus = Entities.Feedback.TRoadmapStatus;
 
+declare type TUser = Entities.TUser;
+
 declare interface TUserPass {
   password: string;
   username: string;

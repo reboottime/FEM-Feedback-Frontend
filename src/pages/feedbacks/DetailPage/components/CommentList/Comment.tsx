@@ -60,7 +60,7 @@ const Comment: React.FC<Props> = ({ comments, replyToComment, ...comment }) => {
 export default Comment;
 
 export interface Props extends TComment {
-  comments?: Entities.TComment[];
+  comments?: TComment[];
   replyToComment?: TComment['id'];
   replyToUser?: TComment['author'];
 }

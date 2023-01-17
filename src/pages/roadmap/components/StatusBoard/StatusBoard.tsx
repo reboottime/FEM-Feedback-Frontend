@@ -111,6 +111,6 @@ export const StatusBoard: React.FC<Props> = ({ feedbacks, status }) => {
 };
 
 interface Props {
-  feedbacks: Entities.Feedback.TFeedback[];
-  status: Entities.Feedback.TRoadmapStatus;
+  feedbacks: TFeedback[];
+  status: TRoadmapStatus;
 }

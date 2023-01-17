@@ -48,9 +48,10 @@ export class Api extends Axios {
         return { ...param, headers } as AxiosRequestConfig;
       },
       (error) => {
-        // eslint-disable-next-line no-console
-        console.info(error);
-        // handling error
+        if (import.meta.env.DEV) {
+          // eslint-disable-next-line no-console
+          console.info(error);
+        }
       }
     );
 
@@ -59,8 +60,10 @@ export class Api extends Axios {
         return res.data.data;
       },
       (error) => {
-        // eslint-disable-next-line no-console
-        console.info(error);
+        if (import.meta.env.DEV) {
+          // eslint-disable-next-line no-console
+          console.info(error);
+        }
       }
     );
   }

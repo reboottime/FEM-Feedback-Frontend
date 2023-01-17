@@ -62,7 +62,7 @@ export const Feedback: React.FC<Props> = ({ smallSize, ...feedback }) => {
   );
 };
 
-export interface Props extends Omit<Entities.Feedback.TFeedback, 'auhtor'> {
+export interface Props extends Omit<TFeedback, 'auhtor'> {
   className?: string;
   smallSize?: boolean;
 }

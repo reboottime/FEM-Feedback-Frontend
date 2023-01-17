@@ -38,5 +38,5 @@ export const Feedbacks: React.FC<Props> = ({ feedbacks }) => (
 );
 
 interface Props {
-  feedbacks: Entities.Feedback.TFeedback[];
+  feedbacks: TFeedback[];
 }
