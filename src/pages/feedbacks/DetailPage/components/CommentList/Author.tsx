@@ -28,7 +28,7 @@ const Author: React.FC<Props> = ({ className, ...user }) => (
   </div>
 );
 
-export type TAuthor = Omit<Entities.TComment['author'], 'updatedAt' | 'createdAt'>;
+export type TAuthor = Omit<TComment['author'], 'updatedAt' | 'createdAt'>;
 
 export interface Props extends TAuthor {
   className?: string;

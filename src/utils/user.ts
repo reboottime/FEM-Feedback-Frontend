@@ -1,4 +1,4 @@
-export const isAdminUser = (user: Entities.TUser | null) => {
+export const isAdminUser = (user: TUser | null) => {
   if (user) {
     return user.role === 'admin';
   }

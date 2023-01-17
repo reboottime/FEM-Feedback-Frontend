@@ -33,8 +33,7 @@ export const EditPage = () => {
 
   const { user } = useAuthContext();
 
-  const canEdit =
-    !isPublishedFeedback(feedback) &&
+  const canEdit = !isPublishedFeedback(feedback) &&
     (isAdminUser(user) || feedback?.author.id === user?.id);
 
   const mutation = useUpdateFeedback();
