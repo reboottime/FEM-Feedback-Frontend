@@ -71,7 +71,7 @@ export const DetailPage = () => {
     <div className="detail-page">
       <DocumentTitle title={feedbackIsFeched
         ? `Feedback - ${feedback?.title ?? ''}`
-        : 'Loading'} />
+        : 'Loading...'} />
       <header className="detail-page__header">
         <Goback />
         <div className="detail-page__header-nav">
