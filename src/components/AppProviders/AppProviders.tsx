@@ -1,5 +1,5 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,7 +10,7 @@ import { queryClient } from './queryClient';
 const AppProviders: React.FC<Props> = ({ children }) => (
   <AuthProvider>
     <QueryClientProvider client={queryClient}>
-      <React.Fragment>
+      <Fragment>
         <BrowserRouter>{children}</BrowserRouter>
         <ToastContainer
           autoClose={500}
@@ -18,7 +18,7 @@ const AppProviders: React.FC<Props> = ({ children }) => (
           position="top-right"
           theme="light"
         />
-      </React.Fragment>
+      </Fragment>
     </QueryClientProvider>
   </AuthProvider>
 );
