@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { createContext, useContext, useState, } from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const emptyFunc = () => { };
 
-const AuthContext = React.createContext<AuthContextType>({
+const AuthContext = createContext<AuthContextType>({
   user: null,
   setUser: emptyFunc
 });
