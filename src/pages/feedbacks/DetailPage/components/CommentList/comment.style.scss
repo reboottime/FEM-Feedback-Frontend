@@ -8,7 +8,7 @@
 }
 
 .comment {
-  @include typography-body(body-3);
+  @include typography-body(body-2);
 
   &__header {
     display: flex;
@@ -25,24 +25,19 @@
   }
 
   &__content {
-    @include typography-body(body-3);
-    color: map.get($colors, "dark4");
+    color: map.get($colors, "dark2");
     font-weight: map.get($font-weight, "regular") !important;
     word-break: break-word;
   }
 
   &__reply-to {
-    color: map.get($colors, 'purple1');
+    color: map.get($colors, "purple1");
     margin-right: 4px;
   }
 
   @include md {
     &__reply-button {
       display: inline-block;
-    }
-
-    &__content {
-      @include typography-body(body-2);
     }
   }
 }
