@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AuthProvider from './AuthProvider';
-import { queryClient } from './queryClient';
+import queryClient from './queryClient';
 
 const AppProviders: React.FC<Props> = ({ children }) => (
   <AuthProvider>

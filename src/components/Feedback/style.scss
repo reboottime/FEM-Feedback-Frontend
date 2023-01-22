@@ -2,7 +2,7 @@
 @use "@/sass/abstract" as *;
 
 .feedback {
-  @include typography-body(body-3);
+  @include typography-body(body-2);
   display: flex;
   flex-wrap: wrap;
 
