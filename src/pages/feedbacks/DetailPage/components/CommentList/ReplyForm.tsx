@@ -67,9 +67,9 @@ const CommentReplyForm: React.FC<Props> = ({
 
 interface Props {
   onAdded: () => void;
-  toComment: Entities.TComment['id'];
-  toFeedback: Entities.Feedback.TFeedback['id'];
-  toUser: Entities.TComment['author']['id'];
+  toComment: TComment['id'];
+  toFeedback: TFeedback['id'];
+  toUser: TComment['author']['id'];
 }
 
 export default CommentReplyForm;

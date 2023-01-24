@@ -36,7 +36,7 @@ export const CommentList: React.FC<Props> = ({ comments, replyToComment }) => {
 
 export interface Props {
   comments: TComment[];
-  replyToComment?: Entities.TComment['id'];
+  replyToComment?: TComment['id'];
 }
 
 export default CommentList;

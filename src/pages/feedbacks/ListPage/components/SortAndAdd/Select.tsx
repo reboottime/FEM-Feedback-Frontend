@@ -50,8 +50,6 @@ const Select: React.FC<Props> = ({
   useEffect(() => {
     const handleKeyDown = handleEscapeKeydown(() => {
       setIsExpanded(false);
-
-      triggerRef.current?.blur();
     });
 
     if (isExpanded) {
@@ -88,7 +86,9 @@ const Select: React.FC<Props> = ({
         />
         <Portal node={optionsContainerRef.current}>
           {isExpanded && (
-            <FocusLock returnFocus>
+            <FocusLock
+              noFocusGuards
+              returnFocus>
               <Dropdown
                 className="select__options fw-regular"
                 onSelect={handleOptionClick}

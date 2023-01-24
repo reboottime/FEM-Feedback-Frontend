@@ -81,5 +81,5 @@ export const AddComment: React.FC<Props> = ({ toFeedback }) => {
 };
 
 interface Props {
-  toFeedback: Entities.Feedback.TFeedback['id'];
+  toFeedback: TFeedback['id'];
 }

@@ -65,7 +65,7 @@ export const Roadmap: React.FC<Props> = ({ className }) => {
 
 type TStatsItem = {
   count: number;
-  status: Entities.Feedback.TRoadmapStatus;
+  status: TRoadmapStatus;
 };
 
 interface Props {

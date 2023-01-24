@@ -19,7 +19,6 @@ declare namespace Entities {
   }
 
   // Comment related types
-
   export interface TComment extends TRecord {
     author: Omit<TUser, 'role'>;
     detail: string;
@@ -28,9 +27,8 @@ declare namespace Entities {
     replyToUser?: TComment['author'];
   }
 
+  // Feedback related types
   declare namespace Feedback {
-    // Feedback related types
-
     declare type TCategory = 'UI' | 'UX' | 'Feature' | 'Bug' | 'Enhancement';
 
     declare type TStatus = 'new' | 'planned' | 'in progress' | 'live';
