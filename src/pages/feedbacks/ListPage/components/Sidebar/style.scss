@@ -2,6 +2,7 @@
 @use "@/sass/abstract/" as *;
 
 $header-height: 72px;
+$content-margin: map.get($content-margin, "mobile");
 
 .sidebar {
   height: 100vh;
@@ -12,9 +13,11 @@ $header-height: 72px;
   top: $header-height;
   background-color: map.get($colors, "white2");
   z-index: map.get($z-index, "popover");
+  overflow: auto;
 
   &__content {
-    padding: map.get($content-margin, "mobile");
+    margin-bottom: $header-height;
+    padding: $content-margin $content-margin $header-height $content-margin;
   }
 
   &__item:not(:last-child) {
@@ -35,10 +38,10 @@ $header-height: 72px;
     display: flex;
     height: $header-height;
     justify-content: space-between;
-    padding: 0 map.get($content-margin, "mobile");
+    padding: 0 $content-margin;
     position: fixed;
     width: 100vw;
-    z-index: map.get($z-index, 'sticky');
+    z-index: map.get($z-index, "sticky");
     small {
       opacity: 0.75;
     }
