@@ -20,7 +20,7 @@ export const Dropdown: React.FC<Props> = React.forwardRef(
       onKeyDown={handleVerticalNavigation}
       ref={ref}
       role="listbox"
-      tabIndex={-1}
+      tabIndex={0}
     >
       {options.map((item) => {
         const isSelected = item.value === selectedValue;
