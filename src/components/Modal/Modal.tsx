@@ -15,7 +15,7 @@ export const Modal: React.FC<Props> = ({
   children,
   footer,
   maxHeight,
-  maxWidth = 'auto',
+  maxWidth,
   onClose,
   title,
 }) => {
@@ -35,7 +35,6 @@ export const Modal: React.FC<Props> = ({
   useEffect(() => {
     const handler = handleEscapeKeydown(onCloseRef.current);
 
-    // @todo: resolve never
     document.addEventListener('keydown', handler);
 
     return () => {
@@ -49,35 +48,39 @@ export const Modal: React.FC<Props> = ({
         <div
           className="modal"
           onClick={handleModalClick}
-          role="dialog"
-          style={{ maxWidth }}
-        >
-          <OutsideClickHandler onOutsideClick={onClose}>
-            <div className="modal__content border-rounded--large">
-              <header className="modal__header flex-center-between">
-                <h3 className="modal__title typography-body-1 fw-semi-bold">
-                  {title}
-                </h3>
-                <button
-                  className="modal__close-button"
-                  onClick={handleModalClose}
-                >
-                  <CloseIcon />
-                </button>
-              </header>
+          role="dialog">
+          <div className="modal__dialog"
+          >
+            <OutsideClickHandler onOutsideClick={onClose}>
               <div
-                className="modal__body"
-                {...maxHeight && { style: { maxHeight } }}
+                className="modal__content border-rounded--large"
+                {...maxWidth && { style: { maxWidth } }}
               >
-                {children}
+                <header className="modal__header flex-center-between">
+                  <h3 className="modal__title typography-body-1 fw-semi-bold">
+                    {title}
+                  </h3>
+                  <button
+                    className="modal__close-button"
+                    onClick={handleModalClose}
+                  >
+                    <CloseIcon />
+                  </button>
+                </header>
+                <div
+                  className="modal__body"
+                  {...(maxHeight && { style: { maxHeight } })}
+                >
+                  {children}
+                </div>
+                {footer && <footer className="modal__footer">{footer}</footer>}
               </div>
-              {footer && <footer className="modal__footer">{footer}</footer>}
-            </div>
-          </OutsideClickHandler>
+            </OutsideClickHandler>
+          </div>
         </div>
       </FocusLock>
       <Overlay onClick={onClose} />
-    </Portal >
+    </Portal>
   );
 };
 

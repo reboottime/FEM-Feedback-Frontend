@@ -4,19 +4,31 @@
 $border-color: map.get($colors, "dark4");
 
 .modal {
+  height: 100%;
   left: 0;
-  max-height: 60vh;
-  margin: 0 auto;
   position: fixed;
+  width: 100%;
   right: 0;
-  top: 20vh;
+  top: 0;
   z-index: map.get($z-index, "modal");
+
+  &__dialog {
+    position: relative;
+    height: 100%;
+  }
 
   &__content {
     background-color: map.get($colors, "white1");
     border: 1px solid rgba($color: $border-color, $alpha: 0.4);
-    margin: 0 24px;
+    left: 50%;
+    max-height: 100%;
+    margin: 0 auto;
     padding: map.get($content-margin, "mobile");
+    position: absolute;
+    overflow: auto;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90%, 420px);
   }
 
   &__body {
@@ -57,9 +69,5 @@ $border-color: map.get($colors, "dark4");
     &__footer {
       margin-top: map.get($content-margin, "tablet");
     }
-  }
-
-  @include lg {
-    max-width: map.get($grid-breakpoints, "md");
   }
 }
