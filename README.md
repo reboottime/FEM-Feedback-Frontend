@@ -14,9 +14,12 @@
 
 ## How to run applicaiton locally
 
-- copy `.env.example
-` as `.env`
-- update [YOUR VITE_API_BASE_URL] as the API service URL https://rebootkate.com/
+- copy `.env.example` as `.env`
+- update `.env` file
+  - update [YOUR VITE_API_BASE_URL] as the API service URL https://rebootkate.com/
+  - update [YOUR LOCIZE PROJECT ID] as the locize Project ID
+  - update [YOUR API LOCIZE API KEY] as the locize API KEY
+  
 
 
 ```sh
