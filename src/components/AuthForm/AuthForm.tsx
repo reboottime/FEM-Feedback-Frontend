@@ -1,10 +1,13 @@
 import React from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import Button from '@/components/Button';
 import { Input } from '@/components/Form';
 
 export const AuthForm: React.FC<Props> = ({ onSubmit, children }) => {
+  const { t } = useTranslation('auth.form');
+
   const methods = useForm({
     mode: 'onChange',
     defaultValues: {
@@ -18,22 +21,22 @@ export const AuthForm: React.FC<Props> = ({ onSubmit, children }) => {
       <div className="auth-form">
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Input
-            description="your username"
+            description={t('form.username.description')}
             name="username"
             required={{
               value: true,
-              message: 'User name is required',
+              message: t('form.username.required'),
             }}
-            title="User name"
+            title={t('form.username.title')}
           />
           <Input
-            description="your password"
+            description={t('form.password.description')}
             name="password"
             required={{
               value: true,
-              message: 'Password is required',
+              message: t('form.password.required'),
             }}
-            title="Password"
+            title={t('form.password.title')}
             type="password"
           />
           {children}

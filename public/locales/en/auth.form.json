@@ -1,0 +1,24 @@
+{
+  "signUp": {
+    "title": "Sign Up",
+    "button": "Sign Up",
+    "reminder": "Already have an account, sign in"
+  },
+  "signIn": {
+    "title": "Sign In",
+    "button": "Sign In",
+    "reminder": "Doesn't have an account, sign up"
+  },
+  "form": {
+    "username": {
+      "title": "User name",
+      "description": "Your user name",
+      "required": "User name is required"
+    },
+    "password": {
+      "title": "Password",
+      "description": "Your password",
+      "required": "Password is required"
+    }
+  }
+}
