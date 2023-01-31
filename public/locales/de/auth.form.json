@@ -1,0 +1,24 @@
+{
+  "signUp": {
+    "title": "Anmelden",
+    "button": "Anmelden",
+    "reminder": "Sie haben bereits ein Konto, melden Sie sich an"
+  },
+  "signIn": {
+    "title": "Anmelden",
+    "button": "Anmelden",
+    "reminder": "Hat kein Konto, registrieren Sie sich"
+  },
+  "form": {
+    "username": {
+      "title": "Benutzername",
+      "description": "Ihr Benutzername",
+      "required": "Benutzername ist erforderlich"
+    },
+    "password": {
+      "title": "Passwort",
+      "description": "Ihr Passwort",
+      "required": "Passwort ist erforderlich"
+    }
+  }
+}
