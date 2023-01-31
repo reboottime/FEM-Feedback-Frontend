@@ -1,23 +1,18 @@
 import React, { useRef, useState } from 'react';
-
-import { AUTH_REMINDER_TEXT } from './constants';
+import { useTranslation } from 'react-i18next';
 
 import AuthForm, { AuthFormProps } from '@/components/AuthForm';
 import { useAuthContext } from '@/components/AppProviders';
 import Button from '@/components/Button';
 import Modal from '@/components/Modal';
 
-import {
-  useSignInUser,
-  useSignUpUser,
-} from '@/hooks/queries/users';
+import { useSignInUser, useSignUpUser } from '@/hooks/queries/users';
 
 import './style.scss';
 
-export const RequireAuth: React.FC<Props> = ({
-  actionName,
-  children,
-}) => {
+export const RequireAuth: React.FC<Props> = ({ actionName, children }) => {
+  const { t } = useTranslation('auth.form');
+
   const { user } = useAuthContext();
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
@@ -33,7 +28,7 @@ export const RequireAuth: React.FC<Props> = ({
   const handleSwitchButtonClick: React.MouseEventHandler = (e) => {
     e.preventDefault();
 
-    setAuthType((authType === 'signIn')
+    setAuthType(authType === 'signIn'
       ? 'signUp'
       : 'signIn');
   };
@@ -51,36 +46,30 @@ export const RequireAuth: React.FC<Props> = ({
   }
 
   if (modalIsOpen) {
-    const {
-      modalTitle,
-      reminderText,
-      submitButtonText,
-      switchButtonText
-    } = AUTH_REMINDER_TEXT[authType];
-
     const authModal = (
       <Modal
         key="authModal"
         maxWidth="420px"
         onClose={handleModaCloselRef.current}
-        title={modalTitle}
+        title={t(`${authType}.title`)}
       >
         <div className="require-auth">
           <AuthForm onSubmit={handleSubmit}
             type={authType}>
-            <Button>{submitButtonText}</Button>
+            <Button>{t(`${authType}.button`)}</Button>
           </AuthForm>
           <p className="require-auth__reminder-text">
-            <span>{reminderText}</span>
+            <span>{t(`${authType}.reminder.text`)}, </span>
             <button
               className="require-auth__switch-button"
               onClick={handleSwitchButtonClick}
             >
-              {switchButtonText}
+              {t(`${authType}.reminder.action`)}
             </button>
           </p>
         </div>
-      </Modal>);
+      </Modal>
+    );
 
     return (
       <React.Fragment>
