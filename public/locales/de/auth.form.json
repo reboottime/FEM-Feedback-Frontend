@@ -1,13 +1,23 @@
 {
   "signUp": {
-    "title": "Anmelden",
-    "button": "Anmelden",
-    "reminder": "Sie haben bereits ein Konto, melden Sie sich an"
+    "title": "Anmeldung",
+    "button": "Anmeldung",
+    "reminder": {
+      "text": "Sie haben bereits ein Konto",
+      "action": "Einloggen"
+    }
   },
   "signIn": {
-    "title": "Anmelden",
-    "button": "Anmelden",
-    "reminder": "Hat kein Konto, registrieren Sie sich"
+    "title": "Einloggen",
+    "button": "Einloggen",
+    "reminder": {
+      "text": "Hat kein Konto",
+      "action": "Anmeldung"
+    }
+  },
+  "around": {
+    "text": "Schauen Sie sich einfach um, klicken Sie auf",
+    "link": "hier"
   },
   "form": {
     "username": {
@@ -19,6 +29,7 @@
       "title": "Passwort",
       "description": "Ihr Passwort",
       "required": "Passwort ist erforderlich"
-    }
+    },
+    "placeholder": "bitte eingeben"
   }
 }

@@ -23,6 +23,7 @@ export const AuthForm: React.FC<Props> = ({ onSubmit, children }) => {
           <Input
             description={t('form.username.description')}
             name="username"
+            placeholder={t('form.placeholder')}
             required={{
               value: true,
               message: t('form.username.required'),
@@ -32,6 +33,7 @@ export const AuthForm: React.FC<Props> = ({ onSubmit, children }) => {
           <Input
             description={t('form.password.description')}
             name="password"
+            placeholder={t('form.placeholder')}
             required={{
               value: true,
               message: t('form.password.required'),

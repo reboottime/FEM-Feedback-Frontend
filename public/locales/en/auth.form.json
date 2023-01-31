@@ -2,12 +2,22 @@
   "signUp": {
     "title": "Sign Up",
     "button": "Sign Up",
-    "reminder": "Already have an account, sign in"
+    "reminder": {
+      "text": "Already have an account",
+      "action": "sign in"
+    }
   },
   "signIn": {
     "title": "Sign In",
     "button": "Sign In",
-    "reminder": "Doesn't have an account, sign up"
+    "reminder": {
+      "text": "Doesn't have an account",
+      "action": "sign up"
+    }
+  },
+  "around": {
+    "text": "Just looking around, click",
+    "link": "here"
   },
   "form": {
     "username": {
@@ -19,6 +29,7 @@
       "title": "Password",
       "description": "Your password",
       "required": "Password is required"
-    }
+    },
+    "placeholder": "please input"
   }
 }
