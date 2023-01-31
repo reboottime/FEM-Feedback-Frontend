@@ -17,7 +17,6 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    // @todo: resolve never
-  } as never);
+  });
 
 export default i18n;
