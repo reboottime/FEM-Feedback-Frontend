@@ -6,7 +6,10 @@
   padding: 20px 24px;
 
   &__title {
+    align-items: center;
     color: map.get($colors, "dark2");
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 24px;
   }
 
