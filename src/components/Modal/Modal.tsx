@@ -33,21 +33,12 @@ export const Modal: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    // Avoid page cotent shifting when opening modal
-    const bodyWidth = document.body.clientWidth;
-
-    document.body.style.width = bodyWidth + 'px';
-    document.body.style.overflow = 'hidden';
-
     const handler = handleEscapeKeydown(onCloseRef.current);
 
     document.addEventListener('keydown', handler);
 
     return () => {
       document.removeEventListener('keydown', handler);
-
-      document.body.style.overflow = 'auto';
-      document.body.style.width = 'auto';
     };
   }, []);
 
