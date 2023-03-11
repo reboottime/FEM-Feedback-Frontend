@@ -8,7 +8,7 @@ $content-margin: map.get($content-margin, "mobile");
   height: 100%;
   max-width: 320px;
   width: min(80vw, 320px);
-  position: absolute;
+  position: fixed;
   right: 0;
   top: $header-height;
   background-color: map.get($colors, "white2");
