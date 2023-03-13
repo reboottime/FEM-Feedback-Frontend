@@ -14,6 +14,7 @@ import Spinner from '@/components/Spinner';
 
 import { useIsMobile } from '@/hooks/mediaQueries';
 import { useGetFeedbacks } from '@/hooks/queries/feedbacks';
+import { useDebounce } from '@/hooks/useDebounce';
 
 import './style.scss';
 
@@ -26,6 +27,8 @@ export const ListPage = () => {
     order: 'desc',
   });
 
+  const dCategory = useDebounce(category, 500);
+
   const {
     data: feedbacks,
     isLoading: feedbacksAreLoading,
@@ -33,9 +36,9 @@ export const ListPage = () => {
     isSuccess: feedbacksAreLoaded,
   } = useGetFeedbacks({
     sort: { [sort.field]: sort.order },
-    ...(category === 'All'
+    ...(dCategory === 'All'
       ? {}
-      : { category }),
+      : { category: dCategory }),
   } as TQueryParams);
 
   useEffect(() => {
